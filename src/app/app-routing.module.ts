@@ -3,8 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { GuestModule } from './guest/guest.module';
 import { AdminModule } from './admin/admin.module';
 import { UserModule } from './user/user.module';
-import { SecAuthModule } from './sec-auth/sec-auth.module';
-
+import { AuthenticationModule } from './authentication/authentication.module';
+import { DealerModule } from './dealer/dealer.module';
+debugger;
  const routes: Routes = [
   {
     path:'',
@@ -12,14 +13,22 @@ import { SecAuthModule } from './sec-auth/sec-auth.module';
 },{
   path:'admin',
   loadChildren:()=>AdminModule
+}
+,{
+  path:'dealer',
+  loadChildren:()=>DealerModule
 },{
   path:'user',
   loadChildren:()=>UserModule
+},{
+  path:'planetAuth',
+  loadChildren:()=>AuthenticationModule
+},{
+    path: '**',
+    redirectTo: '', 
+  
 }
-,{
-  path:'Auth',
-  loadChildren:()=>SecAuthModule
-}
+
 ];
 
 @NgModule({

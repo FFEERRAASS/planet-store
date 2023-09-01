@@ -1,0 +1,172 @@
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <!-- <div class="login100-pic js-tilt" data-tilt>
+                <img src="../../../assets/imggg.png" alt="IMG">
+            </div> -->
+
+            <form [formGroup]="RegisterForm" class="login100-form validate-form" method="POST" id="signup-form"
+                style="width: 97%;margin-top: -90px;">
+                <span class="login100-form-title">
+                    Member Register
+                </span>
+
+                <div class="wrap-input100 validate-input">
+                    <input class="input100" type="text" placeholder="First name" matInput formControlName="firstname"
+                        required>
+
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <i class="fa fa-user-circle" aria-hidden="true"></i>
+                    </span>
+
+                </div>
+
+                <div class="wrap-input100 validate-input">
+                    <input class="input100" type="text" placeholder="Last name" matInput formControlName="lastname"
+                        required>
+                    <!-- <mat-error *ngIf="RegisterForm.controls['lastname'].hasError('required')" style="font-size: 12px;">Last name is required</mat-error> -->
+
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <i class="fa fa-user-circle" aria-hidden="true"></i>
+                    </span>
+                </div>
+
+                <div class="wrap-input100 validate-input">
+                    <input class="input100" type="text" placeholder="Username" matInput formControlName="username">
+                    <!-- <mat-error *ngIf="RegisterForm.controls['username'].hasError('required')" style="font-size: 12px;">Username is required</mat-error> -->
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <i class="fa fa-user-circle" aria-hidden="true"></i>
+                    </span>
+                </div>
+
+                <div class="wrap-input100 validate-input">
+                    <input class="input100" type="email" placeholder="Email" matInput formControlName="email" required>
+                    <!-- <mat-error *ngIf="RegisterForm.controls['email'].hasError('required')" style="font-size: 12px;">Email is required</mat-error> -->
+                    <!-- <mat-error *ngIf="RegisterForm.controls['email'].hasError('email')" style="font-size: 12px;"></mat-error> -->
+
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                    </span>
+                </div>
+
+
+
+                <div class="wrap-input100 validate-input">
+                    <input class="input100" type="password" placeholder="Password" matInput formControlName="password"
+                        required>
+                    <!-- <mat-error *ngIf="RegisterForm.controls['password'].hasError('required')" style="font-size: 12px;">Password is required</mat-error> -->
+                    <mat-error *ngIf="RegisterForm.controls['password'].hasError('minlength')">Please enter a strong
+                        password</mat-error>
+
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <i class="fa fa-key" aria-hidden="true"></i>
+                    </span>
+                </div>
+                <div class="wrap-input100 validate-input">
+                    <input class="input100" type="password" placeholder="Re-Password" matInput
+                        formControlName="passwordretype" required>
+                    <!-- <mat-error *ngIf="RegisterForm.controls['passwordretype'].hasError('required')" style="font-size: 12px;">Re-Password is required</mat-error> -->
+
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <i class="fa fa-key" aria-hidden="true"></i>
+                    </span>
+                </div>
+
+                <mat-error *ngIf="RegisterForm.controls['passwordretype'].hasError('minlength')">Please enter a
+                    strong password</mat-error>
+                <div class=" wrap-input100 validate-input">
+                    <input class="input100" type="text" placeholder="Phone number" matInput
+                        formControlName="phonenumber">
+
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <i class="fa fa-phone" aria-hidden="true"></i>
+                    </span>
+                </div>
+                <mat-error *ngIf="RegisterForm.controls['phonenumber'].hasError('minlength')">Please enter a correct
+                    number</mat-error>
+                <div class="wrap-input100 validate-input" matInput formControlName="gender" required>
+                    <select class="input100" formControlName="gender">
+                        <option value="0">Female</option>
+                        <option value="1">Male</option>
+                    </select>
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <i class="fa fa-venus-mars" aria-hidden="true"></i>
+                    </span>
+                </div>
+
+                <div class="wrap-input100 form-group">
+                    <input type="file" class="form-control" formControlName="imagePath" #file
+                        (change)="uploadFile(file.files)">
+                    <span class="focus-input100"></span>
+
+                </div>
+                <div class="wrap-input100 validate-input" style="margin-left: 30px;">
+
+                    <input class="form-check-input text-dark" type="checkbox" value="" id="flexCheckDefault" checked
+                        required>
+                    <label class="form-check-label" for="flexCheckDefault">
+                        I agree the <a href="javascript:;" class="text-dark font-weight-bolder">Terms and Conditions</a>
+                    </label>
+                </div>
+                <div class="wrap-input100 form-group">
+
+                    <div style="display: flex; justify-content: center; align-items: center">
+                        <re-captcha (resolved)="resolved($event)" *ngIf="Hidden"
+                            siteKey="6LegG_UjAAAAACurZEvMz6XPNO0LPsptsATlp3nf" style="width: 300px;" [theme]="'light'"
+                            [type]="'image'"></re-captcha>
+                    </div>
+                </div>
+
+                <i class="txt2" style="color:red"></i>
+                <div class="container-login100-form-btn">
+
+                    <div class="form-group">
+                        <input type="submit" name="submit" id="submit" (click)="register()" class="login100-form-btn"
+                            value="Sign up" />
+                    </div>
+
+
+                </div>
+
+                <div class="text-center p-t-8">
+                    <span class="txt1">
+                        Forgot
+                    </span>
+                    <a class="txt2" asp-action="ResetPassword">
+                        Username / Password?
+                    </a><br />
+                    <a class="txt2" asp-action="RegisterVendor">
+                        Register as a Vendor
+                        <i class="fa fa-long-arrow-right m-l-5 " aria-hidden="true"> </i>
+                    </a>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="../../../ATemp/vendor/jquery/jquery-3.2.1.min.js"></script>
+<script src="../../../ATemp/vendor/bootstrap/js/popper.js"></script>
+<script src="../../../ATemp/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../../ATemp/vendor/select2/select2.min.js"></script>
+<script src="../../../ATemp/vendor/tilt/tilt.jquery.min.js"></script>
+<script>
+    $('.js-tilt').tilt({
+        scale: 1.1
+    })
+</script>
+
+<script src="../../../ATemp/js/main.js"></script>
