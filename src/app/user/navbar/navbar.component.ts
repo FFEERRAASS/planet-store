@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -9,6 +10,13 @@ import { Component } from '@angular/core';
     '../../../assets/css/tiny-slider.css',
   ],
 })
-export class NavbarComponent {
-
+export class NavbarComponent implements OnInit {
+  constructor(public router:Router){}
+ngOnInit(): void {
+  
+}
+logout(){
+  this.router.navigate(['/planetAuth']);
+  localStorage.clear();
+}
 }

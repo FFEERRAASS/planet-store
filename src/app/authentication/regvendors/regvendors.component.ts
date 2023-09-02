@@ -7,10 +7,10 @@ import { planetAuth } from 'src/app/services/planetauth.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
+  selector: 'app-regvendors',
+  templateUrl: './regvendors.component.html',
   styleUrls: [
-    './register.component.css',
+    './regvendors.component.css',
     '../../../ATemp/vendor/bootstrap/css/bootstrap.min.css',
     '../../../ATemp/fonts/font-awesome-4.7.0/css/font-awesome.min.css',
     '../../../ATemp/vendor/animate/animate.css',
@@ -20,11 +20,11 @@ import Swal from 'sweetalert2';
     '../../../ATemp/css/main.css'
   ]
 })
-export class RegisterComponent implements OnInit {
+export class RegvendorsComponent implements OnInit{
   constructor(private router: Router, private spinner: NgxSpinnerService, public planetauth: planetAuth, public toastr: ToastrService) { }
 
   ngOnInit(): void {
-
+    
   }
   RegisterForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -80,8 +80,8 @@ export class RegisterComponent implements OnInit {
         }
         else {
           if (this.RegisterForm.controls['gender'].value == null) { this.RegisterForm.controls['gender'].setValue(3); }
-          this.RegisterForm.controls['status'].setValue(1);
-          this.RegisterForm.controls['roleFk'].setValue(3);
+          this.RegisterForm.controls['status'].setValue(2);
+          this.RegisterForm.controls['roleFk'].setValue(2);
           debugger;
           if (this.RegisterForm.valid) {this.planetauth.registerUser(this.RegisterForm.value);}
         }

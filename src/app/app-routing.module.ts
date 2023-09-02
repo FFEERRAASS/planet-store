@@ -6,29 +6,27 @@ import { UserModule } from './user/user.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { DealerModule } from './dealer/dealer.module';
 debugger;
- const routes: Routes = [
+const routes: Routes = [
   {
-    path:'',
-    loadChildren:()=>GuestModule
-},{
-  path:'admin',
-  loadChildren:()=>AdminModule
-}
-,{
-  path:'dealer',
-  loadChildren:()=>DealerModule
-},{
-  path:'user',
-  loadChildren:()=>UserModule
-},{
-  path:'planetAuth',
-  loadChildren:()=>AuthenticationModule
-},{
+    path: '',
+    loadChildren: () => GuestModule
+  }, {
+    path: 'admin',
+    loadChildren: () => AdminModule
+  }
+  , {
+    path: 'dealer',
+    loadChildren: () => DealerModule
+  }, {
+    path: 'user',
+    loadChildren: () => UserModule
+  }, {
+    path: 'planetAuth',
+    loadChildren: () => AuthenticationModule
+  }, {
     path: '**',
-    redirectTo: '', 
-  
-}
-
+    redirectTo: '',
+  }
 ];
 
 @NgModule({

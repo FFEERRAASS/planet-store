@@ -51,6 +51,7 @@ export class planetAuth {
           }
           else if (userInformation.status == 2) {
             this.toastr.warning('Your account is not activated, contact technical support');
+
           }
           else if (userInformation.status == 3) {
             this.toastr.warning('Your account blocked');
@@ -99,32 +100,40 @@ export class planetAuth {
     if (information.imagePath == null) {
       information.imagePath = "userDefault.png";
     }
-    this.informationForCheck={
-      email:information.email,
-      username:information.username,
-      phonenumber:information.phonenumber
+    this.informationForCheck = {
+      email: information.email,
+      username: information.username,
+      phonenumber: information.phonenumber
     }
     this.http.post('https://localhost:7100/api/users/CheckAvailable', this.informationForCheck).subscribe((response: any) => {
-      console.log(response);
+      var roleFk: any = information.roleFk;
+      if (response) {
+        this.toastr.error('Email, phone number, or username is already in use. We apologize')
+      } else {
+        this.informationForLogin = {
+          email: information.email,
+          password: information.password
+        };
 
-    if (response) {
-      this.toastr.error('Email, phone number, or username is already in use. We apologize')
-    } else {
-      this.informationForLogin = {
-        email: information.email,
-        password: information.password
-      };
-      
-      this.http.post('https://localhost:7100/api/users/RegisterUser', information)
-        .subscribe(
-          (resp: any) => {
-            this.login(this.informationForLogin);
-          },
-          (err: any) => {
-            this.toastr.error('An error occurred during registration. Please try again.');
-          }
-        );
-    }
+        this.http.post('https://localhost:7100/api/users/RegisterUser', information)
+          .subscribe(
+            (resp: any) => {
+              if (roleFk == 2) {
+                this.toastr.success('Your account has been registered , Please wait to activate your account - Planet Store');
+                setTimeout(() => {
+                  this.router.navigate(['/']);
+
+                }, 1000);
+              }
+              else {
+                this.login(this.informationForLogin);
+              }
+            },
+            (err: any) => {
+              this.toastr.error('An error occurred during registration. Please try again.');
+            }
+          );
+      }
     })
   }
 }
