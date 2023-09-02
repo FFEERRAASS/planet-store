@@ -1,5 +1,16 @@
 <app-navbar></app-navbar>
-<!-- Start Hero Section -->
+<!-- Start Hero Section
+<div >
+    <ng-template #showDetailsDialog style="display: flex; justify-content: center; align-items: center; margin-top: 50px;position: relative;top: 100px;">
+        <div style="background-color: white; padding: 20px; border-radius: 8px; text-align: center;">
+            <h3>Are you Sure?</h3>
+            <button mat-dialog-close="yes" type="button" class="btn bg-gradient-primary btn-sm me-2">yes</button>
+            <button mat-dialog-close="no" type="button" class="btn bg-gradient-primary btn-sm me-2">no</button>
+        </div>
+    </ng-template>
+</div> -->
+
+
 <div class="hero">
     <div class="container">
         <div class="row justify-content-between">
@@ -15,127 +26,79 @@
     </div>
 </div>
 <!-- End Hero Section -->
+<div class="row mt-3" style="background-color: #3b5d50;">
+    <div class="row mt-3" style="padding-left: 600px;padding-right: 600px;padding-top: -200px;">
+        <div class="col-md-12" style="margin-top: 10px; margin-bottom: 10px; display: flex; align-items: center;">
+            <input type="text" class="form-control" placeholder="Search...">
+            &nbsp;
+            <select class="form-select">
+                <option selected>Filter by...</option>
+                <option>Option 1</option>
+                <option>Option 2</option>
+            </select>
+            <input type="submit" class="btn btn-primary" style="color:#3b5d50;background-color: white; margin-left: 10px;" value="Filter">
+
+        </div>
+       
+    </div>
+</div>
 
 
 
 <div class="untree_co-section product-section before-footer-section">
-<div class="container">
-      <div class="row">
-
-          <!-- Start Column 1 -->
-        <div class="col-12 col-md-4 col-lg-3 mb-5">
-            <a class="product-item" href="#">
-                <img src="../../assets/images/product-3.png" class="img-fluid product-thumbnail">
-                <h3 class="product-title">Nordic Chair</h3>
-                <strong class="product-price">$50.00</strong>
-
-                <span class="icon-cross">
-                    <img src="../../assets/images/cross.svg" class="img-fluid">
-                </span>
-            </a>
-        </div> 
-        <!-- End Column 1 -->
-            
-        <!-- Start Column 2 -->
-        <div class="col-12 col-md-4 col-lg-3 mb-5">
-            <a class="product-item" href="#">
-                <img src="../../assets/images/product-1.png" class="img-fluid product-thumbnail">
-                <h3 class="product-title">Nordic Chair</h3>
-                <strong class="product-price">$50.00</strong>
-
-                <span class="icon-cross">
-                    <img src="../../assets/images/cross.svg" class="img-fluid">
-                </span>
-            </a>
-        </div> 
-        <!-- End Column 2 -->
-
-        <!-- Start Column 3 -->
-        <div class="col-12 col-md-4 col-lg-3 mb-5">
-            <a class="product-item" href="#">
-                <img src="../../assets/images/product-2.png" class="img-fluid product-thumbnail">
-                <h3 class="product-title">Kruzo Aero Chair</h3>
-                <strong class="product-price">$78.00</strong>
-
-                <span class="icon-cross">
-                    <img src="../../assets/images/cross.svg" class="img-fluid">
-                </span>
-            </a>
+<div class="container"  >
+    <div class="row">
+        <div *ngFor="let obj of userService.allProducts" class="col-12 col-md-4 col-lg-3 mb-5">
+            <span class="product-item" href="#">
+                <img src="../../assets/images/{{obj.productImage1}}" class="img-fluid product-thumbnail">
+                <h3 class="product-title">{{obj.productName}}</h3>
+                <p class="product-price text-dark">{{obj.productPrice}} JD</p>
+    
+                <div style="display: flex; align-items: center;">
+                    <p style="margin-right: 10px;" class="icon-cross"  >
+                       <img src="../../assets/images/eyes.svg" class="img-fluid" (click)="showDetailsFun(obj.productId)" >
+                    </p>
+                </div>
+            </span>
         </div>
-        <!-- End Column 3 -->
-
-        <!-- Start Column 4 -->
-        <div class="col-12 col-md-4 col-lg-3 mb-5">
-            <a class="product-item" href="#">
-                <img src="../../assets/images/product-3.png" class="img-fluid product-thumbnail">
-                <h3 class="product-title">Ergonomic Chair</h3>
-                <strong class="product-price">$43.00</strong>
-
-                <span class="icon-cross">
-                    <img src="../../assets/images/cross.svg" class="img-fluid">
-                </span>
-            </a>
-        </div>
-        <!-- End Column 4 -->
-
-
-        <!-- Start Column 1 -->
-        <div class="col-12 col-md-4 col-lg-3 mb-5">
-            <a class="product-item" href="#">
-                <img src="../../assets/images/product-3.png" class="img-fluid product-thumbnail">
-                <h3 class="product-title">Nordic Chair</h3>
-                <strong class="product-price">$50.00</strong>
-
-                <span class="icon-cross">
-                    <img src="../../assets/images/cross.svg" class="img-fluid">
-                </span>
-            </a>
-        </div> 
-        <!-- End Column 1 -->
-            
-        <!-- Start Column 2 -->
-        <div class="col-12 col-md-4 col-lg-3 mb-5">
-            <a class="product-item" href="#">
-                <img src="../../assets/images/product-1.png" class="img-fluid product-thumbnail">
-                <h3 class="product-title">Nordic Chair</h3>
-                <strong class="product-price">$50.00</strong>
-
-                <span class="icon-cross">
-                    <img src="../../assets/images/cross.svg" class="img-fluid">
-                </span>
-            </a>
-        </div> 
-        <!-- End Column 2 -->
-
-        <!-- Start Column 3 -->
-        <div class="col-12 col-md-4 col-lg-3 mb-5">
-            <a class="product-item" href="#">
-                <img src="../../assets/images/product-2.png" class="img-fluid product-thumbnail">
-                <h3 class="product-title">Kruzo Aero Chair</h3>
-                <strong class="product-price">$78.00</strong>
-
-                <span class="icon-cross">
-                    <img src="../../assets/images/cross.svg" class="img-fluid">
-                </span>
-            </a>
-        </div>
-        <!-- End Column 3 -->
-
-        <!-- Start Column 4 -->
-        <div class="col-12 col-md-4 col-lg-3 mb-5">
-            <a class="product-item" href="#">
-                <img src="../../assets/images/product-3.png" class="img-fluid product-thumbnail">
-                <h3 class="product-title">Ergonomic Chair</h3>
-                <strong class="product-price">$43.00</strong>
-
-                <span class="icon-cross">
-                    <img src="../../assets/images/cross.svg" class="img-fluid">
-                </span>
-            </a>
-        </div>
-        <!-- End Column 4 -->
-
-      </div>
+    </div>
+    
 </div>
+
 </div>
 <app-footer></app-footer>
+<ng-template #showDetailsDialog>
+    <section style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; align-items: flex-start; background-color: rgba(0, 0, 0, 0.6);">
+        <div class="container py-4">
+            <div class="row">
+
+                <div class="col-lg-7 mx-auto d-flex justify-content-center flex-column" style="background-color: white; border-radius: 8px; padding: 20px;">
+                    <i class="fa fa-window-close" aria-hidden="true"(click)="closeDialog()"></i>
+
+                    <h3 class="text-center" style="font-family: cursive;">Product Details</h3>
+                    <div style="width:600px; background-color: #fff; border-radius: 10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); overflow: hidden; transition: transform 0.2s ease-in-out;">
+                        <div style="display: flex;">
+                            <img src="../../assets/images/{{this.userService.specifcProduct.productImage1}}" alt="Product Image" style="width: 50%; height: auto; border-top-left-radius: 10px; border-bottom-left-radius: 10px;">
+                            <img src="../../assets/images/{{this.userService.specifcProduct.productImage1}}" alt="Product Image" style="width: 50%; height: auto; border-top-right-radius: 10px; border-bottom-right-radius: 10px;">
+                        </div>
+                        <div style="padding: 20px;border: #3b5d50 1px solid;border-radius: 10px;">
+
+                            <h2 style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">{{this.userService.specifcProduct.productName}}</h2>
+                            <span style="font-size: 20px; color: #6a6d6b"> {{this.userService.specifcProduct.productDescription}}</span><br>
+                            <span style="font-size: 20px; color: #f9bf29;font-family: cursive;">{{this.userService.specifcProduct.productPrice}} JD</span><br>
+                            <span style="font-size: 20px; color: #f9bf29;font-family: cursive;">Only {{this.userService.specifcProduct.productQuantity}} pieces are available.</span>
+                           &nbsp;&nbsp;&nbsp;&nbsp;
+                           <br><br>
+                           <button class="btn btn-secondary me-2" (click)="addToCart(this.userService.specifcProduct.productId)">Add to cart <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                           </button>
+                           <button class="btn btn-secondary me-2" (click)="addToFavourite(this.userService.specifcProduct.productId)">Add to favourites <i class="fa fa-star" aria-hidden="true"></i>
+                           </button>
+
+                        </div>
+                
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</ng-template>

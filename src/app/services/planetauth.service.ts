@@ -36,6 +36,8 @@ export class planetAuth {
           const token = response.toString();
           localStorage.setItem('token', token);
           let userInformation: any = jwt_decode(token);
+          debugger;
+          localStorage.setItem('userId',userInformation.userId);
           if (userInformation.status == 1) {
             this.toastr.success('Logged in successfully');
             if (userInformation.roleFk == 1) {
