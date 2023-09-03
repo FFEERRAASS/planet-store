@@ -11,37 +11,35 @@
 </div> -->
 
 
-<div class="hero">
+<div class="hero" style="height: 200px;">
     <div class="container">
         <div class="row justify-content-between">
             <div class="col-lg-5">
                 <div class="intro-excerpt">
-                    <h1>Shop</h1>
+                    <h3 style="color: white;font-family: cursive;margin-top: 8px;">Here everything is wonderful</h3>
                 </div>
             </div>
             <div class="col-lg-7">
-                
+                <form [formGroup]="SearchForm">
+                    <div class="col-md-12" style="margin-top: 10px; margin-bottom: 10px; display: flex; align-items: center;">
+    
+                <input type="text" class="form-control" placeholder="Search..." matInput formControlName="productName">
+                &nbsp;
+                <select class="form-select" matInput formControlName="productDescription">
+                    <option selected >Filter by...</option>
+                    <option value="asc">Price from high to low</option>
+                    <option value="desc">Price from low to high</option>
+                </select>
+                <input type="submit" class="btn btn-primary" (click)="search()" style="color:#3b5d50;background-color: white; margin-left: 10px;" value="Filter">
+            </div>
+    
+            </form>
+           
             </div>
         </div>
     </div>
 </div>
-<!-- End Hero Section -->
-<div class="row mt-3" style="background-color: #3b5d50;">
-    <div class="row mt-3" style="padding-left: 600px;padding-right: 600px;padding-top: -200px;">
-        <div class="col-md-12" style="margin-top: 10px; margin-bottom: 10px; display: flex; align-items: center;">
-            <input type="text" class="form-control" placeholder="Search...">
-            &nbsp;
-            <select class="form-select">
-                <option selected>Filter by...</option>
-                <option>Option 1</option>
-                <option>Option 2</option>
-            </select>
-            <input type="submit" class="btn btn-primary" style="color:#3b5d50;background-color: white; margin-left: 10px;" value="Filter">
 
-        </div>
-       
-    </div>
-</div>
 
 
 
@@ -56,7 +54,7 @@
     
                 <div style="display: flex; align-items: center;">
                     <p style="margin-right: 10px;" class="icon-cross"  >
-                       <img src="../../assets/images/eyes.svg" class="img-fluid" (click)="showDetailsFun(obj.productId)" >
+                       <img src="../../assets/images/eyes.svg" class="img-fluid" (click)="showDetailsFun(obj.productId)">
                     </p>
                 </div>
             </span>

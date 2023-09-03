@@ -16,7 +16,9 @@ body {
   color: #6a6a6a;
   font-size: 14px;
   background-color: #eff2f1; }
-
+p{
+  color: black;
+}
 a {
   text-decoration: none;
   -webkit-transition: .3s all ease;

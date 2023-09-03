@@ -1,6 +1,7 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { MatDialog } from '@angular/material/dialog';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-product',
@@ -15,7 +16,10 @@ export class ProductComponent implements OnInit {
 
     this.userService.getAllProduct()
   }
-
+  SearchForm: FormGroup = new FormGroup({
+    productName: new FormControl('', [Validators.required, Validators.email]),
+    productDescription: new FormControl('', [Validators.required, Validators.minLength(8)]),
+  }) 
   showDetailsFun(productId: any) {
     this.userService.getProductById(productId);
     this.dialog.open(this.showDetails);
@@ -28,5 +32,10 @@ export class ProductComponent implements OnInit {
   }
   addToFavourite(productId: any) {
     this.userService.addToFavourite(productId)
+  }
+  search(){
+    debugger;
+    this.userService.searchItem(this.SearchForm.value);
+
   }
 }

@@ -12,7 +12,7 @@ import { TestimonialComponent } from './testimonial/testimonial.component';
 import { CardComponent } from './card/card.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CheckoutComponent } from './checkout/checkout.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -27,11 +27,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     CardComponent,
     ProfileComponent,
     CheckoutComponent
+    
   ],
   imports: [
     CommonModule,
     UserRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
 
   ]
 })

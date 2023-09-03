@@ -12,6 +12,8 @@ import { RecaptchaModule } from 'ng-recaptcha';
 import {MatDialogModule} from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -29,7 +31,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatInputModule,
     MatFormFieldModule,
     RecaptchaModule,
-    ToastrModule
+    ToastrModule,
+    FormsModule
+
+    
     
     
   ],
