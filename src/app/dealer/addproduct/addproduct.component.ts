@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DealerService } from 'src/app/services/dealer.service';
 import { UserService } from 'src/app/services/user.service';
 import { DatePipe } from '@angular/common';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-addproduct',
@@ -16,7 +17,7 @@ export class AddproductComponent implements OnInit {
   @ViewChild('callUpdateProductDialog') callUpdateDialog!:TemplateRef<any>;
 
   
-  constructor(private datePipe: DatePipe,public dealerService: DealerService, public dialog: MatDialog) { }
+  constructor(private datePipe: DatePipe,private spinner: NgxSpinnerService,public dealerService: DealerService, public dialog: MatDialog) { }
   ngOnInit(): void {
     debugger
     this.dealerService.getAllProductForDealer();
@@ -94,28 +95,44 @@ export class AddproductComponent implements OnInit {
 
   }
   showDetails(productId:number){
+    
     this.dealerService.productDetails(productId);
     this.dialog.open(this.callProductDeatilsDialog);
   }
   oldProductData:any={};
  UpdateProduct(productId:number){
-  debugger
+  
   this.dealerService.getAllCategory();
 
     this.dealerService.productDetails(productId);
+    this.spinner.show()
+    setTimeout(() => {
+      
     debugger;
     this.oldProductData=this.dealerService.productDetailsVar;
     this.UpdateProductForm.controls['userFk'].setValue(this.oldProductData.userFk);
     this.UpdateProductForm.controls['productId'].setValue(this.oldProductData.productId);
+    
     this.UpdateProductForm.controls['productStatus'].setValue(0);
+    this.UpdateProductForm.controls['productAddedDate'].setValue(this.oldProductData.productAddedDate);
+
     this.dealerService.ImageProduct1=this.oldProductData.productImage1;
     this.dealerService.ImageProduct2=this.oldProductData.productImage2;
     this.dialog.open(this.callUpdateDialog);
+      this.spinner.hide();
+    }, 1000);
+  debugger
+
+    
+
   }
   saveUpdate(){
-    var cost = this.ProductForm.controls['productCost'].value;
+    debugger;
+    var category = parseInt(this.UpdateProductForm.controls['categoryFk'].value, 10);
+    this.UpdateProductForm.controls['categoryFk'].setValue(category);
+    var cost = this.UpdateProductForm.controls['productCost'].value;
     var price = cost + (cost / 10);
-    this.ProductForm.controls['productPrice'].setValue(price);
+    this.UpdateProductForm.controls['productPrice'].setValue(price);
     this.dealerService.updateProduct(this.UpdateProductForm.value)
   }
 }

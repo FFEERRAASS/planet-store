@@ -17,8 +17,8 @@ export class planetAuth {
   ) { }
 
   login(body: any): void {
+  
     debugger;
-    this.spinner.show();
 
     const information = {
       username: body.email.toString(),

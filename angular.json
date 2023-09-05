@@ -30,7 +30,8 @@
 "node_modules/admin-lte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css",
 "node_modules/admin-lte/dist/css/adminlte.min.css",
 "node_modules/ngx-toastr/toastr.css",
-"node_modules/ngx-spinner/animations/ball-scale-multiple.css"
+"node_modules/ngx-spinner/animations/ball-scale-multiple.css" 
+
             ],
             "scripts": ["node_modules/admin-lte/plugins/jquery/jquery.min.js",
             "node_modules/admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js",

@@ -22,10 +22,12 @@ export class DealerService {
 
   dealerProduct:any=[]
   getAllProductForDealer(){
+
     this.http.get('https://localhost:7100/api/Product/getProductById/'+this.userId).subscribe((result)=>{
       this.dealerProduct=result;
     },err=>{
       this.toastr.error("There was an error, try again later")
+
     })
   }
   category:any=[];
@@ -89,11 +91,13 @@ export class DealerService {
   }
   productDetailsVar:any={};
   productDetails(productId:number){
+
     this.http.get('https://localhost:7100/api/Product/GetProductForDialog/'+productId).subscribe((result)=>{
       this.productDetailsVar=result;
     },err=>{
       return this.toastr.error("There was an error, try again later")
     })
+    this.spinner.hide();
   }
   updateProduct(information:any){
     information.productImage1=this.ImageProduct1;

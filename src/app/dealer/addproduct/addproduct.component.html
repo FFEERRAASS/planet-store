@@ -113,7 +113,7 @@
             <!-- select -->
             <div class="form-group" >
               <label>Category</label>
-              <select class="form-control" matInput formControlName="categoryFk" [(ngModel)]="oldProductData.categoryFk">
+              <select class="form-control"  formControlName="categoryFk" [(ngModel)]="oldProductData.categoryFk">
                 <option *ngFor="let category of dealerService.category" value="{{category.categoryId}}">{{ category.categoryName }}</option>
               </select>
             </div>

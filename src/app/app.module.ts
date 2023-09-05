@@ -15,6 +15,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import * as SimplePeer from 'simple-peer';
 import { TruncatePipe } from './truncate.pipe';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { TruncatePipe } from './truncate.pipe';
     MatFormFieldModule,
     RecaptchaModule,
     ToastrModule,
-    FormsModule
+    FormsModule,
+    NgxSpinnerModule
 
     
     
