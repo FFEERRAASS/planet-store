@@ -19,8 +19,7 @@ import { TruncatePipe } from './truncate.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    TruncatePipe
+    AppComponent
 
     ],
   imports: [

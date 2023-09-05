@@ -28,4 +28,84 @@ export class DealerService {
       this.toastr.error("There was an error, try again later")
     })
   }
+  category:any=[];
+  getAllCategory(){
+    this.http.get('https://localhost:7100/api/Category/GetCategory').subscribe((result)=>{
+      return this.category=result;
+    },err=>{
+      return this.toastr.error("There was an error, try again later")
+    })
+  }
+
+  ImageProduct1: any;
+  uploadImage1(file: FormData) {
+
+    this.http.post('https://localhost:7100/api/Product/UploadImages', file)
+      .subscribe((data: any) => {
+        debugger;
+        this.ImageProduct1 = data.imagePath;
+      }, err => {
+        return this.toastr.error("There was an error, try again later");
+      })
+  }
+  ImageProduct2: any;
+  uploadImage2(file: FormData) {
+
+    this.http.post('https://localhost:7100/api/Product/UploadImages', file)
+      .subscribe((data: any) => {
+        debugger;
+        this.ImageProduct2 = data.imagePath;
+      }, err => {
+        return this.toastr.error("There was an error, try again later")
+      })
+  }
+  saveProduct(information: any) {
+    information.productImage1 = this.ImageProduct1;
+    information.productImage2 = this.ImageProduct2;
+  
+    // Check and provide default image filenames if they are null
+    if (!information.productImage1) {
+      information.productImage1 = 'defaultproductimg.jpg';
+    }
+    if (!information.productImage2) {
+      information.productImage2 = 'defaultproductimg.jpg';
+    }
+    information.productCost=information.productCost.toString();
+    information.productPrice=information.productPrice.toString();
+
+    this.http.post('https://localhost:7100/api/Product/insertProduct', information).subscribe(
+      (result) => {
+        this.toastr.success('The product has been added, it will be reviewed, and if accepted, it will be shown to customers. Thank you for your waiting. An email will be sent to you if the product is approved.');
+        this.dialog.closeAll();
+      },
+      (err) => {
+        if (err.status === 400) {
+          this.toastr.error('Validation error. Please check the entered data.');
+        } else {
+          this.toastr.error('An error occurred. Please try again later.');
+        }
+      }
+    );
+  }
+  productDetailsVar:any={};
+  productDetails(productId:number){
+    this.http.get('https://localhost:7100/api/Product/GetProductForDialog/'+productId).subscribe((result)=>{
+      this.productDetailsVar=result;
+    },err=>{
+      return this.toastr.error("There was an error, try again later")
+    })
+  }
+  updateProduct(information:any){
+    information.productImage1=this.ImageProduct1;
+    information.productImage2=this.ImageProduct2;
+    information.productCost=information.productCost.toString();
+    information.productPrice=information.productPrice.toString();
+    this.http.put('https://localhost:7100/api/Product/updateProduct',information).subscribe((result)=>{
+      this.toastr.success('The product has been modified, it will be reviewed and re-published, we appreciate your waiting')
+    },err=>{
+      return this.toastr.error("There was an error, try again later")
+    })
+
+  }
+  
 }

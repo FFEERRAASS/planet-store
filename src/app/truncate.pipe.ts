@@ -4,9 +4,13 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'truncate'
 })
 export class TruncatePipe implements PipeTransform {
+  transform(input: string, limit: number): string {
+    if (!input) return '';
 
-  transform(value: unknown, ...args: unknown[]): unknown {
-    return null;
+    if (input.length <= limit) {
+      return input;
+    } else {
+      return input.substring(0, limit) + ' ...';
+    }
   }
-
 }

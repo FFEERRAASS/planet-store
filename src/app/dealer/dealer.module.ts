@@ -16,6 +16,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { WalletComponent } from './wallet/wallet.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { TruncatePipe } from '../truncate.pipe';
 
 
 @NgModule({
