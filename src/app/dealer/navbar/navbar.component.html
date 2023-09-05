@@ -19,7 +19,7 @@
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
         <!-- Navbar Search -->
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" data-widget="navbar-search" href="#" role="button">
             <i class="fas fa-search"></i>
           </a>
@@ -38,17 +38,16 @@
               </div>
             </form>
           </div>
-        </li>
+        </li> -->
   
         <!-- Messages Dropdown Menu -->
-        <li class="nav-item dropdown">
+        <!-- <li class="nav-item dropdown">
           <a class="nav-link" data-toggle="dropdown" href="#">
             <i class="far fa-comments"></i>
             <span class="badge badge-danger navbar-badge">3</span>
           </a>
           <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
             <a href="#" class="dropdown-item">
-              <!-- Message Start -->
               <div class="media">
                 <img src="../../../assets/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
                 <div class="media-body">
@@ -60,11 +59,9 @@
                   <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
                 </div>
               </div>
-              <!-- Message End -->
             </a>
             <div class="dropdown-divider"></div>
             <a href="#" class="dropdown-item">
-              <!-- Message Start -->
               <div class="media">
                 <img src="../../../assets/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
                 <div class="media-body">
@@ -76,11 +73,9 @@
                   <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
                 </div>
               </div>
-              <!-- Message End -->
             </a>
             <div class="dropdown-divider"></div>
             <a href="#" class="dropdown-item">
-              <!-- Message Start -->
               <div class="media">
                 <img src="../../../assets/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
                 <div class="media-body">
@@ -92,14 +87,13 @@
                   <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
                 </div>
               </div>
-              <!-- Message End -->
             </a>
             <div class="dropdown-divider"></div>
             <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
           </div>
-        </li>
+        </li> -->
         <!-- Notifications Dropdown Menu -->
-        <li class="nav-item dropdown">
+        <!-- <li class="nav-item dropdown">
           <a class="nav-link" data-toggle="dropdown" href="#">
             <i class="far fa-bell"></i>
             <span class="badge badge-warning navbar-badge">15</span>
@@ -124,8 +118,8 @@
             <div class="dropdown-divider"></div>
             <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
           </div>
-        </li>
-        <li class="nav-item">
+        </li> -->
+        <!-- <li class="nav-item">
           <a class="nav-link" data-widget="fullscreen" href="#" role="button">
             <i class="fas fa-expand-arrows-alt"></i>
           </a>
@@ -134,7 +128,7 @@
           <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
             <i class="fas fa-th-large"></i>
           </a>
-        </li>
+        </li> -->
       </ul>
     </nav>
     <!-- /.navbar -->
@@ -172,16 +166,15 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
+            <a routerLink="/dealer/" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
-                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
 
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="pages/widgets.html" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
@@ -189,69 +182,112 @@
                 <span class="right badge badge-danger">New</span>
               </p>
             </a>
-          </li>
+          </li> -->
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link" active>
               <i class="nav-icon fas fa-copy"></i>
-              <p>
-                Layout Options
+              <p style="color: white;">
+                My Products
                 <i class="fas fa-angle-left right"></i>
-                <span class="badge badge-info right">6</span>
               </p>
             </a>
-            <ul class="nav nav-treeview">
+           <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/layout/top-nav.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Top Navigation</p>
+                <a routerLink="/dealer/addproduct" class="nav-link">
+                  <i class="fa-regular fa-plus nav-icon"></i>
+                  <p style="color: white;">Add Products</p>
+                </a>
+              </li>
+     
+              <li class="nav-item">
+                <a routerLink="/dealer/editproduct" class="nav-link">
+                  <i class="fa-regular fa-pen-to-square nav-icon"></i>
+                  <p style="color: white;">Edit Products</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Top Navigation + Sidebar</p>
+                <a routerLink="/dealer/deleteproduct" class="nav-link">
+                  <i class="fa-solid fa-trash nav-icon" style="color: #ffffff;"></i>
+                  <p style="color: white;">Delete Products</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="pages/layout/boxed.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Boxed</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/layout/fixed-sidebar.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Fixed Sidebar</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/layout/fixed-sidebar-custom.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Fixed Sidebar <small>+ Custom Area</small></p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/layout/fixed-topnav.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Fixed Navbar</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/layout/fixed-footer.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Fixed Footer</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Collapsed Sidebar</p>
-                </a>
-              </li>
-            </ul>
+          
+ 
+            
+             
+            </ul> 
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link" active>
+              <i class="nav-icon fas fa-store"></i>
+              <p style="color: white;">
+                My Sales
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+           <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a routerLink="/dealer/salesreport" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p style="color: white;">Sales reports</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a routerLink="/dealer/saleschart"  class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p style="color: white;">Sales chart</p>
+                </a>
+              </li>
+            </ul> 
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" active>
+              <i class="nav-icon fas fa-users"></i>
+              <p style="color: white;">
+                Chats and meetings
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+           <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a routerLink="/dealer/chat" class="nav-link">
+                  <i class=" fa-regular fa-comments nav-icon"></i>
+                  <p style="color: white;">Chats</p>
+                </a>
+              </li> 
+              <li class="nav-item">
+                <a routerLink="/dealer/meeting" class="nav-link">
+                  <i class="fa-solid fa-video nav-icon"></i>
+                  <p style="color: white;">Meeting</p>
+                </a>
+              </li>
+            </ul> 
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" active>
+              <i class="nav-icon fas fa-user"></i>
+              <p style="color: white;">
+                Account
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+           <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a routerLink="/dealer/profile" class="nav-link">
+                  <i class="fa-solid fa-user nav-icon"></i>
+                  <p style="color: white;">My Account</p>
+                </a>
+              </li> 
+              <li class="nav-item">
+                <a routerLink="/dealer/wallet" class="nav-link">
+                  <i class="fa-solid fa-wallet nav-icon"></i>
+                  <p style="color: white;">My Wallet</p>
+                </a>
+              </li>
+            </ul> 
+          </li>
+          <!-- <li class="nav-item">
+            <a href="#" class="nav-link" active>
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
                 Charts
@@ -284,9 +320,9 @@
                 </a>
               </li>
             </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
+          </li> -->
+          <!-- <li class="nav-item">
+            <a href="#" class="nav-link" active>
               <i class="nav-icon fas fa-tree"></i>
               <p>
                 UI Elements
@@ -343,9 +379,9 @@
                 </a>
               </li>
             </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
+          </li> -->
+          <!-- <li class="nav-item">
+            <a href="#" class="nav-link" active>
               <i class="nav-icon fas fa-edit"></i>
               <p>
                 Forms
@@ -377,10 +413,10 @@
                   <p>Validation</p>
                 </a>
               </li>
-            </ul>
-          </li>
+            </ul> -->
+          <!-- </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link" active>
               <i class="nav-icon fas fa-table"></i>
               <p>
                 Tables
@@ -417,8 +453,8 @@
                 <span class="badge badge-info right">2</span>
               </p>
             </a>
-          </li>
-          <li class="nav-item">
+          </li> -->
+          <!-- <li class="nav-item">
             <a href="pages/gallery.html" class="nav-link">
               <i class="nav-icon far fa-image"></i>
               <p>
@@ -435,7 +471,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link" active>
               <i class="nav-icon far fa-envelope"></i>
               <p>
                 Mailbox
@@ -464,7 +500,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link" active>
               <i class="nav-icon fas fa-book"></i>
               <p>
                 Pages
@@ -535,7 +571,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link" active>
               <i class="nav-icon far fa-plus-square"></i>
               <p>
                 Extras
@@ -544,7 +580,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="#" class="nav-link" active>
                   <i class="far fa-circle nav-icon"></i>
                   <p>
                     Login & Register v1
@@ -579,7 +615,7 @@
                 </ul>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="#" class="nav-link" active>
                   <i class="far fa-circle nav-icon"></i>
                   <p>
                     Login & Register v2
@@ -664,7 +700,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link" active>
               <i class="nav-icon fas fa-search"></i>
               <p>
                 Search
@@ -701,13 +737,13 @@
           </li>
           <li class="nav-header">MULTI LEVEL EXAMPLE</li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link" active>
               <i class="fas fa-circle nav-icon"></i>
               <p>Level 1</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link" active>
               <i class="nav-icon fas fa-circle"></i>
               <p>
                 Level 1
@@ -716,13 +752,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="#" class="nav-link" active>
                   <i class="far fa-circle nav-icon"></i>
                   <p>Level 2</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="#" class="nav-link" active>
                   <i class="far fa-circle nav-icon"></i>
                   <p>
                     Level 2
@@ -731,19 +767,19 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link" active>
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>Level 3</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link" active>
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>Level 3</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link" active>
                       <i class="far fa-dot-circle nav-icon"></i>
                       <p>Level 3</p>
                     </a>
@@ -751,7 +787,7 @@
                 </ul>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="#" class="nav-link" active>
                   <i class="far fa-circle nav-icon"></i>
                   <p>Level 2</p>
                 </a>
@@ -759,30 +795,30 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link" active>
               <i class="fas fa-circle nav-icon"></i>
               <p>Level 1</p>
             </a>
           </li>
           <li class="nav-header">LABELS</li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link" active>
               <i class="nav-icon far fa-circle text-danger"></i>
               <p class="text">Important</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link" active>
               <i class="nav-icon far fa-circle text-warning"></i>
               <p>Warning</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link" active>
               <i class="nav-icon far fa-circle text-info"></i>
               <p>Informational</p>
             </a>
-          </li>
+          </li> -->
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

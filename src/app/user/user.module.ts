@@ -13,6 +13,9 @@ import { CardComponent } from './card/card.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FavouriteComponent } from './favourite/favourite.component';
+import { PreviouspurchasesComponent } from './previouspurchases/previouspurchases.component';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
@@ -26,13 +29,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     TestimonialComponent,
     CardComponent,
     ProfileComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    FavouriteComponent,
+    PreviouspurchasesComponent
     
   ],
   imports: [
     CommonModule,
     UserRoutingModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule ,
+    MatInputModule 
 
   ]
 })

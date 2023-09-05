@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -14,13 +14,15 @@ export class ContactComponent implements OnInit {
   }
 
   contactForm: FormGroup = new FormGroup({
-    email: new FormControl(),
-    subject: new FormControl(),
-    msg: new FormControl(),
+    firstname: new FormControl('',[Validators.required]),
+    lastname: new FormControl('',[Validators.required]),
+    email: new FormControl('',[Validators.required]),
     phonenumber: new FormControl(),
-
+    bigMessage:new FormControl('',[Validators.required])
+  
   })
   sendContact() {
+    debugger;
     this.userService.CreatContact(this.contactForm.value);
   }
 }

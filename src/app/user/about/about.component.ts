@@ -9,6 +9,6 @@ import { UserService } from 'src/app/services/user.service';
 export class AboutComponent implements OnInit {
   constructor(public userService:UserService){}
   ngOnInit(): void {
-    this.userService.GetBasketItems();
+    
   }
 }

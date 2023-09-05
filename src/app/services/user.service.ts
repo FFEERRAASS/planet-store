@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -14,12 +15,70 @@ export class UserService {
     private http: HttpClient,
     private toastr: ToastrService,
     private router: Router,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    public dialog: MatDialog
   ) { }
 
+  userInformation: any = {}
+  getuserProfile() {
+    debugger
+    this.http.get('https://localhost:7100/api/users/GetUser/' + this.userId).subscribe((result) => {
+      this.userInformation = result;
+    }, err => {
+      this.toastr.error("There was an error, try again later")
+    })
+  }
+  updateProfile(information: any) {
+    information.imagePath=this.ImageUser;
+    debugger;
+    this.http.put('https://localhost:7100/api/users/UpdateUser', information).subscribe((result) => {
+      this.dialog.closeAll();
+      this.toastr.success("Your information has been successfully updated")
+    }, err => {
+      this.dialog.closeAll();
+      this.toastr.error("There was an error, try again later")
+    })
+  }
+  deleteAccount(userId:any){
+    this.http.delete('https://localhost:7100/api/users/DeleteUser/'+userId).subscribe((result)=>{
+      Swal.fire({
+        icon: 'success',
+        title: 'Successfully completed',
+        text: 'We are sorry for your loss. If there is any problem with the store or store policy, do not hesitate to contact us  😞',
+        footer: 'We hope that you will return soon to the <strong> Planet</strong> <small> Store</small> family' 
+      })
+      this.router.navigate(['PlanetAuth/login']);
+
+    },err=>{
+      this.toastr.error("There was an error, try again later")
+    })
+  }
+  ImageUser: any;
+  uploadImage(file: FormData) {
+
+    this.http.post('https://localhost:7100/api/users/UploadImages', file)
+      .subscribe((data: any) => {
+        debugger;
+        this.ImageUser = data.imagePath;
+      }, err => {
+        this.toastr.error('operation image didnt work');
+      })
+  }
   userId: any = localStorage.getItem('userId');
   CreatContact(information: any) {
+    debugger;
 
+    this.http.post('https://localhost:7100/api/Contact/InsertContact', information).subscribe((result) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Successfully completed',
+        text: 'Your message has been sent',
+        footer: 'We will contact you as soon as possible'
+      })
+    }, error => {
+      this.toastr.error("There was an error, try again later")
+
+    })
   }
   CreatTestimonial(information: any) {
     this.spinner.show();
@@ -228,7 +287,36 @@ export class UserService {
         }
       );
   }
+  favouriteProducts: any = [];
+  getProductFavourite() {
+    this.http.get('https://localhost:7100/api/Favourite/GetFavouriteItems/' + this.userId).subscribe((result) => {
+      this.favouriteProducts = result;
+    }, err => {
+      this.toastr.error('There was an error, try again later')
+    })
+  }
 
-
+  removeFromFavourite(favouriteId: any) {
+    this.http.delete('https://localhost:7100/api/Favourite/DeleteFavourite/' + favouriteId).subscribe((result) => {
+      this.toastr.success('The product has been removed from favorites');
+    }, err => {
+      this.toastr.error('There was an error, try again later')
+    })
+  }
+  allPreviousPurchaseByUser: any = [];
+  getPreviousPurchase() {
+    this.http.get('https://localhost:7100/api/PreviousProduct/GetPreviousPurchases/' + this.userId).subscribe((result) => {
+      this.allPreviousPurchaseByUser = result;
+    }, err => {
+      this.toastr.error('There was an error, try again later')
+    })
+  }
+  removePreviousPurchase(ppurchase: any) {
+    this.http.delete('https://localhost:7100/api/PreviousProduct/DeletePreviousPurchase/' + ppurchase).subscribe((result) => {
+      this.toastr.success('The specified record has been deleted');
+    }, error => {
+      this.toastr.error('There was an error, try again later')
+    })
+  }
 }
 

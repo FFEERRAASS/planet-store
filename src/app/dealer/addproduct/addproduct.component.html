@@ -1,0 +1,165 @@
+<app-navbar></app-navbar>
+<div class="content-wrapper" style="min-height: 1345.31px;">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+<section class="content">
+  <div class="container-fluid">
+<div class="row">
+  <div class="col-md-4" *ngFor="let obj of dealerService.dealerProduct">
+    <!-- Widget: user widget style 2 -->
+    <div class="card card-widget widget-user-2">
+      <!-- Add the bg color to the header using any of the bg-* classes -->
+      <div class="widget-user-header bg-warning">
+        <div class="widget-user-image">
+          <img class="img-circle elevation-2" src="../../assets/images/{{obj.productImage1}}" alt="User Avatar">
+        </div>
+        <!-- /.widget-user-image -->
+        <h3 class="widget-user-username"></h3>
+        <h5 class="widget-user-desc">{{obj.productName}}</h5>
+      </div>
+      <div class="card-footer p-0">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a href="#" class="nav-link" id="descriptionLink">
+              {{ obj.productDescription }}
+
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              {{obj.productCost}} $ , Quantity {{obj.productQuantity}}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              Completed Projects <span class="float-right badge bg-success">12</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              Followers <span class="float-right badge bg-danger">842</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+</section>
+</section>
+</div>
+  <app-footer></app-footer>
+
+
+  <ng-template #addProduct>
+    <div class="content-wrapper" style="min-height: 1345.31px;">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+  <section class="content">
+      <div class="container-fluid">
+  <div class="card card-success">
+      <div class="card-header">
+        <h3 class="card-title">General Elements</h3>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body">
+        <form>
+          <div class="row">
+            <div class="col-sm-6">
+              <!-- text input -->
+              <div class="form-group">
+                <label>Product Name</label>
+                <input type="text" class="form-control" placeholder="Enter ...">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>Price</label>
+                <input type="text" class="form-control" placeholder="Enter ..." >
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <!-- textarea -->
+              <div class="form-group">
+                <label>Product Description</label>
+                <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+              </div>
+            </div>
+            
+          </div>
+  
+          <!-- input states -->
+          <div class="row">
+            <div class="col-sm-6">
+          <div class="form-group">
+            <label class="col-form-label" for="inputSuccess"> Quantity</label>
+            <input type="text" class="form-control" id="inputSuccess" placeholder="Enter ...">
+          </div>
+        </div>
+          <div class="col-sm-6" style="margin-top: 6px;">
+            <!-- select -->
+            <div class="form-group">
+              <label>Category</label>
+              <select class="form-control">
+                <option>option 1</option>
+                <option>option 2</option>
+                <option>option 3</option>
+                <option>option 4</option>
+                <option>option 5</option>
+              </select>
+            </div>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+  
+      <div class="form-group">
+        <label for="exampleInputFile">Product Image 1</label>
+        <div class="input-group">
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="exampleInputFile">
+            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+          </div>
+          <div class="input-group-append">
+            <span class="input-group-text">Upload</span>
+          </div>
+        </div>
+      </div>
+  
+      </div>
+      <div class="col-sm-6">
+  
+        <div class="form-group">
+          <label for="exampleInputFile">Product Image 2</label>
+          <div class="input-group">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="exampleInputFile">
+              <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+            </div>
+            <div class="input-group-append">
+              <span class="input-group-text">Upload</span>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      </div>
+      <div style="display: flex; justify-content: center; align-items: center">
+        <button class="btn bg-gradient-success" style="background-color: #3b5d50 ;">Save</button>
+        &nbsp;
+        <button class="btn bg-gradient-danger">Cancel</button>
+    </div>
+  
+        </form>
+      </div>
+      <!-- /.card-body -->
+    </div>
+  </div>
+  </section>
+  </section>
+  </div>
+  </ng-template>

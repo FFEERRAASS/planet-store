@@ -17,6 +17,7 @@ export class planetAuth {
   ) { }
 
   login(body: any): void {
+    debugger;
     this.spinner.show();
 
     const information = {
@@ -62,7 +63,6 @@ export class planetAuth {
         },
         (error: any) => {
           this.spinner.hide();
-          console.error("Error logging in:", error);
           this.toastr.error('Login failed!');
         }
       );

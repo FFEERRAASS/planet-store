@@ -41,7 +41,7 @@
                   </svg>
                 </div> <!-- /.icon -->
                 <div class="service-contents">
-                  <p>43 Raymouth Rd. Baltemoer, London 3910</p>
+                  <p>Jordan - Jerash</p>
                 </div> <!-- /.service-contents-->
               </div> <!-- /.service -->
             </div>
@@ -54,7 +54,7 @@
                   </svg>
                 </div> <!-- /.icon -->
                 <div class="service-contents">
-                  <p>info@yourdomain.com</p>
+                  <p>info@planet.com</p>
                 </div> <!-- /.service-contents-->
               </div> <!-- /.service -->
             </div>
@@ -67,7 +67,7 @@
                   </svg>
                 </div> <!-- /.icon -->
                 <div class="service-contents">
-                  <p>+1 294 3925 3939</p>
+                  <p>+962 776 8424 76</p>
                 </div> <!-- /.service-contents-->
               </div> <!-- /.service -->
             </div>
@@ -78,27 +78,38 @@
               <div class="col-6">
                 <div class="form-group">
                   <label class="text-black" for="fname">First name</label>
-                  <input type="text" class="form-control" id="fname">
+                  <input type="text" class="form-control" id="fname" matInput formControlName="firstname">
                 </div>
               </div>
               <div class="col-6">
                 <div class="form-group">
                   <label class="text-black" for="lname">Last name</label>
-                  <input type="text" class="form-control" id="lname">
+                  <input type="text" class="form-control" id="lname" matInput formControlName="lastname">
                 </div>
               </div>
             </div>
-            <div class="form-group">
-              <label class="text-black" for="email">Email address</label>
-              <input type="email" class="form-control" id="email">
+      
+            <div class="row">
+              <div class="col-6">
+                <div class="form-group">
+                  <label class="text-black" for="email">Email address</label>
+                  <input type="text" class="form-control" id="fname"  matInput formControlName="email">
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <label class="text-black" for="lname">Phone number</label>
+                  <input type="text" class="form-control" id="lname" matInput formControlName="phonenumber">
+                </div>
+              </div>
             </div>
 
             <div class="form-group mb-5">
               <label class="text-black" for="message">Message</label>
-              <textarea name="" class="form-control" id="message" cols="30" rows="5"></textarea>
+              <textarea name="" class="form-control" id="message" cols="30" rows="5" matInput formControlName="bigMessage"></textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary-hover-outline">Send Message</button>
+            <button type="submit" class="btn btn-secondary me-2" (click)="sendContact()">Send Message</button>
           </form>
 
         </div>

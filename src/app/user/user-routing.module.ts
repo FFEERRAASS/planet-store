@@ -8,6 +8,8 @@ import { ContactComponent } from './contact/contact.component';
 import { CardComponent } from './card/card.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { FavouriteComponent } from './favourite/favourite.component';
+import { PreviouspurchasesComponent } from './previouspurchases/previouspurchases.component';
 
 const routes: Routes = [{
   path:'',
@@ -35,6 +37,12 @@ const routes: Routes = [{
 },{
   path:'Checkout',
   component:CheckoutComponent
+},{
+  path:'favourite',
+  component:FavouriteComponent
+},{
+  path:'previouspurchases',
+  component:PreviouspurchasesComponent
 }];
 
 @NgModule({
