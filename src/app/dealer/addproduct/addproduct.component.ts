@@ -5,6 +5,7 @@ import { DealerService } from 'src/app/services/dealer.service';
 import { UserService } from 'src/app/services/user.service';
 import { DatePipe } from '@angular/common';
 import { NgxSpinnerService } from 'ngx-spinner';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-addproduct',
@@ -120,7 +121,7 @@ export class AddproductComponent implements OnInit {
     this.dealerService.ImageProduct2=this.oldProductData.productImage2;
     this.dialog.open(this.callUpdateDialog);
       this.spinner.hide();
-    }, 1000);
+    }, 10000);
   debugger
 
     
@@ -134,5 +135,24 @@ export class AddproductComponent implements OnInit {
     var price = cost + (cost / 10);
     this.UpdateProductForm.controls['productPrice'].setValue(price);
     this.dealerService.updateProduct(this.UpdateProductForm.value)
+  }
+  Deleteproduct(productId:any){
+    Swal.fire({
+      title: 'Are you sure to delete the product?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      denyButtonText: 'No',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.confirmDelete(productId); 
+      } else if (result.isDenied) {
+        Swal.fire('Product deletion was canceled', '', 'info');
+      }
+    });
+  }
+  confirmDelete(productId:any){
+    debugger;
+    this.dealerService.deleteProduct(productId);
   }
 }

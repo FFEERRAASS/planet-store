@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -20,21 +21,21 @@ export class DealerService {
 
   userId: any = localStorage.getItem('userId');
 
-  dealerProduct:any=[]
-  getAllProductForDealer(){
+  dealerProduct: any = []
+  getAllProductForDealer() {
 
-    this.http.get('https://localhost:7100/api/Product/getProductById/'+this.userId).subscribe((result)=>{
-      this.dealerProduct=result;
-    },err=>{
+    this.http.get('https://localhost:7100/api/Product/getProductById/' + this.userId).subscribe((result) => {
+      this.dealerProduct = result;
+    }, err => {
       this.toastr.error("There was an error, try again later")
 
     })
   }
-  category:any=[];
-  getAllCategory(){
-    this.http.get('https://localhost:7100/api/Category/GetCategory').subscribe((result)=>{
-      return this.category=result;
-    },err=>{
+  category: any = [];
+  getAllCategory() {
+    this.http.get('https://localhost:7100/api/Category/GetCategory').subscribe((result) => {
+      return this.category = result;
+    }, err => {
       return this.toastr.error("There was an error, try again later")
     })
   }
@@ -64,7 +65,7 @@ export class DealerService {
   saveProduct(information: any) {
     information.productImage1 = this.ImageProduct1;
     information.productImage2 = this.ImageProduct2;
-  
+
     // Check and provide default image filenames if they are null
     if (!information.productImage1) {
       information.productImage1 = 'defaultproductimg.jpg';
@@ -72,8 +73,8 @@ export class DealerService {
     if (!information.productImage2) {
       information.productImage2 = 'defaultproductimg.jpg';
     }
-    information.productCost=information.productCost.toString();
-    information.productPrice=information.productPrice.toString();
+    information.productCost = information.productCost.toString();
+    information.productPrice = information.productPrice.toString();
 
     this.http.post('https://localhost:7100/api/Product/insertProduct', information).subscribe(
       (result) => {
@@ -89,27 +90,50 @@ export class DealerService {
       }
     );
   }
-  productDetailsVar:any={};
-  productDetails(productId:number){
+  productDetailsVar: any = {};
+  productDetails(productId: number) {
 
-    this.http.get('https://localhost:7100/api/Product/GetProductForDialog/'+productId).subscribe((result)=>{
-      this.productDetailsVar=result;
-    },err=>{
+    this.http.get('https://localhost:7100/api/Product/GetProductForDialog/' + productId).subscribe((result) => {
+      this.productDetailsVar = result;
+    }, err => {
       return this.toastr.error("There was an error, try again later")
     })
     this.spinner.hide();
   }
-  updateProduct(information:any){
-    information.productImage1=this.ImageProduct1;
-    information.productImage2=this.ImageProduct2;
-    information.productCost=information.productCost.toString();
-    information.productPrice=information.productPrice.toString();
-    this.http.put('https://localhost:7100/api/Product/updateProduct',information).subscribe((result)=>{
+  updateProduct(information: any) {
+    information.productImage1 = this.ImageProduct1;
+    information.productImage2 = this.ImageProduct2;
+    information.productCost = information.productCost.toString();
+    information.productPrice = information.productPrice.toString();
+    this.http.put('https://localhost:7100/api/Product/updateProduct', information).subscribe((result) => {
       this.toastr.success('The product has been modified, it will be reviewed and re-published, we appreciate your waiting')
-    },err=>{
+    }, err => {
       return this.toastr.error("There was an error, try again later")
     })
 
   }
-  
+  async deleteProduct(productId: any) {
+    this.spinner.show();
+    await this.http.delete('https://localhost:7100/api/Product/deleteProductById/' + productId).subscribe((result) => {
+      setTimeout(() => {
+        this.spinner.hide()
+      }, 1000);
+      setTimeout(() => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Successfully completed',
+          text: 'The product has been removed',
+        })
+      }, 1000);
+setTimeout(() => {
+  window.location.reload();
+
+}, 3000);
+    }, err => {
+      this.spinner.hide()
+      this.toastr.error("There was an error, try again later")
+
+    })
+  }
+
 }

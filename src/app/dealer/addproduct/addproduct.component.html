@@ -41,7 +41,7 @@
             <div style="display: flex; justify-content: center; align-items: center;margin: 5px;">
               <button class="btn bg-gradient-success" style="background-color: #3b5d50;" (click)="UpdateProduct(obj.productId)">Edit</button>
               &nbsp;
-              <button class="btn bg-gradient-danger">Delete</button>
+              <button class="btn bg-gradient-danger" (click)="Deleteproduct(obj.productId)">Delete</button>
               &nbsp;
               <button class="btn bg-gradient-primary" (click)="showDetails(obj.productId)">Show</button>
           </div>
