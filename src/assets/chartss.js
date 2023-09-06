@@ -1,9 +1,10 @@
-let peerConnection = new RTCPeerConnection()
+async function start() {
+    let peerConnection = new RTCPeerConnection()
 let localStream;
 let remoteStream;
 
 let init = async () => {
-    localStream = await navigator.mediaDevices.getUserMedia({video:true, audio:false})
+    localStream = await navigator.mediaDevices.getUserMedia({video:true, audio:true})
     remoteStream = new MediaStream()
     document.getElementById('user-1').srcObject = localStream
     document.getElementById('user-2').srcObject = remoteStream
@@ -65,3 +66,4 @@ init()
 document.getElementById('create-offer').addEventListener('click', createOffer)
 document.getElementById('create-answer').addEventListener('click', createAnswer)
 document.getElementById('add-answer').addEventListener('click', addAnswer)
+}

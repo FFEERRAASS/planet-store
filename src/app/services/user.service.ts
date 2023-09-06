@@ -98,13 +98,11 @@ export class UserService {
 
   specifcProduct: any = {}
   getProductById(id: any) {
-    this.spinner.show()
+    debugger;
     this.http.get('https://localhost:7100/api/Product/getProductById/' + id).subscribe((resultProduct) => {
       this.specifcProduct = resultProduct;
-      this.spinner.hide()
     }, err => {
       this.toastr.error('Error Get Specific Product' + "Error: " + err);
-      this.spinner.hide()
 
     })
   }

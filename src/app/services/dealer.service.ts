@@ -23,8 +23,8 @@ export class DealerService {
 
   dealerProduct: any = []
   getAllProductForDealer() {
-
-    this.http.get('https://localhost:7100/api/Product/getProductById/' + this.userId).subscribe((result) => {
+debugger
+    this.http.get('https://localhost:7100/api/Product/getProductByuserId/' + this.userId).subscribe((result) => {
       this.dealerProduct = result;
     }, err => {
       this.toastr.error("There was an error, try again later")
@@ -133,6 +133,16 @@ setTimeout(() => {
       this.spinner.hide()
       this.toastr.error("There was an error, try again later")
 
+    })
+  }
+  vendorPurchases:any=[];
+  backUpDate:any=[];
+  vendorPurchase(){
+    this.http.get('https://localhost:7100/api/Basket/GetBasketItemsForVendorOrAdmin/'+this.userId).subscribe((result)=>{
+    this.vendorPurchases=result;
+    this.backUpDate=result;
+    },err=>{
+      this.toastr.error("There was an error, try again later")
     })
   }
 

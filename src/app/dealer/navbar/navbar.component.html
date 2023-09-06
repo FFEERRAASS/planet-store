@@ -184,108 +184,75 @@
             </a>
           </li> -->
           <li class="nav-item">
-            <a  class="nav-link" active>
-              <i class="nav-icon fas fa-copy"></i>
-              <p style="color: white;">
-                My Products
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-           <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a routerLink="/dealer/addproduct" class="nav-link">
-                  <i class="fa-regular fa-plus nav-icon"></i>
-                  <p style="color: white;">Add Products</p>
-                </a>
-              </li>
-     
-              <li class="nav-item">
-                <a routerLink="/dealer/editproduct" class="nav-link">
-                  <i class="fa-regular fa-pen-to-square nav-icon"></i>
-                  <p style="color: white;">Edit Products</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a routerLink="/dealer/deleteproduct" class="nav-link">
-                  <i class="fa-solid fa-trash nav-icon" style="color: #ffffff;"></i>
-                  <p style="color: white;">Delete Products</p>
-                </a>
-              </li>
-          
- 
             
-             
-            </ul> 
+            <a routerLink="/dealer/myproduct" class="nav-link" active >
+              <i class="nav-icon fas fa-copy"></i>
+              <p style="color: white;" >
+                My Products
+              </p>
+            
+          </a>
+
           </li>
+      
           <li class="nav-item">
-            <a href="#" class="nav-link" active>
+            <a routerLink="/dealer/salesreport" class="nav-link" active>
               <i class="nav-icon fas fa-store"></i>
               <p style="color: white;">
-                My Sales
-                <i class="fas fa-angle-left right"></i>
+                Sales Report
               </p>
             </a>
-           <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a routerLink="/dealer/salesreport" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p style="color: white;">Sales reports</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a routerLink="/dealer/saleschart"  class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p style="color: white;">Sales chart</p>
-                </a>
-              </li>
-            </ul> 
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link" active>
-              <i class="nav-icon fas fa-users"></i>
+            <a routerLink="/dealer/saleschart" class="nav-link" active>
+              <i class="nav-icon fas fa-chart-area"></i>
               <p style="color: white;">
-                Chats and meetings
-                <i class="fas fa-angle-left right"></i>
+                Sales Chart
               </p>
             </a>
-           <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a routerLink="/dealer/chat" class="nav-link">
-                  <i class=" fa-regular fa-comments nav-icon"></i>
-                  <p style="color: white;">Chats</p>
-                </a>
-              </li> 
-              <li class="nav-item">
-                <a routerLink="/dealer/meeting" class="nav-link">
-                  <i class="fa-solid fa-video nav-icon"></i>
-                  <p style="color: white;">Meeting</p>
-                </a>
-              </li>
-            </ul> 
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link" active>
-              <i class="nav-icon fas fa-user"></i>
+            <a routerLink="/dealer/chat" class="nav-link" active>
+              <i class="fa-regular fa-comments nav-icon"></i>
               <p style="color: white;">
-                Account
-                <i class="fas fa-angle-left right"></i>
+                Chats
               </p>
             </a>
-           <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a routerLink="/dealer/profile" class="nav-link">
-                  <i class="fa-solid fa-user nav-icon"></i>
-                  <p style="color: white;">My Account</p>
-                </a>
-              </li> 
-              <li class="nav-item">
-                <a routerLink="/dealer/wallet" class="nav-link">
-                  <i class="fa-solid fa-wallet nav-icon"></i>
-                  <p style="color: white;">My Wallet</p>
-                </a>
-              </li>
-            </ul> 
           </li>
+          <li class="nav-item">
+            <a routerLink="/dealer/meeting" class="nav-link" active>
+              <i class="fa-solid fa-video nav-icon"></i>
+              <p style="color: white;">
+                Meeting
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a routerLink="/dealer/profile" class="nav-link" active>
+              <i class="fa-solid fa-user nav-icon"></i>
+              <p style="color: white;">
+                My Account
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/dealer/wallet" class="nav-link" active>
+              <i class="fa-solid fa-wallet nav-icon"></i>
+              <p style="color: white;">
+                My Wallet
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a (click)="logout()" class="nav-link" active>
+              <i class="fa-solid fa-right-from-bracket nav-icon" ></i>
+              <p style="color: white;">
+                Logout
+              </p>
+            </a>
+          </li>
+
           <!-- <li class="nav-item">
             <a href="#" class="nav-link" active>
               <i class="nav-icon fas fa-chart-pie"></i>

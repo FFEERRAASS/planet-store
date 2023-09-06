@@ -1,12 +1,161 @@
 <app-navbar></app-navbar>
 
 
+<div class="content-wrapper" style="min-height: 1345.31px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+
+        <section class="content">
+
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Sales reports</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                    <div class="row" style="margin: 10px;">
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="dt-buttons btn-group flex-wrap"> 
+                                                    &nbsp;
+                                              <button
+                                                    class="btn btn-secondary buttons-pdf buttons-html5" tabindex="0"
+                                                    aria-controls="example1" type="button" (click)="DownloadData()"><span>PDF</span></button>
+                                                    <!-- <button
+                                                    mat-raised-button
+                                                    
+                                                    class="btn btn-success"
+                                                  >
+                                                    download report
+                                                  </button> -->
+                                                </div>
+
+                                        </div>
+                                        <div class="col-sm-12 col-md-6" style="display: flex; align-items: center; flex-wrap: wrap;">
+                                            <form [formGroup]="searchForm">
+                                                <div id="example1_filter" class="dataTables_filter" style="display: flex; align-items: center; flex-wrap: wrap;">
+                                                  
+                                                    <div style="display: flex; align-items: center; margin-right: 10px;">
+                                                        <label>Search:</label>
+
+                                                        <input type="search" class="form-control form-control-sm" formControlName="productName" placeholder="" aria-controls="example1">
+
+                                                    </div>
+
+                                                    <div style="display: flex; align-items: center; margin-right: 10px;">
+                                                        <label>From:</label>
+                                                        <input type="date" class="form-control form-control-sm" formControlName="dateFrom">
+                                                    </div>
+                                                    
+                                                    <div style="display: flex; align-items: center; margin-right: 10px;">
+                                                        <label>To:</label>
+                                                        <input type="date" class="form-control form-control-sm" formControlName="dateTo">
+                                                    </div>
+                                                    
+                                                    <button class="btn btn-secondary buttons-pdf buttons-html5"(click)="search()" tabindex="0" aria-controls="example1" type="button">
+                                                        <i class="fa-solid fa-magnifying-glass" ></i>
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        
+                                        
+                                        
+                                        
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <table id="myTable"
+                                                class="table table-bordered table-striped dataTable dtr-inline"
+                                                role="grid" aria-describedby="example1_info">
+                                                <thead>
+                                                    <tr role="row">
+                                                        <th class="sorting sorting_asc" tabindex="0"
+                                                            aria-controls="example1" rowspan="1" colspan="1"
+                                                            aria-sort="ascending"
+                                                            aria-label="Rendering engine: activate to sort column descending">
+                                                            Product Name</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example1"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Browser: activate to sort column ascending">
+                                                            Price</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example1"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Platform(s): activate to sort column ascending">
+                                                            Quantity</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example1"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Engine version: activate to sort column ascending">
+                                                            Date of sale</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example1"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="CSS grade: activate to sort column ascending">
+                                                            Total Price</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="even" *ngFor="let obj of dealerService.vendorPurchases">
+                                                        <td class="sorting_1 dtr-control">{{obj.productName}}</td>
+                                                        <td>{{obj.productCost}}</td>
+                                                        <td>{{obj.quantity}}</td>
+                                                        <td>{{obj.addedDateProduct | date:'yyyy-MM-dd'}}</td>
+                                                        <td>{{obj.productCost * obj.quantity}}</td>
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th rowspan="1" colspan="1">Product Name</th>
+                                                        <th rowspan="1" colspan="1">Price</th>
+                                                        <th rowspan="1" colspan="1">Quantity</th>
+                                                        <th rowspan="1" colspan="1">Date of sale</th>
+                                                        <th rowspan="1" colspan="1">Total Price</th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                      
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+
+
+                    </div>
+                </div>
+            </section>
+        </section>
+    </section>
+</div>
 
 
 
 
 
 
-
+<!-- Page specific script -->
+<script>
+    $(function () {
+        $("#example1").DataTable({
+            "responsive": true, "lengthChange": false, "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+    });
+</script>
 
 <app-footer></app-footer>

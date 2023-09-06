@@ -5,9 +5,8 @@ import { DealerRoutingModule } from './dealer-routing.module';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
-import { EditproductComponent } from './editproduct/editproduct.component';
-import { DeleteproductComponent } from './deleteproduct/deleteproduct.component';
-import { AddproductComponent } from './addproduct/addproduct.component';
+
+import { AddproductComponent } from './myproduct/addproduct.component';
 import { SalesreportComponent } from './salesreport/salesreport.component';
 import { SaleschartComponent } from './saleschart/saleschart.component';
 import { ChatComponent } from './chat/chat.component';
@@ -24,8 +23,7 @@ import { TruncatePipe } from '../truncate.pipe';
     HomeComponent,
     NavbarComponent,
     FooterComponent,
-    EditproductComponent,
-    DeleteproductComponent,
+
     AddproductComponent,
     SalesreportComponent,
     SaleschartComponent,

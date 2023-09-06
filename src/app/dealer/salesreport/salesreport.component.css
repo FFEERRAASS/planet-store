@@ -1,0 +1,8 @@
+@media print {
+    /* Define styles for printing here */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    /* Add more styles as needed */
+  }
