@@ -1,12 +1,134 @@
 <app-navbar></app-navbar>
+<div class="content-wrapper" style="min-height: 1345.31px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
 
+        <section class="content">
 
+            <div class="container-fluid">
+                <!-- <div class="container">
+  <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white">
+    <div class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
+      <input formControlName="senderFk" class="fs-5 fw-semibold" />
+    </div>
+    <div class="list-group list-group-flush border-bottom scrollarea">
+      <div
+        class="list-group-item list-group-item-action py-3 lh-tight"
+        *ngFor="let msg of messages"
+      >
+        <div class="d-flex w-100 align-items-center justify-content-between">
+          <strong class="mb-1">{{ msg.senderFk }}</strong>
+        </div>
+        <div class="col-10 mb-1 small">{{ msg.chatMessage }}</div>
+      </div>
+    </div>
+  </div>
+  <form [formGroup]="chatForm" (submit)="submit()">
+    <input
+      formControlName="message"
+      class="form-control"
+      placeholder="Write a message"
+    />
+  </form>
+</div> -->
+                <div class="card direct-chat direct-chat-primary" style="height: 800px;">
+                    <div class="card-header">
+                        <h3 class="card-title">Direct Chat</h3>
 
+                        <div class="card-tools">
+                            <span title="3 New Messages" class="badge badge-primary">3</span>
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-tool" title="Contacts" data-widget="chat-pane-toggle">
+                                <i class="fas fa-comments"></i>
+                            </button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <!-- Conversations are loaded here -->
+                        <div class="direct-chat-messages" style="height: 800px;">
+                            <!-- Message. Default to the left -->
+                         <div >
 
+                     
 
+                            <!-- Message. Default to the left -->
+                            <div class="direct-chat-msg" *ngFor="let obj of dealerService.messages">
+                                <div class="direct-chat-infos clearfix">
+                                    <span class="direct-chat-name float-left">{{obj.senderFk}} {{obj.lastName}}</span>
+                                    <span class="direct-chat-timestamp float-right">{{obj.chatDate}}</span>
+                                </div>
+                                <!-- /.direct-chat-infos -->
+                                <img class="direct-chat-img" src="../../../assets/uploadImage/{{obj.imagePath}}"
+                                    alt="message user image">
+                                <!-- /.direct-chat-img -->
+                                <div class="direct-chat-text">
+                                    {{obj.chatMessage}}
+                                </div>
+                                <!-- /.direct-chat-text -->
+                            </div>
+                           
+                        </div>
+                        <!--/.direct-chat-messages-->
+                    </div>
 
+                        <!-- Contacts are loaded here -->
+                        <div class="direct-chat-contacts">
+                            <ul class="contacts-list">
 
+                                <li *ngFor="let obj of dealerService.contact">
+                                        <img class="contacts-list-img"
+                                            src="../../../assets/uploadImage/{{obj.imagePath}}" alt="User Avatar">
 
+                                        <div class="contacts-list-info">
+                                            <span class="contacts-list-name">
+                                                {{obj.firstName}} {{obj.lastName}}
 
+                                                <small class="contacts-list-date float-right"> {{obj.username}} {{obj.roleFk ==1 ? 'Admin' :'Vendor'}}</small>
+                                            </span>
+                                            <span class="contacts-list-msg">{{obj.email}}</span>
+                                        </div>
+                                        <button class="btn bg-gradient-info" (click)="setReceiver(obj.userId)">Start Chat</button>
+                                        <!-- /.contacts-list-info -->
+                                </li>
+
+                                <!-- End Contact Item -->
+                            </ul>
+                            <!-- /.contacts-list -->
+                        </div>
+                        <!-- /.direct-chat-pane -->
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <form action="#" method="post">
+                            <div class="input-group">
+                                <form [formGroup]="chatForm" (submit)="submit()">
+                                    <input
+                                      formControlName="message"
+                                      class="form-control"
+                                      placeholder="Write a message"
+                                        type="text"
+
+                                      />
+                                      <span class="input-group-append">
+                                        <button type="button" (click)="submit()" class="btn btn-primary">Send</button>
+                                    </span>      
+
+                                  </form>
+                              
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.card-footer-->
+                </div>
+            </div>
+        </section>
+    </section>
+</div>
 
 <app-footer></app-footer>

@@ -146,4 +146,28 @@ setTimeout(() => {
     })
   }
 
+  contact:any=[];
+  getAllContact(){
+    this.http.get('https://localhost:7100/api/users/GetAllUser').subscribe((result)=>{
+    this.contact=result;
+    this.contact=this.contact.filter((x:any)=>x.roleFk !=3).filter((y:any)=>y.userId != this.userId);
+    })
+  }
+
+  messages:any=[];
+  GetChatsBySenderReceiver(){
+    var sender=localStorage.getItem("userId");
+    var receiver=localStorage.getItem('receiverId')
+    var body:any ={
+      senderFk:sender,
+      receiverFk:receiver
+    }
+
+
+    this.http.post('https://localhost:7100/api/Chat/GetChatsBySenderReceiver',body).subscribe((result)=>{
+      this.messages=result;
+    },err=>{
+      this.toastr.error("There was an error, try again later")
+    })
+  }
 }
