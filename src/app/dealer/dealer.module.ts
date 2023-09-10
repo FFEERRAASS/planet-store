@@ -17,6 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { TruncatePipe } from '../truncate.pipe';
 
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { TruncatePipe } from '../truncate.pipe';
     CommonModule,
     DealerRoutingModule,
     ReactiveFormsModule ,
-    MatInputModule 
+    MatInputModule ,
+    NgChartsModule
   ]
 })
 export class DealerModule { }

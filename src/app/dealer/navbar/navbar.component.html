@@ -1,25 +1,20 @@
 <div class="wrapper">
 
 
-    <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-      <!-- Left navbar links -->
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-        </li>
-        <li class="nav-item d-none d-sm-inline-block">
-          <a href="index3.html" class="nav-link">Home</a>
-        </li>
-        <li class="nav-item d-none d-sm-inline-block">
-          <a href="#" class="nav-link">Contact</a>
-        </li>
-      </ul>
-  
-      <!-- Right navbar links -->
-      <ul class="navbar-nav ml-auto">
-        <!-- Navbar Search -->
-        <!-- <li class="nav-item">
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+    
+    </ul>
+
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+      <!-- Navbar Search -->
+      <!-- <li class="nav-item">
           <a class="nav-link" data-widget="navbar-search" href="#" role="button">
             <i class="fas fa-search"></i>
           </a>
@@ -39,9 +34,9 @@
             </form>
           </div>
         </li> -->
-  
-        <!-- Messages Dropdown Menu -->
-        <!-- <li class="nav-item dropdown">
+
+      <!-- Messages Dropdown Menu -->
+      <!-- <li class="nav-item dropdown">
           <a class="nav-link" data-toggle="dropdown" href="#">
             <i class="far fa-comments"></i>
             <span class="badge badge-danger navbar-badge">3</span>
@@ -92,8 +87,8 @@
             <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
           </div>
         </li> -->
-        <!-- Notifications Dropdown Menu -->
-        <!-- <li class="nav-item dropdown">
+      <!-- Notifications Dropdown Menu -->
+      <!-- <li class="nav-item dropdown">
           <a class="nav-link" data-toggle="dropdown" href="#">
             <i class="far fa-bell"></i>
             <span class="badge badge-warning navbar-badge">15</span>
@@ -119,7 +114,7 @@
             <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
           </div>
         </li> -->
-        <!-- <li class="nav-item">
+      <!-- <li class="nav-item">
           <a class="nav-link" data-widget="fullscreen" href="#" role="button">
             <i class="fas fa-expand-arrows-alt"></i>
           </a>
@@ -129,22 +124,22 @@
             <i class="fas fa-th-large"></i>
           </a>
         </li> -->
-      </ul>
-    </nav>
-    <!-- /.navbar -->
-      <!-- Main Sidebar Container -->
+    </ul>
+  </nav>
+  <!-- /.navbar -->
+  <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    
+
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="../../../assets/img/user1-128x128.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="../../../assets/uploadImage/{{dealerService.userInormation.imagePath}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">{{dealerService.userInormation.firstName}} {{dealerService.userInormation.lastName}}</a>
         </div>
       </div>
 
@@ -184,17 +179,17 @@
             </a>
           </li> -->
           <li class="nav-item">
-            
-            <a routerLink="/dealer/myproduct" class="nav-link" active >
+
+            <a routerLink="/dealer/myproduct" class="nav-link" active>
               <i class="nav-icon fas fa-copy"></i>
-              <p style="color: white;" >
+              <p style="color: white;">
                 My Products
               </p>
-            
-          </a>
+
+            </a>
 
           </li>
-      
+
           <li class="nav-item">
             <a routerLink="/dealer/salesreport" class="nav-link" active>
               <i class="nav-icon fas fa-store"></i>
@@ -246,7 +241,7 @@
           </li>
           <li class="nav-item">
             <a (click)="logout()" class="nav-link" active>
-              <i class="fa-solid fa-right-from-bracket nav-icon" ></i>
+              <i class="fa-solid fa-right-from-bracket nav-icon"></i>
               <p style="color: white;">
                 Logout
               </p>

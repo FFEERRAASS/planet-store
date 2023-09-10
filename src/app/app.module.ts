@@ -17,7 +17,6 @@ import * as SimplePeer from 'simple-peer';
 import { TruncatePipe } from './truncate.pipe';
 import { NgxSpinnerModule } from "ngx-spinner";
 
-
 @NgModule({
   declarations: [
     AppComponent

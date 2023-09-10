@@ -1,4 +1,3 @@
-
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100">
@@ -6,39 +5,53 @@
                 <img src="../../../assets/imggg.png" alt="IMG">
             </div>
 
-             <form [formGroup]="LoginForm" class="login100-form validate-form" method="POST" id="signup-form"  >
+            <form [formGroup]="LoginForm" class="login100-form validate-form" method="POST" id="signup-form">
                 <span class="login100-form-title">
                     Member Login
                 </span>
 
-                <div class="wrap-input100 validate-input" >
-                    <input   class="input100" type="text"  placeholder="Email" matInput formControlName="email">
-                    <mat-error *ngIf="LoginForm.controls['email'].hasError('required')" style="font-size: 12px;">Email name is required</mat-error>
+                <div class="wrap-input100 validate-input">
+                    <input class="input100" type="text" placeholder="Email" matInput formControlName="email">
+                    <mat-error *ngIf="LoginForm.controls['email'].hasError('required')" style="font-size: 12px;">Email
+                        name is required</mat-error>
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
                         <i class="fa fa-envelope" aria-hidden="true"></i>
                     </span>
                 </div>
 
-                <div class="wrap-input100 validate-input" >
-                    <input   class="input100" type="password" [type]="showPassword ? 'text' : 'password'" matInput formControlName="password" placeholder="Password">
-                    <mat-error *ngIf="LoginForm.controls['password'].hasError('required')" style="font-size: 12px;">Password is required</mat-error>
+                <div class="wrap-input100 validate-input">
 
-                    <span class="focus-input100"></span>
+                    <div style="display: flex;">
+                    <input class="input100" type="password" [type]="showPassword ? 'text' : 'password'" matInput
+                        formControlName="password" placeholder="Password"> &nbsp;<i class="fa fa-eye" aria-hidden="true" (click)="showPass()" style="margin-top: 15px;"></i>
+                    </div>
+                        <!-- <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox"  role="switch" id="flexSwitchCheckChecked" checked>
+    
+                          </div> -->
+                    <mat-error *ngIf="LoginForm.controls['password'].hasError('required')"
+                        style="font-size: 12px;">Password is required</mat-error>
+                   
+                    <span class="focus-input100" ></span>
                     <span class="symbol-input100">
                         <i class="fa fa-lock" aria-hidden="true"></i>
                     </span>
+
+                  
+
                 </div>
                 <i class="txt2" style="color:red"></i>
                 <div class="container-login100-form-btn">
-                    
+
                     <div class="form-group">
-                        <input type="submit" name="submit" (click)="submit()" [disabled]="!LoginForm.valid" id="submit" class="login100-form-btn" value="Sign up"/>
+                        <input type="submit" name="submit" (click)="submit()" [disabled]="!LoginForm.valid" id="submit"
+                            class="login100-form-btn" value="Sign up" />
                     </div>
-                    
-                    
+
+
                 </div>
-                
+
                 <div class="text-center p-t-8">
                     <span class="txt1">
                         Forgot
@@ -52,12 +65,12 @@
                     </a><br />
                     <a class="txt2" routerLink="./regvendors">
                         Register as a Vendor
-                        <i class="fa fa-long-arrow-right m-l-5 " aria-hidden="true">  </i>
+                        <i class="fa fa-long-arrow-right m-l-5 " aria-hidden="true"> </i>
                     </a>
                 </div>
 
             </form>
-            
+
         </div>
     </div>
 </div>
@@ -65,13 +78,13 @@
 
 
 
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 <script src="../../../ATemp/vendor/jquery/jquery-3.2.1.min.js"></script>
 <script src="../../../ATemp/vendor/bootstrap/js/popper.js"></script>
 <script src="../../../ATemp/vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="../../../ATemp/vendor/select2/select2.min.js"></script>
 <script src="../../../ATemp/vendor/tilt/tilt.jquery.min.js"></script>
-<script >
+<script>
     $('.js-tilt').tilt({
         scale: 1.1
     })

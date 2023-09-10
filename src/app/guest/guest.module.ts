@@ -7,8 +7,10 @@ import { FooterComponent } from './footer/footer.component';
 import { IndexComponent } from './index/index.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { ProductComponent } from './product/product.component';
-import { TestimonialComponent } from './testimonial/testimonial.component';
 import { ContactusComponent } from './contactus/contactus.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { ProductCategoryComponent } from './product-category/product-category.component';
 
 
 @NgModule({
@@ -18,12 +20,15 @@ import { ContactusComponent } from './contactus/contactus.component';
     IndexComponent,
     AboutusComponent,
     ProductComponent,
-    TestimonialComponent,
-    ContactusComponent
+    ContactusComponent,
+    ProductCategoryComponent
   ],
   imports: [
     CommonModule,
-    GuestRoutingModule
+    FormsModule,
+    GuestRoutingModule,
+    ReactiveFormsModule ,
+    MatInputModule 
   ]
 })
 export class GuestModule { }

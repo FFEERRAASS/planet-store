@@ -5,7 +5,6 @@ import { AdminModule } from './admin/admin.module';
 import { UserModule } from './user/user.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { DealerModule } from './dealer/dealer.module';
-debugger;
 const routes: Routes = [
   {
     path: '',

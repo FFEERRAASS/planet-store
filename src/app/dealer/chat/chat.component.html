@@ -31,101 +31,115 @@
     />
   </form>
 </div> -->
-                <div class="card direct-chat direct-chat-primary" style="height: 800px;">
-                    <div class="card-header">
-                        <h3 class="card-title">Direct Chat</h3>
-
-                        <div class="card-tools">
-                            <span title="3 New Messages" class="badge badge-primary">3</span>
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                            <button type="button" class="btn btn-tool" title="Contacts" data-widget="chat-pane-toggle">
-                                <i class="fas fa-comments"></i>
-                            </button>
-                            <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                <i class="fas fa-times"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body">
-                        <!-- Conversations are loaded here -->
-                        <div class="direct-chat-messages" style="height: 800px;">
-                            <!-- Message. Default to the left -->
-                         <div >
-
-                     
-
-                            <!-- Message. Default to the left -->
-                            <div class="direct-chat-msg" *ngFor="let obj of dealerService.messages">
-                                <div class="direct-chat-infos clearfix">
-                                    <span class="direct-chat-name float-left">{{obj.senderFk}} {{obj.lastName}}</span>
-                                    <span class="direct-chat-timestamp float-right">{{obj.chatDate}}</span>
-                                </div>
-                                <!-- /.direct-chat-infos -->
-                                <img class="direct-chat-img" src="../../../assets/uploadImage/{{obj.imagePath}}"
-                                    alt="message user image">
-                                <!-- /.direct-chat-img -->
-                                <div class="direct-chat-text">
-                                    {{obj.chatMessage}}
-                                </div>
-                                <!-- /.direct-chat-text -->
+                    <!-- DIRECT CHAT -->
+                    <div class="card direct-chat direct-chat-primary" style="height: 790px;">
+                        <div class="card-header">
+                            <h3 class="card-title">Direct Chat</h3>
+            
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse" style="width: 30px;height: 30px;">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" title="Contacts" data-widget="chat-pane-toggle" style="width: 30px;height: 30px;">
+                                    <i class="fas fa-comments"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" data-card-widget="remove" style="width: 30px;height: 30px;">
+                                    <i class="fas fa-times"></i>
+                                </button>
                             </div>
-                           
                         </div>
-                        <!--/.direct-chat-messages-->
-                    </div>
-
-                        <!-- Contacts are loaded here -->
-                        <div class="direct-chat-contacts">
-                            <ul class="contacts-list">
-
-                                <li *ngFor="let obj of dealerService.contact">
-                                        <img class="contacts-list-img"
-                                            src="../../../assets/uploadImage/{{obj.imagePath}}" alt="User Avatar">
-
-                                        <div class="contacts-list-info">
-                                            <span class="contacts-list-name">
-                                                {{obj.firstName}} {{obj.lastName}}
-
-                                                <small class="contacts-list-date float-right"> {{obj.username}} {{obj.roleFk ==1 ? 'Admin' :'Vendor'}}</small>
-                                            </span>
-                                            <span class="contacts-list-msg">{{obj.email}}</span>
-                                        </div>
-                                        <button class="btn bg-gradient-info" (click)="setReceiver(obj.userId)">Start Chat</button>
-                                        <!-- /.contacts-list-info -->
-                                </li>
-
-                                <!-- End Contact Item -->
-                            </ul>
-                            <!-- /.contacts-list -->
-                        </div>
-                        <!-- /.direct-chat-pane -->
-                    </div>
-                    <!-- /.card-body -->
-                    <div class="card-footer">
-                        <form action="#" method="post">
-                            <div class="input-group">
-                                <form [formGroup]="chatForm" (submit)="submit()">
-                                    <input
-                                      formControlName="message"
-                                      class="form-control"
-                                      placeholder="Write a message"
-                                        type="text"
-
-                                      />
-                                      <span class="input-group-append">
-                                        <button type="button" (click)="submit()" class="btn btn-primary">Send</button>
-                                    </span>      
-
-                                  </form>
-                              
+                        <!-- /.card-header -->
+                        <div class="card-body" style=" display: flex;
+                        flex-direction: column-reverse;
+                        overflow-y: scroll;">
+                            <!-- Conversations are loaded here -->
+                                <!-- Message. Default to the left -->
+                             <div >
+            
+                         
+            
+                                <!-- Message. Default to the left -->
+                                <div class="direct-chat-msg" *ngFor="let obj of dealerService.messages" style="margin: 5px;">
+                                    <div class="direct-chat-infos clearfix">
+                                        <span class="direct-chat-name float-left">{{obj.senderFk}} {{obj.lastName}}</span>
+                                        <span class="direct-chat-timestamp float-right">{{obj.chatTime|
+                                          date:'MM-dd'}}
+                                         </span>
+                                    </div>
+                                    <!-- /.direct-chat-infos -->
+                                    <img class="direct-chat-img" src="../../../assets/uploadImage/{{obj.imagePath}}"
+                                        alt="message user image">
+                                    <!-- /.direct-chat-img -->
+                                    <div class="direct-chat-text">
+                                        {{obj.chatMessage}}
+                                    </div>
+                                    <!-- /.direct-chat-text -->
+                                </div>
+                               
                             </div>
-                        </form>
+                            <!--/.direct-chat-messages-->
+            
+                            <!-- Contacts are loaded here -->
+                            <div class="direct-chat-contacts">
+                                <ul class="contacts-list">
+            
+                                    <li *ngFor="let obj of dealerService.contact">
+                                            <img class="contacts-list-img"
+                                                src="../../../assets/uploadImage/{{obj.imagePath}}" alt="User Avatar">
+            
+                                            <div class="contacts-list-info">
+                                                <span class="contacts-list-name">
+                                                    {{obj.firstName}} {{obj.lastName}}
+            
+                                                    <small class="contacts-list-date float-right"> {{obj.username}} {{obj.roleFk ==1 ? 'Admin' :'Vendor'}}</small>
+                                                </span>
+                                                <span class="contacts-list-msg">{{obj.email}}</span>
+                                            </div>
+                                            <button class="btn bg-gradient-info" (click)="setReceiver(obj.userId)">Start Chat</button>
+                                            <!-- /.contacts-list-info -->
+                                    </li>
+            
+                                    <!-- End Contact Item -->
+                                </ul>
+                                <!-- /.contacts-list -->
+                            </div>
+                            <!-- /.direct-chat-pane -->
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <form action="#" method="post">
+                                <div class="input-group">
+                                    <form [formGroup]="chatForm" (submit)="submit()">
+                                      <div style="display: flex;justify-content: left;">
+                                        <input
+                                          formControlName="message"
+                                          class="form-control"
+                                          placeholder="Write a message"
+                                            type="text"
+                                        style="max-width: 1500px;" required=""
+                                          />
+            
+                                          &nbsp;
+                                          <span class="input-group-append">
+                                            <button type="button" (click)="submit()" style="width: 65px;" class="btn btn-primary">Send</button>
+                                        </span>      
+                                      </div>
+                                      </form>
+                                     
+            
+                                </div>
+                                <div style="margin-left:3px">  
+
+                                    <mat-error  *ngIf="chatForm.controls['message'].hasError('required')" style="font-size: 12px;">🔴</mat-error>
+                                    <mat-error  *ngIf="!chatForm.controls['message'].hasError('required')" style="font-size: 12px;">🟢</mat-error>
+        
+                                  </div>
+                            </form>
+                        </div>
+                        <!-- /.card-footer-->
                     </div>
-                    <!-- /.card-footer-->
-                </div>
+                      <!--/.direct-chat -->
+            
             </div>
         </section>
     </section>

@@ -10,6 +10,8 @@ import 'datatables.net'; // Import DataTables
 import 'datatables.net-bs4'; 
 import { FormControl, FormGroup } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+declare var $: any;
+
 @Component({
   selector: 'app-salesreport',
   templateUrl: './salesreport.component.html',
@@ -29,6 +31,24 @@ export class SalesreportComponent implements OnInit{
   }
   ngOnInit(): void {
     debugger
+    $(document).ready(function () {
+      $("#example1").DataTable({
+        "responsive": true,
+        "lengthChange": false,
+        "autoWidth": false,
+        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+      
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+      });
+    });
     this.dealerService.vendorPurchase();
   }
   printPage() {

@@ -3,19 +3,23 @@ import { UserService } from 'src/app/services/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { GuestService } from 'src/app/services/guest.service';
 
 @Component({
-  selector: 'app-product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css']
+  selector: 'app-product-category',
+  templateUrl: './product-category.component.html',
+  styleUrls: ['./product-category.component.css']
 })
-export class ProductComponent implements OnInit {
+export class ProductCategoryComponent implements OnInit {
   @ViewChild('showDetailsDialog') showDetails!: TemplateRef<any>
     userId:any = localStorage.getItem('userId');
-  constructor(public userService: UserService, private dialog: MatDialog) { }
+  constructor(public userService: UserService,public guestService:GuestService, private dialog: MatDialog) { }
   ngOnInit(): void {
+    var categoryId=localStorage.getItem("categoryFk");
+    if(categoryId !=null){
+      this.guestService.getallProductCategory(categoryId)
 
-    this.userService.getAllProduct()
+    }
   }
   SearchForm: FormGroup = new FormGroup({
     productName: new FormControl('', [Validators.required, Validators.email]),

@@ -10,7 +10,7 @@
             <section class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="card">
+                        <div class="card" style="width: 100%;">
                             <div class="card-header">
                                 <h3 class="card-title">Sales reports</h3>
                             </div>
@@ -19,52 +19,64 @@
                                 <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                                     <div class="row" style="margin: 10px;">
                                         <div class="col-sm-12 col-md-6">
-                                            <div class="dt-buttons btn-group flex-wrap"> 
-                                                    &nbsp;
-                                              <button
-                                                    class="btn btn-secondary buttons-pdf buttons-html5" tabindex="0"
-                                                    aria-controls="example1" type="button" (click)="DownloadData()"><span>PDF</span></button>
-                                                    <!-- <button
+                                            <div class="dt-buttons btn-group flex-wrap">
+                                                &nbsp;
+                                                <button class="btn btn-secondary buttons-pdf buttons-html5" tabindex="0"
+                                                    aria-controls="example1" type="button" style="width: 55px;"
+                                                    (click)="DownloadData()"><span>PDF</span></button>
+                                                <!-- <button
                                                     mat-raised-button
                                                     
                                                     class="btn btn-success"
                                                   >
                                                     download report
                                                   </button> -->
-                                                </div>
+                                            </div>
+                                            
 
                                         </div>
-                                        <div class="col-sm-12 col-md-6" style="display: flex; align-items: center; flex-wrap: wrap;">
+                                        <div class="col-sm-12 col-md-6"
+                                            style="display: flex; align-items: center; flex-wrap: wrap;">
                                             <form [formGroup]="searchForm">
-                                                <div id="example1_filter" class="dataTables_filter" style="display: flex; align-items: center; flex-wrap: wrap;">
-                                                  
-                                                    <div style="display: flex; align-items: center; margin-right: 10px;">
+                                                <div id="example1_filter" class="dataTables_filter"
+                                                    style="display: flex; align-items: center; flex-wrap: wrap;">
+
+                                                    <div
+                                                        style="display: flex; align-items: center; margin-right: 10px;">
                                                         <label>Search:</label>
 
-                                                        <input type="search" class="form-control form-control-sm" formControlName="productName" placeholder="" aria-controls="example1">
+                                                        <input type="search" class="form-control form-control-sm"
+                                                            formControlName="productName" placeholder=""
+                                                            aria-controls="example1">
 
                                                     </div>
 
-                                                    <div style="display: flex; align-items: center; margin-right: 10px;">
+                                                    <div
+                                                        style="display: flex; align-items: center; margin-right: 10px;">
                                                         <label>From:</label>
-                                                        <input type="date" class="form-control form-control-sm" formControlName="dateFrom">
+                                                        <input type="date" class="form-control form-control-sm"
+                                                            formControlName="dateFrom">
                                                     </div>
-                                                    
-                                                    <div style="display: flex; align-items: center; margin-right: 10px;">
+
+                                                    <div
+                                                        style="display: flex; align-items: center; margin-right: 10px;">
                                                         <label>To:</label>
-                                                        <input type="date" class="form-control form-control-sm" formControlName="dateTo">
+                                                        <input type="date" class="form-control form-control-sm"
+                                                            formControlName="dateTo">
                                                     </div>
-                                                    
-                                                    <button class="btn btn-secondary buttons-pdf buttons-html5"(click)="search()" tabindex="0" aria-controls="example1" type="button">
-                                                        <i class="fa-solid fa-magnifying-glass" ></i>
+
+                                                    <button class="btn btn-secondary buttons-pdf buttons-html5"
+                                                        (click)="search()" tabindex="0" aria-controls="example1"
+                                                        type="button" style="width: 40px;"> 
+                                                        <i class="fa-solid fa-magnifying-glass"></i>
                                                     </button>
                                                 </div>
                                             </form>
                                         </div>
-                                        
-                                        
-                                        
-                                        
+
+
+
+
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12">
@@ -118,8 +130,8 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                      
-                                        
+
+
                                     </div>
                                 </div>
                             </div>

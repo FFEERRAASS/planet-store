@@ -29,7 +29,7 @@ export class UserService {
     })
   }
   updateProfile(information: any) {
-    information.imagePath=this.ImageUser;
+    information.imagePath = this.ImageUser;
     debugger;
     this.http.put('https://localhost:7100/api/users/UpdateUser', information).subscribe((result) => {
       this.dialog.closeAll();
@@ -39,17 +39,17 @@ export class UserService {
       this.toastr.error("There was an error, try again later")
     })
   }
-  deleteAccount(userId:any){
-    this.http.delete('https://localhost:7100/api/users/DeleteUser/'+userId).subscribe((result)=>{
+  deleteAccount(userId: any) {
+    this.http.delete('https://localhost:7100/api/users/DeleteUser/' + userId).subscribe((result) => {
       Swal.fire({
         icon: 'success',
         title: 'Successfully completed',
         text: 'We are sorry for your loss. If there is any problem with the store or store policy, do not hesitate to contact us  😞',
-        footer: 'We hope that you will return soon to the <strong> Planet</strong> <small> Store</small> family' 
+        footer: 'We hope that you will return soon to the <strong> Planet</strong> <small> Store</small> family'
       })
       this.router.navigate(['PlanetAuth/login']);
 
-    },err=>{
+    }, err => {
       this.toastr.error("There was an error, try again later")
     })
   }
@@ -120,11 +120,15 @@ export class UserService {
     this.http.post('https://localhost:7100/api/Basket/insertBasket', productInformation).subscribe(
       (response: any) => {
         this.spinner.hide();
+        this.dialog.closeAll()
         Swal.fire({
           icon: 'success',
           title: 'Successfully completed',
           text: 'The product is in the basket',
-          footer: '<a href="http://localhost:4200/user/Card">Go to basket?</a>'
+          footer: '<a href="http://localhost:4200/user/Card">Go to basket?</a>',
+          customClass: {
+            container: 'my-swal'
+          }
         })
       },
       (error: any) => {
@@ -245,20 +249,39 @@ export class UserService {
     })
   }
   applyCoupon(couponCode: string) {
+    this.spinner.show()
     var infoForCoupon: any = {
       UserFk: this.userId,
       CouponCode: couponCode
     }
     console.log(infoForCoupon);
     this.http.post('https://localhost:7100/api/basket/ApplyCouponToBasket', infoForCoupon).subscribe((result) => {
-      this.toastr.success("Apply Coupon Successufly");
+      if (result == 0) {
+        this.toastr.info("The coupon has already been used");
+      }
+      else if (result == 1) {
+        this.toastr.info("The coupon does not exist or has expired");
+
+      }
+      else {
+        this.toastr.success("The discount has been applied to your purchase");
+        setTimeout(() => {
+          window.location.reload()
+        }, 1000);
+
+      }
+      this.spinner.hide();
+
     }, err => {
       this.toastr.error("There was an error, try again later")
+      this.spinner.hide();
+
     })
   }
 
   //visa balance = userID 
   payment(obj: any) {
+    this.spinner.show()
     const paymentInformation = {
       visaIban: obj.visaIban,
       visaFullname: obj.visaFullname,
@@ -279,9 +302,12 @@ export class UserService {
           } else {
             // Handle unexpected outcome here
           }
+          this.spinner.hide()
         },
         (err) => {
           this.toastr.error("There was an error, try again later")
+          this.spinner.hide()
+
         }
       );
   }
@@ -314,6 +340,31 @@ export class UserService {
       this.toastr.success('The specified record has been deleted');
     }, error => {
       this.toastr.error('There was an error, try again later')
+    })
+  }
+  category: any = [];
+  getAllCategory() {
+    this.spinner.show()
+    this.http.get('https://localhost:7100/api/Category/GetCategory').subscribe((result) => {
+      this.category = result;
+      this.spinner.hide()
+
+    }, err => {
+      this.toastr.error('There was an error, try again later')
+      this.spinner.hide()
+
+    })
+  }
+  testimonialAccepted: any = [];
+  getAllTestimonialAccepted() {
+    this.spinner.show()
+    this.http.get('https://localhost:7100/api/testimonial/testimonialInformation').subscribe((result) => {
+      this.testimonialAccepted = result; 
+      this.testimonialAccepted=this.testimonialAccepted.filter((x:any)=>x.status==1);
+      this.spinner.hide()
+    },err=>{
+      this.toastr.error('There was an error, try again later')
+      this.spinner.hide()
     })
   }
 }

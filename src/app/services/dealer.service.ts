@@ -22,12 +22,16 @@ export class DealerService {
   userId: any = localStorage.getItem('userId');
 
   dealerProduct: any = []
-  getAllProductForDealer() {
-debugger
-    this.http.get('https://localhost:7100/api/Product/getProductByuserId/' + this.userId).subscribe((result) => {
+  productCount: any;
+  async getAllProductForDealer() {
+    this.spinner.show()
+    await this.http.get('https://localhost:7100/api/Product/getProductByuserId/' + this.userId).subscribe((result: any) => {
       this.dealerProduct = result;
+      this.productCount = result.length;  // Get count here
+      this.spinner.hide()
     }, err => {
       this.toastr.error("There was an error, try again later")
+      this.spinner.hide()
 
     })
   }
@@ -125,49 +129,125 @@ debugger
           text: 'The product has been removed',
         })
       }, 1000);
-setTimeout(() => {
-  window.location.reload();
+      setTimeout(() => {
+        window.location.reload();
 
-}, 3000);
+      }, 3000);
     }, err => {
       this.spinner.hide()
       this.toastr.error("There was an error, try again later")
 
     })
   }
-  vendorPurchases:any=[];
-  backUpDate:any=[];
-  vendorPurchase(){
-    this.http.get('https://localhost:7100/api/Basket/GetBasketItemsForVendorOrAdmin/'+this.userId).subscribe((result)=>{
-    this.vendorPurchases=result;
-    this.backUpDate=result;
+  vendorPurchases: any = [];
+  backUpDate: any = [];
+  numberOfOrder: any;
+  totalAmount: any;
+  totalQuantity: any;
+  async vendorPurchase() {
+    this.spinner.show()
+
+    await this.http.get('https://localhost:7100/api/Basket/GetBasketItemsForVendorOrAdmin/' + this.userId).subscribe((result: any) => {
+      this.vendorPurchases = result;
+      this.backUpDate = result;
+      this.numberOfOrder = result.length;
+
+      this.totalAmount = 0; // Initialization
+      this.totalQuantity = 0; // Initialization
+
+      for (let i = 0; i < result.length; i++) {
+        this.totalAmount += result[i].productCost * result[i].quantity;
+        this.totalQuantity += result[i].quantity;  // Incrementing the total quantity
+      }
+      this.spinner.hide()
+
+
+    }, err => {
+      this.spinner.hide()
+
+      this.toastr.error("There was an error, try again later");
+    });
+  }
+
+
+  contact: any = [];
+  async getAllContact() {
+    this.spinner.show()
+
+    await this.http.get('https://localhost:7100/api/users/GetAllUser').subscribe((result) => {
+      this.contact = result;
+      this.contact = this.contact.filter((x: any) => x.roleFk != 3).filter((y: any) => y.userId != this.userId);
+      this.spinner.hide()
+
     },err=>{
-      this.toastr.error("There was an error, try again later")
+      this.spinner.hide()
+      this.toastr.error("There was an error, try again later");
+
     })
   }
-
-  contact:any=[];
-  getAllContact(){
-    this.http.get('https://localhost:7100/api/users/GetAllUser').subscribe((result)=>{
-    this.contact=result;
-    this.contact=this.contact.filter((x:any)=>x.roleFk !=3).filter((y:any)=>y.userId != this.userId);
-    })
-  }
-
-  messages:any=[];
-  GetChatsBySenderReceiver(){
-    var sender=localStorage.getItem("userId");
-    var receiver=localStorage.getItem('receiverId')
-    var body:any ={
-      senderFk:sender,
-      receiverFk:receiver
+  totalReceiveMsg:any;
+  numberOfReceiveMessage(){
+    this.spinner.show();
+    this.http.get('https://localhost:7100/api/chat/GetChatsByReceiver/'+this.userId).subscribe((result:any)=>{
+    this.totalReceiveMsg=0;
+    for (let i = 0; i < result.length; i++) {
+      this.totalReceiveMsg += 1;  // Incrementing the total quantity
     }
+    this.spinner.hide()
+    },err=>{
+      this.toastr.error("There was an error, try again later");
+      this.spinner.hide()
 
+    })
+  }
 
-    this.http.post('https://localhost:7100/api/Chat/GetChatsBySenderReceiver',body).subscribe((result)=>{
-      this.messages=result;
+  messages: any = [];
+  async GetChatsBySenderReceiver() {
+    this.spinner.show()
+
+    var sender = localStorage.getItem("userId");
+    var receiver = localStorage.getItem('receiverId')
+    var body: any = {
+      senderFk: sender,
+      receiverFk: receiver
+    }
+    await this.http.post('https://localhost:7100/api/Chat/GetChatsBySenderReceiver', body).subscribe((result) => {
+      this.messages = result;
+      this.spinner.hide()
+
+    }, err => {
+      this.spinner.hide()
+
+      this.toastr.error("There was an error, try again later")
+    })
+  }
+  userInormation:any={};
+  getUserInformation(){
+    this.spinner.show()
+    this.http.get('https://localhost:7100/api/users/GetUser/'+this.userId).subscribe((result)=>{
+      this.userInormation=result;
+      this.spinner.hide()
     },err=>{
       this.toastr.error("There was an error, try again later")
     })
   }
+
+
+charData:any=[];
+charData1:any=[];
+  async chartReport() {
+    await this.http.get('https://localhost:7100/api/Basket/GetBasketItemsForVendorOrAdmin/' + this.userId).subscribe((result: any) => {
+      this.vendorPurchases = result;
+      this.backUpDate = result;
+      this.numberOfOrder = result.length;
+      for (let i = 0; i < result.length; i++) {
+        this.charData.push ( result[i].productCost * result[i].quantity);
+        this.charData1.push(result[i].productPrice * result[i].quantity);
+      }
+    }, err => {
+      this.toastr.error("There was an error, try again later");
+    });
+  }
+
+
 }
