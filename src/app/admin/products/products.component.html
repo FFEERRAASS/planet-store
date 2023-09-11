@@ -1,0 +1,355 @@
+<app-navbar></app-navbar>
+<div class="content-wrapper" style="min-height: 1345.31px;">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+
+    <section class="content">
+
+      <div class="container-fluid">
+        <button class="btn btn-warning" style="margin: 10px 0px 10px 0px;" (click)="filterProduct(0)">On Hold</button> &nbsp;
+        <button class="btn btn-danger" style="margin: 10px 0px 10px 0px;" (click)="filterProduct(2)">Rejected products</button>&nbsp;
+        <button class="btn btn-success" style="margin: 10px 0px 10px 0px;" (click)="filterProduct(1)">Accepted Products</button>
+
+        <div class="row">
+          <div class="col-md-4" *ngFor="let obj of adminService.allProducts">
+            <!-- Widget: user widget style 2 -->
+            <div class="card card-widget widget-user-2">
+              <!-- Add the bg color to the header using any of the bg-* classes -->
+              <div class="widget-user-header bg-warning">
+                <div class="widget-user-image">
+                  <img class="img-cube elevation-2" src="../../assets/uploadImage/{{obj.productImage1}}"
+                    *ngIf="obj.productImage1 != null" alt="User Avatar">
+                  <img class="img-cube elevation-2" src="../../assets/uploadImage/{{obj.productImage2}}"
+                    *ngIf="obj.productImage2 != null" style="margin: 0px 4px 0px 4px;" alt="User Avatar">
+
+                </div>
+                <!-- /.widget-user-image -->
+                <h3 class="widget-user-username"></h3>
+                <h5 class="widget-user-desc" style="font-family:cursive;">{{obj.productName}}</h5>
+                <p class="widget-user-desc" style="font-family:cursive;">{{obj.productStatus == 1 ?  'Active':'Waiting'}}</p>
+
+              </div>
+              <div class="card-footer p-0">
+                <ul class="nav flex-column">
+                  <li class="nav-item">
+                    <p class="nav-link" id="descriptionLink" style="min-height: 150px;color: black;">
+                      {{ obj.productDescription.length <= 300 ? obj.productDescription : (obj.productDescription |
+                        slice:0:300)+'....' }} </p>
+                  </li>
+                  <li class="nav-item">
+                    <p class="nav-link">
+                      {{obj.productCost}} $ ,And Quantity equal {{obj.productQuantity}}X
+                    </p>
+                  
+                  </li>
+
+                  <li class="nav-item">
+                    <div style="display: flex; justify-content: center; align-items: center;margin: 5px;">
+                       
+
+                      <button class="btn bg-gradient-success" style="background-color: #3b5d50;"
+                        (click)="UpdateProduct(obj.productId)">Edit</button>
+                      &nbsp;
+                      <button class="btn bg-gradient-danger" (click)="Deleteproduct(obj.productId)">Delete</button>
+                      &nbsp;
+                      <button class="btn bg-gradient-primary" (click)="showDetails(obj.productId)">Show</button>
+                      &nbsp;
+                      <button class="btn bg-gradient-warning" (click)="frezzProduct(obj.productId)" *ngIf="obj.productStatus == 1">Freeze</button>
+                      <button class="btn bg-gradient-warning" (click)="activeProduct(obj.productId)" *ngIf="obj.productStatus == 2">Active</button>
+
+                      <button class="btn bg-gradient-warning" (click)="activeProduct(obj.productId)" *ngIf="obj.productStatus == 0">Active</button>
+&nbsp; <button class="btn bg-gradient-danger" (click)="rejectProduct(obj.productId)" *ngIf="obj.productStatus == 0">Reject</button>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </section>
+</div>
+<app-footer></app-footer>
+
+
+
+
+
+<ng-template #callUpdateProductDialog>
+  <div class="content-wrapper"
+    style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; align-items: flex-start; background-color: rgba(0, 0, 0, 0.6);min-height: 500px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <section class="content">
+        <div class="container-fluid">
+          <div class="card card-success" style="margin-top: 50px;">
+            <div class="card-header">
+              <h3 class="card-title">Easily add your product</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <form [formGroup]="UpdateProductForm">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <!-- text input -->
+                    <div class="form-group">
+                      <label>Product Name</label>
+                      <input type="text" class="form-control" placeholder="Enter ..." matInput
+                        formControlName="productName" [(ngModel)]="oldProductData.productName">
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label>Cost</label>
+                      <input type="number" class="form-control" placeholder="Enter ..." matInput
+                        formControlName="productCost" min="0" [(ngModel)]="oldProductData.productCost">
+                    </div>
+                  </div>
+                </div>
+               <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                      <label>Price</label>
+                      <input type="number" class="form-control" placeholder="Enter ..." matInput
+                        formControlName="productPrice" min="0" [(ngModel)]="oldProductData.productPrice">
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label>Status</label>
+                      <select class="form-control" formControlName="productStatus" [(ngModel)]="oldProductData.productStatus">
+                        <option value="1">Active</option>
+                        <option value="0">Waiting</option>
+                        <option value="2">Reject</option>
+
+                      </select>
+                      <!-- <input type="number" class="form-control" placeholder="Enter ..." matInput
+                        formControlName="productStatus" min="0" [(ngModel)]="oldProductData.productStatus"> -->
+                    </div>
+                  </div>
+               </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <!-- textarea -->
+                    <div class="form-group">
+                      <label>Product Description</label>
+                      <textarea class="form-control" rows="3" matInput formControlName="productDescription"
+                        placeholder="Enter ..." [(ngModel)]="oldProductData.productDescription"></textarea>
+                    </div>
+                  </div>
+                 
+                </div>
+
+                <!-- input states -->
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label class="col-form-label" for="inputSuccess"> Quantity</label>
+                      <input type="number" min="0" class="form-control" id="inputSuccess" matInput
+                        formControlName="productQuantity" placeholder="Enter ..." required=""
+                        [(ngModel)]="oldProductData.productQuantity">
+                    </div>
+                  </div>
+                  <div class="col-sm-6" style="margin-top: 6px;">
+                    <!-- select -->
+                    <div class="form-group">
+                      <label>Category</label>
+                      <select class="form-control" formControlName="categoryFk" [(ngModel)]="oldProductData.categoryFk">
+                        <option *ngFor="let category of dealerService.category" value="{{category.categoryId}}">{{
+                          category.categoryName }}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-6">
+
+                    <div class="form-group">
+                      <label for="exampleInputFile">Product Image 1</label>
+                      <div class="input-group">
+                        <div class="custom-file">
+                          <input type="file" formControlName="productImage1" #file (change)="uploadFile1(file.files)"
+                            class="custom-file-input" id="exampleInputFile">
+                          <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                        </div>
+                        <div class="input-group-append">
+                          <span class="input-group-text">Upload</span>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="col-sm-6">
+
+                    <div class="form-group">
+                      <label for="exampleInputFile">Product Image 2</label>
+                      <div class="input-group">
+                        <div class="custom-file">
+                          <input type="file" formControlName="productImage2" #file (change)="uploadFile2(file.files)"
+                            class="custom-file-input" id="exampleInputFile">
+                          <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                        </div>
+                        <div class="input-group-append">
+                          <span class="input-group-text">Upload</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div style="display: flex; justify-content: center; align-items: center">
+                  <button class="btn bg-gradient-success" style="background-color: #3b5d50 ;"
+                    (click)="saveUpdate()">Save</button>
+                  &nbsp;
+                  <button class="btn bg-gradient-danger" (click)="closeDialog()">Cancel</button>
+                </div>
+
+              </form>
+            </div>
+            <!-- /.card-body -->
+          </div>
+        </div>
+      </section>
+    </section>
+  </div>
+</ng-template>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ng-template #callProductDeatilsDialog>
+  <div class="content-wrapper"
+    style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; align-items: flex-start; background-color: rgba(0, 0, 0, 0.6);min-height: 500px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <section class="content">
+        <div class="container-fluid">
+
+          <div class="card card-success" style="margin-top: 50px;">
+
+            <div class="card-header">
+
+
+              <h3 class="card-title" style="font-family: cursive;"><i class="fa fa-window-close" aria-hidden="true"
+                  (click)="closeDialog()"></i> Product Details</h3>
+
+            </div>
+
+            <!-- /.card-header -->
+            <div class="card-body">
+              <!------------------------------------------>
+              <div class="card card-widget">
+                <div class="card-header">
+                  <div class="user-block">
+                    <div class="card">
+                      <div class="card-header">
+                        <h3 class="card-title"></h3>
+                      </div>
+                      <!-- /.card-header -->
+                      <div class="card-body">
+                        <div id="carouselExampleIndicators" style="width: 500px; height: 300px; cursor: pointer;"
+                          class="carousel slide" data-ride="carousel">
+                          <ol class="carousel-indicators" style="height: 300px;">
+                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class=""></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="1" class="active"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                          </ol>
+                          <div class="carousel-inner">
+                            <div class="carousel-item">
+                              <img class="d-block w-100"
+                                src="../../assets/uploadImage/{{dealerService.productDetailsVar.productImage1}}"
+                                style="height: 300px; width: 5000px;" alt="First slide">
+                            </div>
+                            <div class="carousel-item active">
+                              <img class="d-block w-100"
+                                src="../../assets/uploadImage/{{dealerService.productDetailsVar.productImage2}}"
+                                style="height: 300px; width: 500px;" alt="Second slide">
+                            </div>
+
+                          </div>
+                          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                            data-slide="prev">
+                            <span class="carousel-control-custom-icon" aria-hidden="true">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="sr-only">Previous</span>
+                          </a>
+                          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                            data-slide="next">
+                            <span class="carousel-control-custom-icon" aria-hidden="true">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            <span class="sr-only">Next</span>
+                          </a>
+                        </div>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+
+                    <div style="display: flex; justify-content: left; align-items: left">
+                      <div>
+                        <span class="username">{{dealerService.productDetailsVar.productName}}</span>
+                        <span class="description">{{dealerService.productDetailsVar.productAddedDate |
+                          date:'yyyy-MM-dd'}}</span>
+                      </div>
+                      <div>
+                        <span class="username">{{dealerService.productDetailsVar.productCost}}$</span>
+                        <span class="description">{{dealerService.productDetailsVar.productStatus ===
+                          1?'Active':'Waiting for approval'}}</span>
+
+
+                      </div>
+                      <div>
+                        <span class="username"><i class="fa-regular fa-gem"></i>
+                          {{dealerService.productDetailsVar.productPlan === 1?'Normal ':'Premium'}} </span>
+                        <span class="description">{{dealerService.productDetailsVar.productQuantity}} X</span>
+
+
+                      </div>
+
+                    </div>
+                  </div>
+                  <!-- /.user-block -->
+                  <!-- ... -->
+                </div>
+                <!-- ... -->
+              </div>
+              <!------------------------------------------>
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer card-comments" style="height: 300;width: 500px;">
+              <div class="card-comment">
+                <!-- User image -->
+
+
+                <div class="comment-text">
+                  <span class="username">
+                    <i class="fa fa-paragraph" aria-hidden="true"></i> Description
+                  </span><!-- /.username -->
+                  {{dealerService.productDetailsVar.productDescription}}
+                </div>
+                <!-- /.comment-text -->
+              </div>
+
+              <!-- /.card-comment -->
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+  </div>
+</ng-template>

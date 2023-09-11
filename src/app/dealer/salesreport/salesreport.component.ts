@@ -22,33 +22,52 @@ export class SalesreportComponent implements OnInit{
   constructor(private pipe: DatePipe,public spinner: NgxSpinnerService,public toastr:ToastrService,public dealerService: DealerService, public dialog: MatDialog,private renderer: Renderer2) { }
 
   @ViewChild('myTable', { static: false }) myTable!: ElementRef;
-    DownloadData(){
-    const doc = new jsPDF()
-    
-    autoTable(doc, { html: '#myTable' ,theme:'grid',startY:2,margin:{horizontal:10},pageBreak:'auto',rowPageBreak:'avoid',columnStyles: {0: {cellWidth: 30, minCellHeight: 25},1: {cellWidth: 30},2: {cellWidth: 30},3: {cellWidth: 30},4: {cellWidth: 30}}})
-    
-    doc.save('table.pdf')
-  }
+  DownloadData() {
+    const doc = new jsPDF();
+    const logoImg = new Image();
+
+    logoImg.src = '../../assets/images/logoPlanet.png';
+
+    logoImg.onload = () => {
+        const pageWidth = doc.internal.pageSize.getWidth();
+        const imgWidth = 30; 
+        const imgHeight = (logoImg.height * imgWidth) / logoImg.width; 
+        const x = (pageWidth - imgWidth) / 2;
+
+        doc.addImage(logoImg, 'PNG', x, 10, imgWidth, imgHeight);
+
+        doc.setFontSize(10); 
+
+
+        const currentDate = new Date().toLocaleDateString(); 
+        doc.text(currentDate, 10, 20); 
+        doc.text('Sales Report', 10, 30);
+        doc.text('Report type: Vendor report', 10, 40); 
+
+        autoTable(doc, {
+            html: '#myTable',
+            theme: 'grid',
+            startY: imgHeight + 20, 
+            margin: { horizontal: 3 }, 
+            pageBreak: 'auto',
+            rowPageBreak: 'avoid',
+            columnStyles: {
+                0: { cellWidth: 'auto', minCellHeight: 25 },
+                1: { cellWidth: 'auto' },
+                2: { cellWidth: 'auto' },
+                3: { cellWidth: 'auto' },
+                4: { cellWidth: 'auto' }
+            }
+        });
+        doc.save('table.pdf');
+    };
+}
+
+
+
   ngOnInit(): void {
     debugger
-    $(document).ready(function () {
-      $("#example1").DataTable({
-        "responsive": true,
-        "lengthChange": false,
-        "autoWidth": false,
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-      
-      $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-      });
-    });
+
     this.dealerService.vendorPurchase();
   }
   printPage() {

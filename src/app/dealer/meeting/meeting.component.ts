@@ -7,7 +7,11 @@ declare function start() :any;
   styleUrls: ['./meeting.component.css']
 })
 export class MeetingComponent implements OnInit {
+  userId: any = localStorage.getItem('userId');
+  receiverFk: any = localStorage.getItem('userId');
+
   ngOnInit() {
+
     start();
    }
 }

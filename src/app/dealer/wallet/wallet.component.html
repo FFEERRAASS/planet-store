@@ -2,11 +2,221 @@
 
 
 
+<section style="background-color: #eee;">
+    <div class="container py-5">
+        <br><br><br><br>
+
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card mb-4" style="height: 500px;">
+                    <div class="card-body text-center">
+                        <img src="../../assets/uploadImage/{{userService.userInformation.imagePath}}" alt="avatar"
+                            class="rounded-circle img-fluid" style="width: 150px;">
+                        <h6 class="my-3">{{userService.userInformation.firstName}}
+                            {{userService.userInformation.lastName}} </h6>
+                        <p class="text-muted mb-1">{{userService.userInformation.email}}</p>
+                        <p class="text-muted mb-4">{{userService.userInformation.phoneNumber}}</p>
+                        <div class="d-flex justify-content-center mb-2">
+                            <button type="button" class="btn btn-primary" style="max-height: 40px;max-width: 129px;" (click)="cashWithdraw()">Cash withdraw
+                                </button> &nbsp;
+                            <button type="button" class="btn btn-warning me-2" style="max-height: 40px;max-width: 135px;" (click)="moneyTransfer()">Money transfer</button>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-8">
+                <div class="card mb-4" style="height: 500px;">
+                    <div class="card-body" style="margin-top: 65px;">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Wallet Type</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{dealerService.userWallet.walletType === 1 ? 'Vendor Wallet' :
+                                    'User Wallet'}} </p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Wallet Status</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{dealerService.userWallet.walletStatus  === 1 ? 'Active' :
+                                    'Disable'}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Balance</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{dealerService.userWallet.walletBalance}} $</p>
+                            </div>
+                        </div>
+                        <hr>
+    
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Phone</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{userService.userInformation.phoneNumber}}</p>
+                            </div>
+                        </div>
+                        <hr>
+
+
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Account Status</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{userService.userInformation.status === 1 ? 'Active' :
+                                    'Disable'}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">User Type</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{userService.userInformation.roleFk === 3 ? 'Customer account' :
+                                    'Vendor account'}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
 
 
 
 
 
+<ng-template #transfermoneydialog>
+    <section
+        style="z-index: 4000;position: fixed; top: 0; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; align-items: flex-start; background-color: rgba(0, 0, 0, 0.6);">
+        <div class="container py-4">
+            <div class="row">
+
+                <div class="col-lg-7 mx-auto d-flex justify-content-center flex-column"
+                    style="background-color: white; border-radius: 8px; padding: 20px;">
+                    <i class="fa fa-window-close" aria-hidden="true" (click)="closeDialog()"></i>
+
+                    <form [formGroup]="transferMoneyForm" role="form" id="contact-form" autocomplete="off">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Username</label>
+                                    <div class="input-group mb-4">
+                                        <input class="form-control" matInput formControlName="username" type="text">
+                                        <mat-error *ngIf="transferMoneyForm.controls['username'].hasError('required')" style="font-size: 12px;">🔴</mat-error>
+                                        <mat-error *ngIf="!transferMoneyForm.controls['username'].hasError('required')" style="font-size: 12px;">🟢</mat-error>
+                                    </div>
+                                </div>
+                                
+
+                                <div class="col-md-6">
+                                    <label>Email</label>
+                                    <div class="input-group mb-4">
+                                        <input class="form-control" matInput formControlName="email" type="email">
+                                        <mat-error *ngIf="transferMoneyForm.controls['email'].hasError('email')" style="font-size: 12px;">🔴</mat-error>
+                                        <br>
+                                        <mat-error *ngIf="!transferMoneyForm.controls['email'].hasError('required')" style="font-size: 12px;">🟢</mat-error>
+                                        <mat-error *ngIf="transferMoneyForm.controls['email'].hasError('required')" style="font-size: 12px;">🔴</mat-error>
+
+                                    </div>
+                                </div>
 
 
-<app-footer></app-footer>
+                                <div class="col-md-6">
+                                    <label>Phone Number</label>
+                                    <div class="input-group mb-4">
+                                        <input class="form-control" matInput formControlName="phonenumber" type="text">
+                                        <mat-error *ngIf="transferMoneyForm.controls['phonenumber'].hasError('required')" style="font-size: 12px;">🔴</mat-error>
+                                        <mat-error *ngIf="!transferMoneyForm.controls['phonenumber'].hasError('required')" style="font-size: 12px;">🟢</mat-error>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label>Amount</label>
+                                    <div class="input-group mb-4">
+                                        <input class="form-control" matInput formControlName="Amount" type="number" min="0">
+                                        <mat-error *ngIf="transferMoneyForm.controls['Amount'].hasError('required')" style="font-size: 12px;">🔴</mat-error>
+                                        <mat-error *ngIf="!transferMoneyForm.controls['Amount'].hasError('required')" style="font-size: 12px;">🟢</mat-error>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                            <div class="row ">
+                                <div class="col-md-12 ">
+                                    <button type="submit" class="btn bg-gradient-warning me-2 w-100" style="max-height: 40px;" (click)="transfer()">Transfer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</ng-template> 
+<ng-template #callDrawMoneyDialog>
+    <section
+        style="z-index: 4000;position: fixed; top: 0; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; align-items: flex-start; background-color: rgba(0, 0, 0, 0.6);">
+        <div class="container py-4">
+            <div class="row">
+
+                <div class="col-lg-7 mx-auto d-flex justify-content-center flex-column"
+                    style="background-color: white; border-radius: 8px; padding: 20px;">
+                    <i class="fa fa-window-close" aria-hidden="true" (click)="closeDialog()"></i>
+
+                    <form [formGroup]="cashWithDraw" role="form" id="contact-form" autocomplete="off">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>IBAN</label>
+                                    <div class="input-group mb-4">
+                                        <input class="form-control" matInput formControlName="iban" type="text">
+                                        <mat-error *ngIf="cashWithDraw.controls['iban'].hasError('required')" style="font-size: 12px;">🔴</mat-error>
+                                        <mat-error *ngIf="!cashWithDraw.controls['iban'].hasError('required')" style="font-size: 12px;">🟢</mat-error>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label>Amount</label>
+                                    <div class="input-group mb-4">
+                                        <input class="form-control" matInput formControlName="amount" type="number" min="0">
+                                        <mat-error *ngIf="cashWithDraw.controls['amount'].hasError('required')" style="font-size: 12px;">🔴</mat-error>
+                                        <mat-error *ngIf="!cashWithDraw.controls['amount'].hasError('required')" style="font-size: 12px;">🟢</mat-error>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                            <div class="row ">
+                                <div class="col-md-12 ">
+                                    <button type="submit" class="btn bg-gradient-warning me-2 w-100" style="max-height: 40px;" (click)="drawMoney()">Draw Money</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</ng-template> 

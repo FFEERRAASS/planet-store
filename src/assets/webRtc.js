@@ -69,4 +69,3 @@ document.getElementById('add-answer').addEventListener('click', addAnswer)
 }
 
 
-

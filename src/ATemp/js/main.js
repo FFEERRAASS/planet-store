@@ -1,4 +1,5 @@
-
+function login(){
+    
 (function ($) {
     "use strict";
 
@@ -55,3 +56,4 @@
     
 
 })(jQuery);
+}

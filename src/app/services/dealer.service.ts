@@ -179,22 +179,22 @@ export class DealerService {
       this.contact = this.contact.filter((x: any) => x.roleFk != 3).filter((y: any) => y.userId != this.userId);
       this.spinner.hide()
 
-    },err=>{
+    }, err => {
       this.spinner.hide()
       this.toastr.error("There was an error, try again later");
 
     })
   }
-  totalReceiveMsg:any;
-  numberOfReceiveMessage(){
+  totalReceiveMsg: any;
+  numberOfReceiveMessage() {
     this.spinner.show();
-    this.http.get('https://localhost:7100/api/chat/GetChatsByReceiver/'+this.userId).subscribe((result:any)=>{
-    this.totalReceiveMsg=0;
-    for (let i = 0; i < result.length; i++) {
-      this.totalReceiveMsg += 1;  // Incrementing the total quantity
-    }
-    this.spinner.hide()
-    },err=>{
+    this.http.get('https://localhost:7100/api/chat/GetChatsByReceiver/' + this.userId).subscribe((result: any) => {
+      this.totalReceiveMsg = 0;
+      for (let i = 0; i < result.length; i++) {
+        this.totalReceiveMsg += 1;  // Incrementing the total quantity
+      }
+      this.spinner.hide()
+    }, err => {
       this.toastr.error("There was an error, try again later");
       this.spinner.hide()
 
@@ -221,33 +221,74 @@ export class DealerService {
       this.toastr.error("There was an error, try again later")
     })
   }
-  userInormation:any={};
-  getUserInformation(){
+  userInormation: any = {};
+  getUserInformation() {
     this.spinner.show()
-    this.http.get('https://localhost:7100/api/users/GetUser/'+this.userId).subscribe((result)=>{
-      this.userInormation=result;
+    this.http.get('https://localhost:7100/api/users/GetUser/' + this.userId).subscribe((result) => {
+      this.userInormation = result;
       this.spinner.hide()
-    },err=>{
+    }, err => {
       this.toastr.error("There was an error, try again later")
     })
   }
 
 
-charData:any=[];
-charData1:any=[];
+  charData: any = [];
+  charData1: any = [];
   async chartReport() {
     await this.http.get('https://localhost:7100/api/Basket/GetBasketItemsForVendorOrAdmin/' + this.userId).subscribe((result: any) => {
       this.vendorPurchases = result;
       this.backUpDate = result;
       this.numberOfOrder = result.length;
       for (let i = 0; i < result.length; i++) {
-        this.charData.push ( result[i].productCost * result[i].quantity);
+        this.charData.push(result[i].productCost * result[i].quantity);
         this.charData1.push(result[i].productPrice * result[i].quantity);
       }
     }, err => {
       this.toastr.error("There was an error, try again later");
     });
   }
-
-
+  userWallet: any = {};
+  async getWallet() {
+    this.spinner.show();
+    await this.http.get('https://localhost:7100/api/Wallet/SelectWalletsByUser/' + this.userId).subscribe((result) => {
+      this.userWallet = result;
+      this.spinner.hide();
+    }, err => {
+      this.spinner.hide();
+      this.toastr.error("There was an error, try again later");
+    })
+  }
+  transfeerMoney(information: any) {
+    this.http.put('https://localhost:7100/api/Wallet/transfeerMoney', information).subscribe((result) => {
+      if (result == 1) {
+        this.toastr.success("The money transfer has been completed successfully");
+      }
+      else if (result == 0) {
+        this.toastr.info("The balance is insufficient to complete the transaction");
+      }
+      else {
+        this.toastr.error("The information is incorrect, there is no wallet with this information");
+      }
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+    })
+  }
+  cashWithDraw(information: any) {
+    this.http.put('https://localhost:7100/api/Wallet/cashWithDraw', information).subscribe((result) => {
+      if (result == 1) {
+        this.toastr.success("Money has been successfully withdrawn from the wallet");
+      }
+      else if (result == 0) {
+        this.toastr.info("The amount you are trying to withdraw is greater than the amount in the wallet");
+      }
+      else {
+        this.toastr.error("Withdrawal information is not available, verify the information and try again");
+      }
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+    })
+  }
 }
