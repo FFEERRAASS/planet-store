@@ -53,7 +53,6 @@ export class AddproductComponent implements OnInit {
     categoryFk: new FormControl(),
   })
   uploadFile1(files: any) {
-    debugger;
     if (files.length == 0)
       return;
     let fileToUpload = <File>files[0];

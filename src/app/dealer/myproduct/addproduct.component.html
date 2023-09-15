@@ -16,9 +16,9 @@
               <div class="widget-user-header bg-warning">
                 <div class="widget-user-image">
                   <img class="img-cube elevation-2" src="../../assets/uploadImage/{{obj.productImage1}}"
-                    *ngIf="obj.productImage1 != null" alt="User Avatar">
+                    style="height: 75px;" *ngIf="obj.productImage1 != null" alt="User Avatar">
                   <img class="img-cube elevation-2" src="../../assets/uploadImage/{{obj.productImage2}}"
-                    *ngIf="obj.productImage2 != null" style="margin: 0px 4px 0px 4px;" alt="User Avatar">
+                    *ngIf="obj.productImage2 != null" style="margin: 0px 4px 0px 4px;height: 75px;" alt="User Avatar">
 
                 </div>
                 <!-- /.widget-user-image -->
@@ -28,7 +28,7 @@
               <div class="card-footer p-0">
                 <ul class="nav flex-column">
                   <li class="nav-item">
-                    <p class="nav-link" id="descriptionLink" style="min-height: 150px;color: black;">
+                    <p class="nav-link" id="descriptionLink" style="height: 150px;color: black;">
                       {{ obj.productDescription.length <= 300 ? obj.productDescription : (obj.productDescription |
                         slice:0:300)+'....' }} </p>
                   </li>

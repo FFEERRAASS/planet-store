@@ -1,19 +1,374 @@
 <app-navbar></app-navbar>
 
 
+<div class="content-wrapper" style="min-height: 1345.31px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+
+        <section class="content">
+
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="card" style="width: 100%;">
+                            <div class="card-header">
+                                <h3 class="card-title">Vendor Report</h3>
+                                <div class="card-tools"><button type="button" data-card-widget="collapse" class="btn btn-tool"><i class="fas fa-minus"></i></button><button type="button" data-card-widget="remove" class="btn btn-tool"><i class="fas fa-times"></i></button></div>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                    <div class="row" style="margin: 10px;">
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="dt-buttons btn-group flex-wrap">
+                                                &nbsp;
+                                                <button class="btn btn-secondary buttons-pdf buttons-html5" tabindex="0"
+                                                    aria-controls="example1" type="button" style="width: 55px;"
+                                                    (click)="DownloadData()"><span>PDF</span></button>
+                                                <!-- <button
+                                                    mat-raised-button
+                                                    
+                                                    class="btn btn-success"
+                                                  >
+                                                    download report
+                                                  </button> -->
+                                            </div>
+                                            
+
+                                        </div>
+                                        <div class="col-sm-12 col-md-6"
+                                            style="display: flex; align-items: center; flex-wrap: wrap;">
+                                            <form [formGroup]="searchForm">
+                                                <div id="example1_filter" class="dataTables_filter"
+                                                    style="display: flex; align-items: center; flex-wrap: wrap;">
+
+                                                    <div
+                                                        style="display: flex; align-items: center; margin-right: 10px;">
+                                                        <label>Search:</label>
+
+                                                        <input type="search" class="form-control form-control-sm"
+                                                            formControlName="productName" placeholder=""
+                                                            aria-controls="example1">
+
+                                                    </div>
+
+                                                    <button class="btn btn-secondary buttons-pdf buttons-html5"
+                                                    (click)="search()"tabindex="0" aria-controls="example1"
+                                                        type="button" style="width: 40px;"> 
+                                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+
+
+
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <table id="myTable"
+                                                class="table table-bordered table-striped dataTable dtr-inline"
+                                                role="grid" aria-describedby="example1_info">
+                                                <thead>
+                                                    <tr role="row">
+                                                        <th class="sorting sorting_asc" tabindex="0"
+                                                            aria-controls="example1" rowspan="1" colspan="1"
+                                                            aria-sort="ascending"
+                                                            aria-label="Rendering engine: activate to sort column descending">
+                                                            Full Name</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example1"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Browser: activate to sort column ascending">
+                                                            Username</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example1"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Platform(s): activate to sort column ascending">
+                                                            Email</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example1"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Engine version: activate to sort column ascending">
+                                                            Phone Number</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example1"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="CSS grade: activate to sort column ascending">
+                                                            Gender</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="example1"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="CSS grade: activate to sort column ascending">
+                                                            Product Name</th>
+                                                          
+                                                            <th class="sorting" tabindex="0" aria-controls="example1"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="CSS grade: activate to sort column ascending">
+                                                            Product Status</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="example1"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="CSS grade: activate to sort column ascending">
+                                                            Product Quantity</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="example1"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="CSS grade: activate to sort column ascending">
+                                                            Product Price</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="example1"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="CSS grade: activate to sort column ascending">
+                                                            Product Cost</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="example1"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="CSS grade: activate to sort column ascending">
+                                                            Category</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="even" *ngFor="let obj of adminService.vendorReport">
+                                                        <td class="sorting_1 dtr-control">{{obj.firstName}} {{obj.lastName}}</td>
+                                                        <td>{{obj.username}}</td>
+                                                        <td>{{obj.email}}</td>
+                                                        <td>{{obj.phoneNumber }}</td>
+                                                        <td>{{obj.gender ==1?'Male' :'Female'}}</td>
+                                                        <td>{{obj.productName}}</td>
+                                                        <td>{{obj.productStatus ==1?'Accept':'Reject'}}</td>
+                                                        <td>{{obj.productQuantity}} </td>
+                                                        <td>{{obj.productPrice}}$</td>
+                                                        <td>{{obj.productCost}}$</td>
+                                                        <td>{{obj.categoryName}}</td>
+                                                   
+
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th class="sorting sorting_asc" tabindex="0"
+                                                        aria-controls="example1" rowspan="1" colspan="1"
+                                                        aria-sort="ascending"
+                                                        aria-label="Rendering engine: activate to sort column descending">
+                                                        Full Name</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Browser: activate to sort column ascending">
+                                                        Username</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Platform(s): activate to sort column ascending">
+                                                        Email</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Engine version: activate to sort column ascending">
+                                                        Phone Number</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="CSS grade: activate to sort column ascending">
+                                                        Gender</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="CSS grade: activate to sort column ascending">
+                                                        Product Name</th>
+                                                      
+                                                        <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="CSS grade: activate to sort column ascending">
+                                                        Product Status</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="CSS grade: activate to sort column ascending">
+                                                        Product Quantity</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="CSS grade: activate to sort column ascending">
+                                                        Product Price</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="CSS grade: activate to sort column ascending">
+                                                        Product Cost</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="CSS grade: activate to sort column ascending">
+                                                        Category</th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+
+
+                    </div>
+                </div>
+            </section>
 
 
 
 
 
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="card" style="width: 100%;">
+                            <div class="card-header">
+                                <h3 class="card-title">Users Report</h3>
+                                <div class="card-tools"><button type="button" data-card-widget="collapse" class="btn btn-tool"><i class="fas fa-minus"></i></button><button type="button" data-card-widget="remove" class="btn btn-tool"><i class="fas fa-times"></i></button></div>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                    <div class="row" style="margin: 10px;">
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="dt-buttons btn-group flex-wrap">
+                                                &nbsp;
+                                                <button class="btn btn-secondary buttons-pdf buttons-html5" tabindex="0"
+                                                    aria-controls="example1" type="button" style="width: 55px;"
+                                                    (click)="DownloadData1()"><span>PDF</span></button>
+                                                <!-- <button
+                                                    mat-raised-button
+                                                    
+                                                    class="btn btn-success"
+                                                  >
+                                                    download report
+                                                  </button> -->
+                                            </div>
+                                            
+
+                                        </div>
+                                        <div class="col-sm-12 col-md-6"
+                                            style="display: flex; align-items: center; flex-wrap: wrap;">
+                                            <form [formGroup]="searchForm">
+                                                <div id="example1_filter" class="dataTables_filter"
+                                                    style="display: flex; align-items: center; flex-wrap: wrap;">
+
+                                                    <div
+                                                        style="display: flex; align-items: center; margin-right: 10px;">
+                                                        <label>Search:</label>
+
+                                                        <input type="search" class="form-control form-control-sm"
+                                                            formControlName="productName" placeholder=""
+                                                            aria-controls="example1">
+
+                                                    </div>
+
+                                                    <button class="btn btn-secondary buttons-pdf buttons-html5"
+                                                    (click)="search()"tabindex="0" aria-controls="example1"
+                                                        type="button" style="width: 40px;"> 
+                                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
 
 
 
 
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <table id="myTables"
+                                                class="table table-bordered table-striped dataTable dtr-inline"
+                                                role="grid" aria-describedby="example1_info">
+                                                <thead>
+                                                    <tr role="row">
+                                                        <th class="sorting sorting_asc" tabindex="0"
+                                                        aria-controls="example1" rowspan="1" colspan="1"
+                                                        aria-sort="ascending"
+                                                        aria-label="Rendering engine: activate to sort column descending">
+                                                        Full Name</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Browser: activate to sort column ascending">
+                                                        Username</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Platform(s): activate to sort column ascending">
+                                                        Email</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Engine version: activate to sort column ascending">
+                                                        Phone Number</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="CSS grade: activate to sort column ascending">
+                                                        Gender</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="CSS grade: activate to sort column ascending">
+                                                        Status</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="CSS grade: activate to sort column ascending">
+                                                        Total Payment</th>      
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="even" *ngFor="let obj of adminService.userReport">
+                                                        <td class="sorting_1 dtr-control">{{obj.firstName}} {{obj.lastName}}</td>
+                                                        <td>{{obj.username}}</td>
+                                                        <td>{{obj.email}}</td>
+                                                        <td>{{obj.phoneNumber }}</td>
+                                                        <td>{{obj.gender ==1?'Male' :'Female'}}</td>
+                                                        <td>{{obj.status ==1?'Waiting':'Finished'}}</td>
+                                                        <td>{{obj.totalPayment}} $</td>
+                                                   
+
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr role="row">
+                                                        <th class="sorting sorting_asc" tabindex="0"
+                                                            aria-controls="example1" rowspan="1" colspan="1"
+                                                            aria-sort="ascending"
+                                                            aria-label="Rendering engine: activate to sort column descending">
+                                                            Full Name</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example1"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Browser: activate to sort column ascending">
+                                                            Username</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example1"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Platform(s): activate to sort column ascending">
+                                                            Email</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example1"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Engine version: activate to sort column ascending">
+                                                            Phone Number</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example1"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="CSS grade: activate to sort column ascending">
+                                                            Gender</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="example1"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="CSS grade: activate to sort column ascending">
+                                                            Status</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="example1"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="CSS grade: activate to sort column ascending">
+                                                            Total Payment</th>      
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="row">
 
 
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
 
 
+                    </div>
+                </div>
+            </section>
+        </section>
+    </section>
+</div>
 
 
 

@@ -1,25 +1,253 @@
 <app-navbar></app-navbar>
 
+<!-- Start Hero Section -->
+
+<!-- End Hero Section -->
+
+<section style="background-color: #eee;">
+    <div class="container py-5">
+        <br><br><br><br>
+
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card mb-4" style="height: 500px;">
+                    <div class="card-body text-center">
+                        <img src="../../assets/uploadImage/{{userService.userInformation.imagePath}}" alt="avatar"
+                            class="rounded-circle img-fluid" style="width: 150px;">
+                        <h5 class="my-3">{{userService.userInformation.firstName}}
+                            {{userService.userInformation.lastName}} </h5>
+                        <p class="text-muted mb-1">{{userService.userInformation.email}}</p>
+                        <p class="text-muted mb-4">{{userService.userInformation.phoneNumber}}</p>
+                        <div class="d-flex justify-content-center mb-2">
+                            <button type="button" class="btn btn-primary" style="max-height: 40px;max-width: 105px;" (click)="updateprofile()">Edit
+                                Profile</button> &nbsp;
+                            <button type="button" class="btn btn-warning me-2" style="max-height: 40px;max-width: 170px;" (click)="ChangePassword()">Change password</button>
+
+                        </div>
+                        <button type="button" class="btn btn-outline-danger me-2" style="width: 300px;max-height: 40px;" (click)="deleteAccount(userService.userInformation.userId)">Delete Account</button>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-8">
+                <div class="card mb-4" style="height: 500px;">
+                    <div class="card-body" style="margin-top: 34px;">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">First Name</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{userService.userInformation.firstName}} </p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Last Name</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{userService.userInformation.lastName}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Email</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{userService.userInformation.email}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Username</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{userService.userInformation.username}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Phone</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{userService.userInformation.phoneNumber}}</p>
+                            </div>
+                        </div>
+                        <hr>
+
+
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Status</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{userService.userInformation.status === 1 ? 'Active' :
+                                    'Disable'}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">User Type</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">
+                                    {{ userService.userInformation.roleFk === 3 ? 'Customer account' : (userService.userInformation.roleFk === 2 ? 'Vendor account' : 'Admin Account') }}
+                                  </p>
+                                  
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
 
 
 
 
+<ng-template #callUpdateDialog>
+    <section
+        style="z-index: 4000;position: fixed; top: 0; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; align-items: flex-start; background-color: rgba(0, 0, 0, 0.6);">
+        <div class="container py-4">
+            <div class="row">
+
+                <div class="col-lg-7 mx-auto d-flex justify-content-center flex-column"
+                    style="background-color: white; border-radius: 8px; padding: 20px;">
+                    <i class="fa fa-window-close" aria-hidden="true" (click)="closeDialog()"></i>
+
+                    <form [formGroup]="updateForm" role="form" id="contact-form" autocomplete="off">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>First Name</label>
+                                    <div class="input-group mb-4">
+                                        <input class="form-control" matInput formControlName="firstName"  [(ngModel)]="oldData.firstName" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Last Name</label>
+                                    <div class="input-group mb-4">
+                                        <input class="form-control" matInput formControlName="lastName"  [(ngModel)]="oldData.lastName" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Username</label>
+                                    <div class="input-group mb-4">
+                                        <input class="form-control" matInput formControlName="username" [(ngModel)]="oldData.username" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Gender</label>
+                                    <div class="input-group mb-4">
+                                        <select class="form-control" formControlName="gender" [(ngModel)]="oldData.gender">
+                                            <option value="1">Male</option>
+                                            <option value="0">Female</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-md-6">
+                                    <label>Gender</label>
+                                    <div class="input-group mb-4">
+                                        <input class="form-control" matInput formControlName="gender" [(ngModel)]="oldData.gender" type="text">
+                                    </div>
+                                </div> -->
+                                <div class="col-md-6">
+                                    <label>Phone Number</label>
+                                    <div class="input-group mb-4">
+                                        <input class="form-control" matInput formControlName="phoneNumber"  [(ngModel)]="oldData.phoneNumber" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Email</label>
+                                    <div class="input-group mb-4">
+                                        <input class="form-control" matInput formControlName="email"  [(ngModel)]="oldData.email" type="text">
+                                    </div>
+                                </div>
+                                <div class="mb-4 ">
+                                    <label>User Image</label>
+                                    <div class="input-group ">
+                                        <input type="file" formControlName="imagepath" #file (change)="uploadFile(file.files)"  [(ngModel)]="oldData.imagePath" class="form-control">
+                                    </div>
+                                </div>
 
 
 
+                            </div>
 
 
+                            <div class="row ">
+                                <div class="col-md-12 ">
+                                    <button type="submit" class="btn bg-gradient-warning me-2 w-100" style="max-height: 40px;" (click)="updateuser()">Update Profile</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</ng-template>
 
 
+<ng-template #callChangeDialog>
+    <section
+        style="z-index: 4000;position: fixed; top: 0; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; align-items: flex-start; background-color: rgba(0, 0, 0, 0.6);">
+        <div class="container py-4">
+            <div class="row">
+
+                <div class="col-lg-7 mx-auto d-flex justify-content-center flex-column"
+                    style="background-color: white; border-radius: 8px; padding: 20px;">
+                    <i class="fa fa-window-close" aria-hidden="true" (click)="closeDialog()"></i>
+
+                    <form [formGroup]="updateForm" role="form" id="contact-form" autocomplete="off">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Old Password</label>
+                                    <div class="input-group mb-4">
+                                        <input class="form-control" matInput formControlName="oldPassword" type="password">
+                                         <mat-error *ngIf="updateForm.controls['oldPassword'].hasError('minlength')" style="font-size: 12px;">Old Password is required and should be at least 8 characters long</mat-error>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Password</label>
+                                    <div class="input-group mb-4">
+                                        <input class="form-control" matInput formControlName="password" type="password">
+                                        <mat-error *ngIf="updateForm.controls['password'].hasError('minlength')" style="font-size: 12px;">Password is required and should be at least 8 characters long</mat-error>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Re Password</label>
+                                    <div class="input-group mb-4">
+                                        <input class="form-control" matInput formControlName="rePassword" type="password">
+                                        <mat-error *ngIf="updateForm.controls['rePassword'].hasError('minlength')" style="font-size: 12px;">Password is required and should be at least 8 characters long</mat-error>
+
+                                    </div>
+                                </div>
 
 
+                            </div>
+                            <div class="row ">
+                                <div class="col-md-12 ">
+                                    <button type="submit" class="btn bg-gradient-warning me-2 w-100" style="max-height: 40px;" (click)="updatePassword()">Change Password</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
 
-
-
-
-
-
-
-
-
-<app-footer></app-footer>
+                </div>
+            </div>
+        </div>
+    </section>
+</ng-template>

@@ -14,6 +14,9 @@ export class IndexComponent implements OnInit {
     debugger;
     this.guestService.getAllCategory()
     this.guestService.getAllTestimonialAccepted();
+    this.guestService.getContentForHome();
+    this.guestService.getContentForHome2();
+
     slider();
   }
   getallProductCategory(categoryId: any) {

@@ -28,6 +28,16 @@ export class UserService {
       this.toastr.error("There was an error, try again later")
     })
   }
+  HomeContent2: any = {};
+  async getContentForHome2() {
+    var contentId = 2;
+    await this.http.get('https://localhost:7100/api/home/getHomeContent/' + contentId).subscribe((result) => {
+      this.HomeContent2 = result;
+    }, err => {
+      this.toastr.error("There was an error, try again later");
+
+    })
+  }
   updateProfile(information: any) {
     information.imagePath = this.ImageUser;
     debugger;
@@ -37,6 +47,16 @@ export class UserService {
     }, err => {
       this.dialog.closeAll();
       this.toastr.error("There was an error, try again later")
+    })
+  }
+  HomeContent: any = {};
+  async getContentForHome() {
+    var contentId = 1;
+    await this.http.get('https://localhost:7100/api/home/getHomeContent/' + contentId).subscribe((result) => {
+      this.HomeContent = result;
+    }, err => {
+      this.toastr.error("There was an error, try again later");
+
     })
   }
   deleteAccount(userId: any) {

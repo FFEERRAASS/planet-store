@@ -65,57 +65,42 @@ searchForm:FormGroup = new FormGroup({
   dateTo :new FormControl()
 })
 search() {
-  this.spinner.show();
+  debugger;
 
   const date1: any = this.pipe.transform(this.searchForm.controls['dateFrom'].value, 'yyyy-MM-dd');
   const date2: any = this.pipe.transform(this.searchForm.controls['dateTo'].value, 'yyyy-MM-dd');
 
   try {
-    if (this.searchForm.controls['productName'].value == null && this.searchForm.controls['dateFrom'].value == null && this.searchForm.controls['dateTo'].value == null) {
+    if (this.searchForm.controls['productName'].value == null && 
+        this.searchForm.controls['dateFrom'].value == null && 
+        this.searchForm.controls['dateTo'].value == null) {
       this.adminService.financeReports = this.adminService.backUpDataFinance;
       this.toastr.warning("Enter your search information, please.");
-    }
-    else if (this.searchForm.controls['productName'].value != null && this.searchForm.controls['dateFrom'].value == null && this.searchForm.controls['dateTo'].value == null) {
-      this.adminService.financeReports = this.adminService.financeReports.filter((x: any) => x.productName.includes(this.searchForm.controls['productName'].value) || 
-      x.vendorFirstname.includes(this.searchForm.controls['productName'].value)  || x.vendorLastname.includes(this.searchForm.controls['productName'].value)||
-      x.firstName.includes(this.searchForm.controls['productName'].value) ||x.lastName.includes(this.searchForm.controls['productName'].value)
-      ||x.username.includes(this.searchForm.controls['productName'].value));
-      if (this.adminService.financeReports.length === 0) {
-        this.toastr.warning("Not found any data");
-      }
-    }
-    else if (this.searchForm.controls['productName'].value == null && this.searchForm.controls['dateFrom'].value != null && this.searchForm.controls['dateTo'].value == null) {
-      this.adminService.financeReports = this.adminService.financeReports.filter((x: any) => x.addedDateProduct >= date1);
-      if (this.adminService.financeReports.length === 0) {
-        this.toastr.warning("Not found any data");
-      }
-    }
-    else if (this.searchForm.controls['productName'].value == null && this.searchForm.controls['dateFrom'].value == null && this.searchForm.controls['dateTo'].value != null) {
-      this.adminService.financeReports = this.adminService.financeReports.filter((x: any) => x.addedDateProduct <= date2);
-      if (this.adminService.financeReports.length === 0) {
-        this.toastr.warning("Not found any data");
-      }
-    }
-    else if (this.searchForm.controls['productName'].value == null && this.searchForm.controls['dateFrom'].value != null && this.searchForm.controls['dateTo'].value != null) {
-      this.adminService.financeReports = this.adminService.financeReports.filter((x: any) => x.addedDateProduct >= date1 && date2 >= x.addedDateProduct);
-      if (this.adminService.financeReports.length === 0) {
-        this.toastr.warning("Not found any data");
-      }
-    }
-    else {
-      this.adminService.financeReports = this.adminService.financeReports.filter((x: any) => x.productName.includes(this.searchForm.controls['productName'].value) || 
-      x.vendorFirstname.includes(this.searchForm.controls['productName'].value)  || x.vendorLastname.includes(this.searchForm.controls['productName'].value)||
-      x.firstName.includes(this.searchForm.controls['productName'].value) ||x.lastName.includes(this.searchForm.controls['productName'].value ||x.addedDateProduct >= date1 && date2 >= x.addedDateProduct)
-      ||x.username.includes(this.searchForm.controls['productName'].value));
+    } else {
+      this.adminService.financeReports = this.adminService.financeReports.filter((x: any) => {
+        if (this.searchForm.controls['productName'].value != null) {
+          return x.productName.includes(this.searchForm.controls['productName'].value);
+        }
+        if (this.searchForm.controls['dateFrom'].value != null && this.searchForm.controls['dateTo'].value != null) {
+          return x.addedDateProduct >= date1 && date2 >= x.addedDateProduct;
+        }
+        if (this.searchForm.controls['dateFrom'].value != null) {
+          return x.addedDateProduct >= date1;
+        }
+        if (this.searchForm.controls['dateTo'].value != null) {
+          return x.addedDateProduct <= date2;
+        }
+        return false; // Default case if none of the conditions are met
+      });
+
       if (this.adminService.financeReports.length === 0) {
         this.toastr.warning("Not found any data");
       }
     }
   } catch (error) {
+    // Handle or log the error here
+    console.error(error);
   }
-
-  setTimeout(() => {
-    this.spinner.hide();
-  }, 1000);
 }
+
 }

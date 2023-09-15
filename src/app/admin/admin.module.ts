@@ -23,6 +23,8 @@ import { ProfileComponent } from './profile/profile.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { NgChartsModule } from 'ng2-charts';
+
 @NgModule({
   declarations: [
     IndexComponent,
@@ -48,7 +50,8 @@ import { MatInputModule } from '@angular/material/input';
     CommonModule,
     AdminRoutingModule,
     ReactiveFormsModule,
-    MatInputModule
+    MatInputModule,
+    NgChartsModule
   ]
 })
 export class AdminModule { }

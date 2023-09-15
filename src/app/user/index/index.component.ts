@@ -12,6 +12,8 @@ export class IndexComponent implements OnInit {
 ngOnInit(): void {
   this.userService.getAllCategory()
   this.userService.getAllTestimonialAccepted();
+  this.userService.getContentForHome();
+
   slider();
 }
 }

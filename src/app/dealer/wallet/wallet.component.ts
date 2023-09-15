@@ -44,6 +44,12 @@ export class WalletComponent implements OnInit {
     this.dialog.open(this.DrawMoneyDialog);
   }
   drawMoney() {
+    if(this.dealerService.userWallet.walletStatus ==0){
+      this.toastr.info('The withdrawal process was not successful, due to the wallet being frozen, contact support');
+    
+    }
+    else{
+
     
     if(this.cashWithDraw.valid){
       this.dealerService.cashWithDraw(this.cashWithDraw.value)
@@ -52,13 +58,21 @@ export class WalletComponent implements OnInit {
       this.toastr.info('Make sure to enter the information correctly');
     }
   }
+  }
   transfer() {
     debugger;
-    if (this.transferMoneyForm.valid) {
-      this.dealerService.transfeerMoney(this.transferMoneyForm.value);
+    if(this.dealerService.userWallet.walletStatus ==0){
+      this.toastr.info('The withdrawal process was not successful, due to the wallet being frozen, contact support');
+    
     }
-    else {
-      this.toastr.info('Make sure to enter the information correctly');
+    else{
+      if (this.transferMoneyForm.valid) {
+        this.dealerService.transfeerMoney(this.transferMoneyForm.value);
+      }
+      else {
+        this.toastr.info('Make sure to enter the information correctly');
+      }
     }
+   
   }
 }

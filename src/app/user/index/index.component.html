@@ -1,24 +1,26 @@
 <app-navbar></app-navbar>
 
 		<!-- Start Hero Section -->
-			<div class="hero">
-				<div class="container">
-					<div class="row justify-content-between">
-						<div class="col-lg-5">
-							<div class="intro-excerpt">
-								<h1>Everything you need is here</h1>
-								<p class="mb-4">More than just an online market.</p>
-								<p><a href="" class="btn btn-secondary me-2" style="max-width: 100px;">Shop Now</a></p>
-							</div>
+		<div class="hero">
+			<div class="container">
+				<div class="row justify-content-between">
+					<div class="col-lg-5">
+						<div class="intro-excerpt">
+							<h1>{{userService.HomeContent.paragraph1}}</h1>
+							<p class="mb-4">{{userService.HomeContent.paragraph2}}</p>
+							<p><a href="" class="btn btn-secondary me-2" style="max-width: 100px;">Shop Now</a></p>
 						</div>
-						<div class="col-lg-7">
-							<div class="hero-img-wrap">
-								<img src="../../assets/images/couch.png" class="img-fluid">
-							</div>
+					</div>
+					<div class="col-lg-7">
+						<div class="hero-img-wrap">
+							<img src="../../assets/images/couch.png" class="img-fluid">
 						</div>
 					</div>
 				</div>
 			</div>
+		</div>
+
+
 		<!-- End Hero Section -->
 
 		<!-- Start Product Section -->
@@ -82,7 +84,7 @@
 				<div class="row justify-content-between">
 					<div class="col-lg-6">
 						<h2 class="section-title">Why Choose Us</h2>
-						<p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique.</p>
+						<p>{{userService.HomeContent.paragraph3}}.</p>
 
 						<div class="row my-5">
 							<div class="col-6 col-md-6">
@@ -91,7 +93,7 @@
 										<img src="../../assets/images/truck.svg" alt="Image" class="imf-fluid">
 									</div>
 									<h3>Fast &amp; Free Shipping</h3>
-									<p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
+									<p>{{userService.HomeContent.paragraph4}}.</p>
 								</div>
 							</div>
 
@@ -101,7 +103,7 @@
 										<img src="../../assets/images/bag.svg" alt="Image" class="imf-fluid">
 									</div>
 									<h3>Easy to Shop</h3>
-									<p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
+									<p>{{userService.HomeContent.paragraph5}}.</p>
 								</div>
 							</div>
 
@@ -111,7 +113,7 @@
 										<img src="../../assets/images/support.svg" alt="Image" class="imf-fluid">
 									</div>
 									<h3>24/7 Support</h3>
-									<p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
+									<p>{{userService.HomeContent.paragraph6}}.</p>
 								</div>
 							</div>
 
@@ -121,7 +123,7 @@
 										<img src="../../assets/images/return.svg" alt="Image" class="imf-fluid">
 									</div>
 									<h3>Hassle Free Returns</h3>
-									<p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
+									<p>{{userService.HomeContent.paragraph7}}.</p>
 								</div>
 							</div>
 
@@ -130,7 +132,7 @@
 
 					<div class="col-lg-5">
 						<div class="img-wrap">
-							<img src="../../assets/images/why-choose-us-img.jpg" alt="Image" class="img-fluid">
+							<img src="../../assets/uploadImage/{{userService.HomeContent.paragraph8}}" alt="Image" class="img-fluid">
 						</div>
 					</div>
 

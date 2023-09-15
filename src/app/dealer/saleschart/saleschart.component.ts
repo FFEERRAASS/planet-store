@@ -20,9 +20,8 @@ export class SaleschartComponent  implements OnInit{
 
     setTimeout(() => {
       this.spinner.show();
-    
+
       this.dealerService.chartReport();
-      debugger;
     
       setTimeout(() => {
         this.barChartData = [
