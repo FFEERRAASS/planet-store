@@ -19,23 +19,7 @@
                     <h3 style="color: white;font-family: cursive;margin-top: 8px;">Here everything is wonderful</h3>
                 </div>
             </div>
-            <div class="col-lg-7">
-                <form [formGroup]="SearchForm">
-                    <div class="col-md-12" style="margin-top: 10px; margin-bottom: 10px; display: flex; align-items: center;">
-    
-                <input type="text" class="form-control" placeholder="Search..." matInput formControlName="productName">
-                &nbsp;
-                <select class="form-select" matInput formControlName="productDescription">
-                    <option selected >Filter by...</option>
-                    <option value="asc">Price from high to low</option>
-                    <option value="desc">Price from low to high</option>
-                </select>
-                <input type="submit" class="btn btn-primary" (click)="search()" style="color:#3b5d50;background-color: white; margin-left: 10px;" value="Filter">
-            </div>
-    
-            </form>
-           
-            </div>
+       
         </div>
     </div>
 </div>
@@ -48,7 +32,7 @@
     <div class="row">
         <div *ngFor="let obj of guestService.productFromCategory" class="col-12 col-md-4 col-lg-3 mb-5">
             <span class="product-item" href="#">
-                <img src="../../assets/uploadImage/{{obj.productImage1}}" class="img-fluid product-thumbnail">
+                <img src="../../assets/uploadImage/{{obj.productImage1}}" style="width: 250px;height: 250px;border-radius: 10%;" class="img-fluid product-thumbnail">
                 <h3 class="product-title">{{obj.productName}}</h3>
                 <p class="product-price text-dark">{{obj.productPrice}} JD</p>
     
@@ -66,7 +50,7 @@
 </div>
 <app-footer></app-footer>
 <ng-template #showDetailsDialog>
-    <section style="position: fixed;z-index:4000; top: 0; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; align-items: flex-start; background-color: rgba(0, 0, 0, 0.6);">
+    <section style="position: fixed;z-index:4000; top:0; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; align-items: flex-start; background-color: rgba(0, 0, 0, 0.6);">
         <div class="container py-4">
             <div class="row">
 
@@ -77,9 +61,9 @@
                     <div style="width:600px; background-color: #fff; border-radius: 10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); overflow: hidden; transition: transform 0.2s ease-in-out;">
                      
                         <div class="card-body">
-                            <div id="carouselExampleIndicators" style="width: 600px; height: 300px; cursor: pointer;"
+                            <div id="carouselExampleIndicators" style="width: 600px; height: 500px; cursor: pointer;"
                               class="carousel slide" data-ride="carousel">
-                              <ol class="carousel-indicators" style="height: 300px;">
+                              <ol class="carousel-indicators" style="height: 500px;">
                                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class=""></li>
                                 <li data-target="#carouselExampleIndicators" data-slide-to="1" class="active"></li>
                                 <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
@@ -88,12 +72,12 @@
                                 <div class="carousel-item">
                                   <img class="d-block w-100"
                                     src="../../assets/uploadImage/{{this.userService.specifcProduct.productImage1}}"
-                                    style="height: 300px; width: 500px;" alt="First slide">
+                                    style="height: 450px; width: 500px;" alt="First slide">
                                 </div>
                                 <div class="carousel-item active">
                                   <img class="d-block w-100"
                                     src="../../assets/uploadImage/{{this.userService.specifcProduct.productImage2}}"
-                                    style="height: 300px; width: 500px;" alt="Second slide">
+                                    style="height: 450px; width: 500px;" alt="Second slide">
                                 </div>
     
                               </div>

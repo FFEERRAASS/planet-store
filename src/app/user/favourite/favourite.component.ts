@@ -16,6 +16,6 @@ removeFromFavourite(favouriteId:any){
 }
 addToCart(ProductId:any){
   debugger
-  this.userService.addToCart(ProductId);
+  this.userService.addToCart1(ProductId);
 }
 }

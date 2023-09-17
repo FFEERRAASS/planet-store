@@ -77,4 +77,21 @@ export class GuestService {
 
     })
   }
+
+  async subscription(information:any){
+    this.spinner.show();
+    await this.http.post('https://localhost:7100/api/Subscriptions/InsertSubscription',information).subscribe((result)=>{
+      this.spinner.hide();
+      setTimeout(() => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Successfully completed',
+          text: 'You will receive the latest offers',
+        })
+      }, 1000); 
+    },err=>{
+      this.spinner.hide();
+      this.toastr.error("There was an error, try again later");
+    })
+  }
 }

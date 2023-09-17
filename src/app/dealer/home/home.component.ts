@@ -31,12 +31,10 @@ export class HomeComponent implements OnInit {
     responsive: true
   };
   
-  public barChartLabels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+  public barChartLabels :any;
   public barChartType = 'bar';
   public barChartLegend = true;
-  public barChartData = [
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'}
-  ];
+  public barChartData :any;
 
   ngOnInit(): void {
     this.dealerService.getAllProductForDealer();
@@ -45,6 +43,12 @@ export class HomeComponent implements OnInit {
     this.dealerService.numberOfReceiveMessage();
 
     this.dealerService.getAllContact();
+    setTimeout(() => {
+      this.barChartData = [
+        { data: this.dealerService.profitChart, label: 'Total Net Profit' }
+      ];
+      this.barChartLabels = this.numberToWords(this.dealerService.profitChart.length);
+    }, 1000);
     Pusher.logToConsole = true;
 
     var pusher = new Pusher('7a5d804f183e3725c865', {
@@ -60,6 +64,19 @@ export class HomeComponent implements OnInit {
       senderFk: this.senderFk,
       message: ['', [Validators.required]], // Make the message field required
     });
+  }
+  numberToWords(num: number): string[] {
+    const numberWords = [
+      'ONE', 'TWO', 'THREE', 'FOUR', 'FIVE', 'SIX', 'SEVEN', 'EIGHT', 'NINE', 'TEN',
+      'ELEVEN', 'TWELVE', 'THIRTEEN', 'FOURTEEN', 'FIFTEEN', 'SIXTEEN', 'SEVENTEEN', 'EIGHTEEN', 'NINETEEN', 'TWENTY'
+    ];
+
+    if (num < 1 || num > 20) {
+      return numberWords.slice(0, 20);
+
+    }
+
+    return numberWords.slice(0, num);
   }
 
   setReceiver(receiverId: any) {

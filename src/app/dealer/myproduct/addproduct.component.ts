@@ -6,6 +6,7 @@ import { UserService } from 'src/app/services/user.service';
 import { DatePipe } from '@angular/common';
 import { NgxSpinnerService } from 'ngx-spinner';
 import Swal from 'sweetalert2';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-addproduct',
@@ -18,24 +19,24 @@ export class AddproductComponent implements OnInit {
   @ViewChild('callUpdateProductDialog') callUpdateDialog!:TemplateRef<any>;
 
   
-  constructor(private datePipe: DatePipe,private spinner: NgxSpinnerService,public dealerService: DealerService, public dialog: MatDialog) { }
+  constructor(private datePipe: DatePipe,private spinner: NgxSpinnerService,public dealerService: DealerService, public dialog: MatDialog,public toastr:ToastrService) { }
   ngOnInit(): void {
     debugger
     this.dealerService.getAllProductForDealer();
   }
   ProductForm: FormGroup = new FormGroup({
-    productName: new FormControl(),
-    productDescription: new FormControl(),
-    productCost: new FormControl(),
-    productPrice: new FormControl(),
+    productName: new FormControl('',[Validators.required]),
+    productDescription: new FormControl('',[Validators.required]),
+    productCost: new FormControl('',[Validators.required]),
+    productPrice: new FormControl('',[Validators.required]),
     productImage1: new FormControl(''),
     productImage2: new FormControl(''),
-    productAddedDate: new FormControl(),
+    productAddedDate: new FormControl('',[Validators.required]),
     productStatus: new FormControl(0),
     userFk: new FormControl(''),
-    productQuantity: new FormControl(),
+    productQuantity: new FormControl('',[Validators.required]),
     productPlan: new FormControl(1),
-    categoryFk: new FormControl(),
+    categoryFk: new FormControl('',[Validators.required]),
   })
   UpdateProductForm: FormGroup = new FormGroup({
     productId:new FormControl(),
@@ -52,25 +53,35 @@ export class AddproductComponent implements OnInit {
     productPlan: new FormControl(1),
     categoryFk: new FormControl(),
   })
-  uploadFile1(files: any) {
-    if (files.length == 0)
-      return;
-    let fileToUpload = <File>files[0];
+  uploadFile1(files: FileList | null) {
+    debugger;
+    if (!files || files.length === 0) {
+      return; // No files selected or files is null, do nothing
+    }
+  
+    const fileToUpload = files[0]; // Get the first file from the FileList
     const formdata = new FormData();
     formdata.append('file', fileToUpload, fileToUpload.name);
-    debugger;
-    this.dealerService.uploadImage1(formdata)
+  
+    // Assuming you have an adminService method for uploading Image 1
+    this.dealerService.uploadImage1(formdata);
   }
-  uploadFile2(files: any) {
+  
+  uploadFile2(files: FileList | null) {
     debugger;
-    if (files.length == 0)
-      return;
-    let fileToUpload = <File>files[0];
+
+    if (!files || files.length === 0) {
+      return; // No files selected or files is null, do nothing
+    }
+  
+    const fileToUpload = files[0]; // Get the first file from the FileList
     const formdata = new FormData();
     formdata.append('file', fileToUpload, fileToUpload.name);
-    debugger;
-    this.dealerService.uploadImage2(formdata)
+  
+    // Assuming you have an adminService method for uploading Image 2
+    this.dealerService.uploadImage2(formdata);
   }
+
   addproduct() {
     this.dealerService.getAllCategory();
     this.dialog.open(this.addProduct);
@@ -91,7 +102,12 @@ export class AddproductComponent implements OnInit {
     this.ProductForm.controls['userFk'].setValue(parseInt(userId, 10));
     var category = parseInt(this.ProductForm.controls['categoryFk'].value, 10);
     this.ProductForm.controls['categoryFk'].setValue(category);
-    this.dealerService.saveProduct(this.ProductForm.value);
+    if(this.ProductForm.valid &&this.ProductForm.controls['categoryFk'].value>0 ){
+      this.dealerService.saveProduct(this.ProductForm.value);
+    }
+    else{
+      this.toastr.warning("Please enter all information, all of them are required");
+    }
 
   }
   showDetails(productId:number){

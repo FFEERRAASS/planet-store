@@ -12,18 +12,19 @@
 						<div class="subscription-form">
 							<h3 class="d-flex align-items-center"><span class="me-1"><img src="../../assets/images/envelope-outline.svg" alt="Image" class="img-fluid"></span><span>Subscribe here to get many benefits</span></h3>
 
-							<form action="#" class="row g-3">
-								<div class="col-auto">
-									<input type="text" class="form-control" placeholder="Enter your name">
-								</div>
-								<div class="col-auto">
-									<input type="email" class="form-control" placeholder="Enter your email">
-								</div>
-								<div class="col-auto">
-									<button class="btn btn-primary" style="max-width: 42px;">
-										<span class="fa fa-paper-plane" ></span>
-									</button>
-								</div>
+							<form [formGroup]="subscriptionForm">
+								<div style="display: flex;">
+									<div class="col-auto">
+										<input type="text" matInput formControlName="fullname" class="form-control" placeholder="Enter your name">
+									</div>
+									<div class="col-auto">
+										<input type="email" matInput formControlName="email" class="form-control" placeholder="Enter your email">
+									</div>
+									<div class="col-auto">
+										<button class="btn btn-primary" (click)="subscription()" >
+											<span class="fa fa-paper-plane" ></span>
+										</button>
+									</div></div>
 							</form>
 
 						</div>
@@ -33,7 +34,7 @@
 				<div class="row g-5 mb-5">
 					<div class="col-lg-4">
 						<div class="mb-4 footer-logo-wrap"><a href="#" class="footer-logo">PLANET<span>.</span></a></div>
-						<p class="mb-4">This is the most suitable store from space to Earth to meet all your needs. Planet Store is more than just an electronic store.</p>
+						<p class="mb-4">{{guestService.HomeContent2.paragraph5}}.</p>
 
 					</div>
 

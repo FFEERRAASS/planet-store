@@ -1,0 +1,112 @@
+<app-navbar></app-navbar>
+
+<div class="hero" style="height: 200px;">
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-lg-5">
+                <div class="intro-excerpt">
+                    <h3 style="color: white;font-family: cursive;margin-top: 8px;">Here everything is wonderful</h3>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="untree_co-section product-section before-footer-section">
+<div class="container"  >
+    <div class="row">
+        <div *ngFor="let obj of userService.productFromCategory" class="col-12 col-md-4 col-lg-3 mb-5">
+            <span class="product-item" href="#">
+                <img src="../../assets/uploadImage/{{obj.productImage1}}" style="width: 250px;height: 250px;border-radius: 10%;" class="img-fluid product-thumbnail">
+                <h3 class="product-title">{{obj.productName}}</h3>
+                <p class="product-price text-dark">{{obj.productPrice}} JD</p>
+    
+                <div style="display: flex; align-items: center;">
+                    <p style="margin-right: 10px;" class="icon-cross"  >
+                       <img src="../../assets/images/eyes.svg" class="img-fluid" (click)="showDetailsFun(obj.productId)">
+                    </p>
+                </div>
+            </span>
+        </div>
+    </div>
+    
+</div>
+
+</div>
+<app-footer></app-footer>
+<ng-template #showDetailsDialog>
+    <section style="position: fixed;z-index:4000; top: 0; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; align-items: flex-start; background-color: rgba(0, 0, 0, 0.6);">
+        <div class="container py-4">
+            <div class="row">
+
+                <div class="col-lg-7 mx-auto d-flex justify-content-center flex-column" style="background-color: white; border-radius: 8px; padding: 20px;">
+                    <i class="fa fa-window-close" aria-hidden="true"(click)="closeDialog()"></i>
+
+                    <h3 class="text-center" style="font-family: cursive;">Product Details</h3>
+                    <div style="width:600px; background-color: #fff; border-radius: 10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); overflow: hidden; transition: transform 0.2s ease-in-out;">
+                     
+                        <div class="card-body">
+                            <div id="carouselExampleIndicators" style="width: 600px; height: 300px; cursor: pointer;"
+                              class="carousel slide" data-ride="carousel">
+                              <ol class="carousel-indicators" style="height: 300px;">
+                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class=""></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="1" class="active"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                              </ol>
+                              <div class="carousel-inner">
+                                <div class="carousel-item">
+                                  <img class="d-block w-100"
+                                    src="../../assets/uploadImage/{{this.userService.specifcProduct.productImage1}}"
+                                    style="height: 300px; width: 500px;" alt="First slide">
+                                </div>
+                                <div class="carousel-item active">
+                                  <img class="d-block w-100"
+                                    src="../../assets/uploadImage/{{this.userService.specifcProduct.productImage2}}"
+                                    style="height: 300px; width: 500px;" alt="Second slide">
+                                </div>
+    
+                              </div>
+                              <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                                data-slide="prev">
+                                <span class="carousel-control-custom-icon" aria-hidden="true">
+                                  <i class="fas fa-chevron-left"></i>
+                                </span>
+                                <span class="sr-only">Previous</span>
+                              </a>
+                              <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                                data-slide="next">
+                                <span class="carousel-control-custom-icon" aria-hidden="true">
+                                  <i class="fas fa-chevron-right"></i>
+                                </span>
+                                <span class="sr-only">Next</span>
+                              </a>
+                            </div>
+                          </div>
+                        <div style="padding: 20px;border: #3b5d50 1px solid;border-radius: 10px;">
+
+                            <h2 style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">{{this.userService.specifcProduct.productName}}</h2>
+                            <span style="font-size: 20px; color: #6a6d6b"> {{this.userService.specifcProduct.productDescription}}</span><br>
+                            <span style="font-size: 20px; color: #f9bf29;font-family: cursive;">{{this.userService.specifcProduct.productPrice}} JD</span><br>
+                            <span style="font-size: 20px; color: #f9bf29; font-family: cursive;">
+                                {{ this.userService.specifcProduct.productQuantity > 0 ? 'Only ' + this.userService.specifcProduct.productQuantity + ' pieces are available.' : 'Out of stock' }}
+                              </span>
+                                                         &nbsp;&nbsp;&nbsp;&nbsp;
+                           <br><br>
+                           <div style="display: flex;justify-content: center;text-align: center;" >
+                           <button class="btn btn-secondary me-2" (click)="addToCart(this.userService.specifcProduct.productId)" *ngIf="this.userService.specifcProduct.productQuantity>0">Add to cart <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                           </button>
+                           <button class="btn btn-secondary me-2" (click)="addToFavourite(this.userService.specifcProduct.productId)">Add to favourites <i class="fa fa-star" aria-hidden="true"></i>
+                           </button>
+                        </div>
+                        </div>
+                
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</ng-template>

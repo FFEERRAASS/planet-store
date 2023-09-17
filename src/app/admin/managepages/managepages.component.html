@@ -72,7 +72,7 @@
                                             <div class="col-md-6">
 
                                                 <div class="form-group">
-                                                    <label for="inputProjectLeader">Card One</label>
+                                                    <label for="inputProjectLeader">Card Two</label>
                                                     <textarea rows="4" type="text" matInput formControlName="paragraph5" [(ngModel)]="oldDataContent.paragraph5" id="inputProjectLeader" class="form-control"
                                                      ></textarea>
                                                 </div>
@@ -144,8 +144,7 @@
                                             <div class="col-md-6">
 
                                                 <div class="form-group">
-                                                    <label for="inputName">The main paragraph is at the top in
-                                                        Header</label>
+                                                    <label for="inputName">The main paragraph is at the Buttom About</label>
                                                     <textarea type="text" matInput formControlName="paragraph1" [(ngModel)]="oldDataContent2.paragraph1" id="inputName" class="form-control"
                                                     rows="4"></textarea>
                                                 </div>
@@ -153,8 +152,7 @@
                                             <div class="col-md-6">
 
                                                 <div class="form-group">
-                                                    <label for="inputDescription">The secondary paragraph is at the top
-                                                        in Header</label>
+                                                    <label for="inputDescription">The secondary paragraph is at the Buttom main</label>
                                                     <textarea id="inputDescription" matInput formControlName="paragraph2" [(ngModel)]="oldDataContent2.paragraph2" class="form-control"
                                                         rows="4">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terr.</textarea>
                                                 </div>
@@ -162,30 +160,30 @@
                                         </div>
                                         <div class="row">
 
-                                            <div class="col-md-12">
+                                            <div class="col-md-6">
 
                                                 <div class="form-group">
-                                                    <label for="inputName">The main paragraph is at the top page</label>
+                                                    <label for="inputName">Card One</label>
                                                     <textarea type="text" id="inputName" matInput formControlName="paragraph3" [(ngModel)]="oldDataContent2.paragraph3"  class="form-control" rows="4"
                                                        ></textarea>
                                                 </div>
                                             </div>
-
-                                        </div>
-
-                                        <div class="row">
-                                        <div class="col-md-6">
-
-                                            <div class="form-group">
-                                                <label for="inputClientCompany">Card One</label>
-                                                <textarea type="text" rows="4" matInput formControlName="paragraph4" [(ngModel)]="oldDataContent2.paragraph4" id="inputClientCompany" class="form-control"
-                                                    ></textarea>
-                                            </div>
-                                        </div>
                                             <div class="col-md-6">
 
                                                 <div class="form-group">
-                                                    <label for="inputProjectLeader">Card Two</label>
+                                                    <label for="inputClientCompany">Card Two</label>
+                                                    <textarea type="text" rows="4" matInput formControlName="paragraph4" [(ngModel)]="oldDataContent2.paragraph4" id="inputClientCompany" class="form-control"
+                                                        ></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                 
+                                            <div class="col-md-12">
+
+                                                <div class="form-group">
+                                                    <label for="inputProjectLeader">Footer Paragraph</label>
                                                     <textarea rows="4" type="text" matInput formControlName="paragraph5" [(ngModel)]="oldDataContent2.paragraph5" id="inputProjectLeader" class="form-control"
                                                      ></textarea>
                                                 </div>
@@ -194,12 +192,12 @@
                                             
                                         </div>
                                         <div class="form-group">
-                                            <label for="exampleInputFile">Image 1</label>
+                                            <label for="exampleInputFile1">Image 1</label>
                                             <div class="input-group">
                                               <div class="custom-file">
-                                                <input type="file" formControlName="paragraph6" #file (change)="uploadFile1(file.files)"  [(ngModel)]="oldDataContent2.paragraph6"
-                                                class="custom-file-input" id="exampleInputFile">
-                                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                                <input type="file" formControlName="paragraph6" #file1 (change)="uploadFile1(file1.files)" 
+                                                  class="custom-file-input" id="exampleInputFile1">
+                                                <label class="custom-file-label" for="exampleInputFile1">Choose file</label>
                                               </div>
                                               <div class="input-group-append">
                                                 <span class="input-group-text">Upload</span>
@@ -207,12 +205,12 @@
                                             </div>
                                           </div>
                                           <div class="form-group">
-                                            <label for="exampleInputFile">Image 2</label>
+                                            <label for="exampleInputFile2">Image 2</label>
                                             <div class="input-group">
                                               <div class="custom-file">
-                                                <input type="file" formControlName="paragraph7" #file (change)="uploadFile1(file.files)"[(ngModel)]="oldDataContent2.paragraph7"
-                                                class="custom-file-input" id="exampleInputFile">
-                                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                                <input type="file" formControlName="paragraph7" #file2 (change)="uploadFile2(file2.files)"
+                                                  class="custom-file-input" id="exampleInputFile2">
+                                                <label class="custom-file-label" for="exampleInputFile2">Choose file</label>
                                               </div>
                                               <div class="input-group-append">
                                                 <span class="input-group-text">Upload</span>
@@ -220,18 +218,19 @@
                                             </div>
                                           </div>
                                           <div class="form-group">
-                                            <label for="exampleInputFile">Image 3</label>
+                                            <label for="exampleInputFile3">Image 3</label>
                                             <div class="input-group">
                                               <div class="custom-file">
-                                                <input type="file" formControlName="paragraph8" #file (change)="uploadFile3(file.files)"[(ngModel)]="oldDataContent2.paragraph8"
-                                                class="custom-file-input" id="exampleInputFile">
-                                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                                <input type="file" formControlName="paragraph8" #file3 (change)="uploadFile3(file3.files)"
+                                                  class="custom-file-input" id="exampleInputFile3">
+                                                <label class="custom-file-label" for="exampleInputFile3">Choose file</label>
                                               </div>
                                               <div class="input-group-append">
                                                 <span class="input-group-text">Upload</span>
                                               </div>
                                             </div>
                                           </div>
+                                          
                              
                                         <div class="col-12">
                                             <input type="submit" (click)="updateAboutContent()" value="Save Changes"

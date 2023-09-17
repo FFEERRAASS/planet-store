@@ -16,6 +16,7 @@ import { ChatComponent } from './chat/chat.component';
 import { ChartreportsComponent } from './chartreports/chartreports.component';
 import { CategoryComponent } from './category/category.component';
 import { BlockedComponent } from './blocked/blocked.component';
+import { TestimonialComponent } from './testimonial/testimonial.component';
 
 const routes: Routes = [
   {
@@ -66,6 +67,9 @@ const routes: Routes = [
   },{
     path:'blocked',
     component:BlockedComponent
+  },{
+    path:'testimonial',
+    component:TestimonialComponent
   }
 
 ];

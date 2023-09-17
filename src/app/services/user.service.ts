@@ -5,10 +5,15 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
-
+import { BehaviorSubject } from 'rxjs';
+interface ApiResponse {
+  totalPrice: number; // Adjust the type as needed based on your API response
+  // Add other properties if the API response contains more fields
+}
 @Injectable({
   providedIn: 'root'
 })
+
 export class UserService {
 
   constructor(
@@ -158,6 +163,44 @@ export class UserService {
       }
     );
   }
+  addToCart1(productId: any) {
+    this.spinner.show()
+
+    var productInformation: any = {
+      addedDateProduct: this.currentDate,
+      productFk: productId,
+      userFk: this.userId,
+      quantity: 1
+    }
+    this.http.post('https://localhost:7100/api/Basket/insertBasket', productInformation).subscribe(
+      (response: any) => {
+        this.spinner.hide();
+        this.toastr.success('The product is in the Basket');
+
+      },
+      (error: any) => {
+        this.spinner.hide();
+
+        this.toastr.error('The product cannot be added to the cart. There is an error , Error' + error);
+      }
+    );
+  }
+  async subscription(information:any){
+    this.spinner.show();
+    await this.http.post('https://localhost:7100/api/Subscriptions/InsertSubscription',information).subscribe((result)=>{
+      this.spinner.hide();
+      setTimeout(() => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Successfully completed',
+          text: 'You will receive the latest offers',
+        })
+      }, 1000); 
+    },err=>{
+      this.spinner.hide();
+      this.toastr.error("There was an error, try again later");
+    })
+  }
   //Add Product To favourite
   addToFavourite(productId: any) {
     var productInformation: any = { addedDateProduct: this.currentDate, productFk: productId, userFk: this.userId, }
@@ -185,6 +228,8 @@ export class UserService {
         }
       );
   }
+
+
   dataLoaded = false;
 
   informationInCard: any = [];
@@ -256,17 +301,26 @@ export class UserService {
       }
     );
   }
-  totalPrice?: any;
+  totalPrice: any;
   getTotalPrice() {
     this.http.get('https://localhost:7100/api/basket/GetTotalPriceItems/' + this.userId).subscribe((result) => {
       this.totalPrice = result
       if (!result) {
         this.totalPrice = 0;
       }
-
     }, err => {
       this.totalPrice = 0;
     })
+  }
+  totalPrices?: string;
+
+  async getTotalPrices() {
+    await this.http.get<ApiResponse>('https://localhost:7100/api/basket/GetTotalPriceItems/' + this.userId).subscribe((result) => {
+      console.log(result);
+      this.totalPrices = result.totalPrice.toString();
+    }, err => {
+      this.totalPrices = "0";
+    });
   }
   applyCoupon(couponCode: string) {
     this.spinner.show()
@@ -331,6 +385,21 @@ export class UserService {
         }
       );
   }
+  paymentPaypal() {
+
+    this.spinner.show();
+    this.http.get('https://localhost:7100/api/virtualbank/WithdrawMoneyPaypal/'+this.userId)
+      .subscribe(
+        (result) => {
+          
+          this.spinner.hide()
+        },
+        (err) => {
+          this.spinner.hide()
+
+        }
+      );
+  }
   favouriteProducts: any = [];
   getProductFavourite() {
     this.http.get('https://localhost:7100/api/Favourite/GetFavouriteItems/' + this.userId).subscribe((result) => {
@@ -376,15 +445,26 @@ export class UserService {
     })
   }
   testimonialAccepted: any = [];
-  getAllTestimonialAccepted() {
+  async getAllTestimonialAccepted() {
     this.spinner.show()
-    this.http.get('https://localhost:7100/api/testimonial/testimonialInformation').subscribe((result) => {
+    await this.http.get('https://localhost:7100/api/testimonial/testimonialInformation').subscribe((result) => {
       this.testimonialAccepted = result; 
       this.testimonialAccepted=this.testimonialAccepted.filter((x:any)=>x.status==1);
       this.spinner.hide()
     },err=>{
       this.toastr.error('There was an error, try again later')
       this.spinner.hide()
+    })
+  }
+  productFromCategory:any=[];
+  async getallProductCategory(categoryId:any){
+    localStorage.setItem('categoryFk',categoryId);
+    debugger;
+    await this.http.get('https://localhost:7100/api/Product/getAllProductAcceptedbycategory/'+categoryId).subscribe((result)=>{
+      this.productFromCategory=result;
+      this.router.navigate(['/specificproduct'])
+    },err=>{
+      this.toastr.error("There was an error, try again later")
     })
   }
 }

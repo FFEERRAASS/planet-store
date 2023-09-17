@@ -38,7 +38,7 @@
           
             <tr *ngFor="let obj of userService.informationInCard" >
               <td class="product-thumbnail">
-                <img src="../../assets/uploadImage/{{obj.productImage1}}" alt="Image" class="img-fluid">
+                <img src="../../assets/uploadImage/{{obj.productImage1}}"  style="width: 100px;height: 100px;border-radius: 20%;" alt="Image" class="img-fluid">
               </td>
               <td class="product-name">
                 <h2 class="h5 text-black">{{obj.productName}}</h2>
@@ -112,7 +112,7 @@
 
           <div class="row">
             <div class="col-md-12">
-              <button class="btn btn-secondary me-2" routerLink="/user/Checkout">Proceed To Checkout</button>
+              <button class="btn btn-secondary me-2" routerLink="/user/Checkout" >Proceed To Checkout</button>
             </div>
           </div>
         </div>

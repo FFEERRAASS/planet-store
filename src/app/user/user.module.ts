@@ -16,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FavouriteComponent } from './favourite/favourite.component';
 import { PreviouspurchasesComponent } from './previouspurchases/previouspurchases.component';
 import { MatInputModule } from '@angular/material/input';
+import { ProductfromcategoryComponent } from './productfromcategory/productfromcategory.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { MatInputModule } from '@angular/material/input';
     ProfileComponent,
     CheckoutComponent,
     FavouriteComponent,
-    PreviouspurchasesComponent
+    PreviouspurchasesComponent,
+    ProductfromcategoryComponent
     
   ],
   imports: [

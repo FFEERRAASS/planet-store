@@ -1,0 +1,223 @@
+<app-navbar></app-navbar>
+
+
+<div class="content-wrapper" style="min-height: 1345.31px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+
+        <section class="content">
+
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="card" style="width: 100%;">
+                            <div class="card-header">
+                                <h3 class="card-title">Sales reports</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                    <div class="row" style="margin: 10px;">
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="dt-buttons btn-group flex-wrap">
+                                                &nbsp;
+                                                <button class="btn btn-secondary buttons-pdf buttons-html5" tabindex="0"
+                                                    aria-controls="example1" type="button" style="width: 55px;"
+                                                    (click)="DownloadData()"><span>PDF</span></button>
+                                                <!-- <button
+                                                    mat-raised-button
+                                                    
+                                                    class="btn btn-success"
+                                                  >
+                                                    download report
+                                                  </button> -->
+                                            </div>
+                                            
+
+                                        </div>
+   
+
+
+
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <table id="myTable"
+                                                class="table table-bordered table-striped dataTable dtr-inline"
+                                                role="grid" aria-describedby="example1_info">
+                                                <thead>
+                                                    <tr role="row">
+                                                        <th class="sorting sorting_asc" tabindex="0"
+                                                            aria-controls="example1" rowspan="1" colspan="1"
+                                                            aria-sort="ascending"
+                                                            aria-label="Rendering engine: activate to sort column descending">
+                                                            Full Name</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example1"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Browser: activate to sort column ascending">
+                                                            Email</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example1"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Platform(s): activate to sort column ascending">
+                                                            Username</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example1"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Engine version: activate to sort column ascending">
+                                                           Phone Number</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example1"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="CSS grade: activate to sort column ascending">
+                                                            Added Date</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="example1"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="CSS grade: activate to sort column ascending">
+                                                            Testimonial</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="example1"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="CSS grade: activate to sort column ascending">
+                                                            Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="even" *ngFor="let obj of adminService.testimonial">
+                                                        <td class="sorting_1 dtr-control">{{obj.firstName}} {{obj.lastName}}</td>
+                                                        <td>{{obj.email}}</td>
+                                                        <td>{{obj.username}}</td>
+                                                        <td>{{obj.phoneNumber}}</td>
+                                                        <td>{{obj.testimonialDate | date:'yyyy-MM-dd'}}</td>
+                                                        <td style="max-width: 200px;">
+                                                            {{obj.testimonialMessage.length <= 30 ? obj.testimonialMessage : (obj.testimonialMessage | slice:0:30)+'....' }} <p *ngIf="obj.testimonialMessage.length > 30" style="font-family:cursive;color:brown" (click)="readMore(obj.testimonialId)">Read more</p>
+                                                        </td>
+
+                                                        <td style="justify-content: center;text-align: center;"><button class="btn btn-success" (click)="modifyTestimonial(obj.testimonialId,1)" *ngIf="obj.status ==0">Accept</button>&nbsp;&nbsp;  
+                                                            <button class="btn btn-danger" (click)="modifyTestimonial(obj.testimonialId,3)" *ngIf="obj.status == 0">Reject</button> &nbsp; 
+
+                                                            <button class="btn btn-danger" (click)="modifyTestimonial(obj.testimonialId,2)" *ngIf="obj.status == 1">Freeze</button> &nbsp; 
+                                                            <button class="btn btn-warning" (click)="modifyTestimonial(obj.testimonialId,1)" *ngIf="obj.status == 2">Un Freeze</button></td>
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr role="row">
+                                                        <th class="sorting sorting_asc" tabindex="0"
+                                                            aria-controls="example1" rowspan="1" colspan="1"
+                                                            aria-sort="ascending"
+                                                            aria-label="Rendering engine: activate to sort column descending">
+                                                            Full Name</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example1"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Browser: activate to sort column ascending">
+                                                            Email</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example1"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Platform(s): activate to sort column ascending">
+                                                            Username</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example1"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="Engine version: activate to sort column ascending">
+                                                           Phone Number</th>
+                                                        <th class="sorting" tabindex="0" aria-controls="example1"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="CSS grade: activate to sort column ascending">
+                                                            Added Date</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="example1"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="CSS grade: activate to sort column ascending">
+                                                            Testimonial</th>
+                                                            <th class="sorting" tabindex="0" aria-controls="example1"
+                                                            rowspan="1" colspan="1"
+                                                            aria-label="CSS grade: activate to sort column ascending">
+                                                            Action</th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+
+
+                    </div>
+                </div>
+            </section>
+        </section>
+    </section>
+</div>
+
+
+
+
+
+
+<!-- Page specific script -->
+<script>
+    $(function () {
+        $("#example1").DataTable({
+            "responsive": true, "lengthChange": false, "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+    });
+</script>
+
+<app-footer></app-footer>
+
+
+
+
+
+<ng-template #callTestimonialDeatilsDialog>
+    <div class="content-wrapper"
+      style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; align-items: flex-start; background-color: rgba(0, 0, 0, 0.6);min-height: 500px;">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <section class="content">
+          <div class="container-fluid">
+  
+            <div class="card card-success" style="margin-top: 50px;">
+  
+              <div class="card-header">
+  
+  
+                <h3 class="card-title" style="font-family: cursive;"><i class="fa fa-window-close" aria-hidden="true"
+                    (click)="closeDialog()"></i> Product Details</h3>
+  
+              </div>
+  
+
+              <div class="card-footer card-comments" style="height: 300;width: 500px;">
+                <div class="card-comment">
+                  <!-- User image -->
+  
+  
+                  <div class="comment-text">
+                    <span class="username">
+                      <i class="fa fa-paragraph" aria-hidden="true"></i> Message
+                    </span><!-- /.username -->
+                    {{adminService.specifcTestimonial.testimonialMessage}}
+                  </div>
+                  <!-- /.comment-text -->
+                </div>
+  
+                <!-- /.card-comment -->
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+    </div>
+  </ng-template>

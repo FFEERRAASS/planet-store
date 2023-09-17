@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GuestService } from 'src/app/services/guest.service';
 import { UserService } from 'src/app/services/user.service';
-declare function slider(): any;
+declare var $: any;
 
 @Component({
   selector: 'app-index',
@@ -9,15 +9,32 @@ declare function slider(): any;
   styleUrls: ['./index.component.css']
 })
 export class IndexComponent implements OnInit {
-  constructor(public userService: UserService, public guestService: GuestService) { }
+  constructor(public guestService: GuestService) { }
   ngOnInit(): void {
     debugger;
     this.guestService.getAllCategory()
     this.guestService.getAllTestimonialAccepted();
     this.guestService.getContentForHome();
     this.guestService.getContentForHome2();
-
-    slider();
+    setTimeout(() => {
+      this.fun();
+    }, 1000);
+  }
+  
+  fun(){
+    $(document).ready(() => {
+      $('#testimonial-carousel').carousel();
+  
+      // Handle previous button click
+      $('.prev').click(() => {
+        $('#testimonial-carousel').carousel('prev');
+      });
+  
+      // Handle next button click
+      $('.next').click(() => {
+        $('#testimonial-carousel').carousel('next');
+      });
+    });
   }
   getallProductCategory(categoryId: any) {
     debugger;

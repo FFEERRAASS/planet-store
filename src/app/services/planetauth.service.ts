@@ -37,6 +37,8 @@ export class planetAuth {
           const token = response.toString();
           localStorage.setItem('token', token);
           let userInformation: any = jwt_decode(token);
+          localStorage.setItem('user', JSON.stringify({ ...userInformation }));
+
           debugger;
           localStorage.setItem('userId',userInformation.userId);
           if (userInformation.status == 1) {
@@ -63,7 +65,7 @@ export class planetAuth {
         },
         (error: any) => {
           this.spinner.hide();
-          this.toastr.error('Login failed!');
+          this.toastr.error('The user name, email, or password are incorrect');
         }
       );
   }

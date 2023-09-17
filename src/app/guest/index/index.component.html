@@ -94,17 +94,14 @@
 						</div>
 					</div>
 					<div class="col-lg-5 ps-lg-5">
-						<h2 class="section-title mb-4">We Help You Make Modern Interior Design</h2>
-						<p>{{guestService.HomeContent2.paragraph1}}</p>
+						<h2 class="section-title mb-4">{{guestService.HomeContent2.paragraph1}}</h2>
+						<p>{{guestService.HomeContent2.paragraph2}}</p>
 
 						<ul class="list-unstyled custom-list my-4" >
-							<li>{{guestService.HomeContent2.paragraph2}}</li>
 							<li>{{guestService.HomeContent2.paragraph3}}</li>
 							<li>{{guestService.HomeContent2.paragraph4}}</li>
-							<li>{{guestService.HomeContent2.paragraph5}}</li>
 
 						</ul>
-						<p><a herf="#" class="btn">Explore</a></p>
 					</div>
 				</div>
 			</div>
@@ -152,64 +149,50 @@
         </div>
     </div>
 </div> -->
-<div class="blog-section" >
-	<div class="container" >
-		<div class="row mb-5" > 
-			<div class="col-md-6" >
-				<h2 class="section-title" style="font-family: cursive;">Testimonials</h2>
-			</div><br><br><br><br><br><br><br><br>
-<!-- Carousel wrapper -->
-<div class="container d-flex justify-content-center align-items-center vh-50" style="height: 600px;border-radius: 10%;box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
-    <div id="carouselExampleControls" class="carousel slide text-center carousel-dark" data-mdb-ride="carousel" style="width: 100%;">
-        <div class="carousel-inner">
-	  <div class="carousel-item active">
-		<img class="rounded-circle shadow-1-strong mb-4"
-		  src="../../assets/uploadImage/c4f0800f-3367-4ece-b745-0f7d10189da7_feras.jpg" alt="avatar"
-		  style="width: 150px;" />
-		<div class="row d-flex justify-content-center">
-		  <div class="col-lg-8">
-			<h5 class="mb-3">Feras Al-khuzai</h5>
-			<p>Al5za3i</p>
-			<p class="text-muted">
-			  <i class="fas fa-quote-left pe-2"></i>
-			  I hope you like the site, my friends.
-			</p>
-		  </div>
+<div class="testimonial-section">
+	<div class="container">
+	  <div class="row">
+		<div class="col-lg-7 mx-auto text-center">
+		  <h2 class="section-title">Testimonials</h2>
 		</div>
-		
 	  </div>
-
-	  <div class="carousel-item " *ngFor="let obj of guestService.testimonialAccepted">
-		<img class="rounded-circle shadow-1-strong mb-4"
-		  src="../../assets/uploadImage/{{obj.imagePath}}" alt="avatar" style="width: 150px;" />
-		<div class="row d-flex justify-content-center">
-		  <div class="col-lg-8">
-			<h5 class="mb-3">{{obj.firstName}} {{obj.lastName}}</h5>
-			<p>{{obj.username}}</p>
-			<p class="text-muted">
-			  <i class="fas fa-quote-left pe-2"></i>
-			  {{obj.testimonialMessage}}.
-			</p>
+  <br><br><br>
+	  <div class="row justify-content-center">
+		<div class="col-lg-12">
+		  <div class="testimonial-slider-wrap text-center">
+  
+			<!-- Add carousel controls here -->
+			<div id="testimonial-nav">
+			  <span class="prev" data-controls="prev"><span class="fa fa-chevron-left"></span></span>
+			  <span class="next" data-controls="next"><span class="fa fa-chevron-right"></span></span>
+			</div>
+  
+			<!-- Initialize the carousel -->
+			<div id="testimonial-carousel" class="carousel slide" data-ride="carousel">
+			  <div class="carousel-inner" role="listbox">
+				<div class="carousel-item" *ngFor="let obj of guestService.testimonialAccepted; let i = index" [ngClass]="{ 'active': i === 0 }">
+				  <!-- Testimonial content here -->
+					<p><i class="fa fa-quote-right" aria-hidden="true" style="color: #808080;"></i>&nbsp;
+						{{ obj.testimonialMessage }}&nbsp;<i class="fa fa-quote-right" aria-hidden="true" style="color: #808080;"></i>
+					</p>
+					<br><br><br>
+				  <div class="author-info">
+					<div class="author-pic">
+						<img src="../../assets/uploadImage/{{obj.imagePath}}"  alt="Maria Jones" style="width: 100px;height: 100px;" class="img-fluid img-circle">
+					</div>
+					<h5 class="">{{obj.firstName}} {{obj.lastName}}</h5>
+					<span class="position d-block mb-3">{{obj.username}}</span>
+				</div>
+				
+				</div>
+			  </div>
+			</div>
+  
 		  </div>
 		</div>
-		
 	  </div>
 	</div>
-	<button class="carousel-control-prev" type="button" data-mdb-target="#carouselExampleControls"
-	  data-mdb-slide="prev">
-	  <span class="carousel-control-prev-icon" aria-hidden="true" ></span>
-	  <i class="fa fa-arrow-left" aria-hidden="true" style="color: black;"></i>
-	</button>
-	<button class="carousel-control-next" type="button" data-mdb-target="#carouselExampleControls"
-	  data-mdb-slide="next" >
-	  <span class="carousel-control-next-icon" aria-hidden="true">  </span>
-	  <i class="fa fa-arrow-right" aria-hidden="true" style="color: black;"></i>
-	</button>
   </div>
-</div>
-</div>
-</div>
-</div>
 
   <!-- Carousel wrapper -->
 
@@ -217,36 +200,38 @@
 	
 		
 		<!-- Start Blog Section -->
-		<div class="blog-section" style="margin-top: -60px;">
-			<div class="container">
-				<div class="row mb-5">
-					<div class="col-md-6">
-						<h2 class="section-title" style="font-family: cursive;">Category</h2>
-					</div>
-			
-				</div>
-
+		<div class="untree_co-section product-section before-footer-section">
+			<div class="container"  >
 				<div class="row">
+					<div class="col-lg-7 mx-auto text-center">
+					  <h2 class="section-title">Category</h2>
+					  <br><br><br>
 
-					<div class="col-12 col-sm-6 col-md-4 mb-4 mb-md-0" *ngFor="let obj of guestService.category" (click)="getallProductCategory(obj.categoryId)">
-						<div class="post-entry">
-							<p  class="post-thumbnail"><img src="../../assets/uploadImage/{{obj.categoryImage}}"  alt="Image" class="img-fluid"></p>
-							<div class="post-content-entry">
-								<h3>{{obj.categoryName}}</h3>
-								<div class="meta">
-									<span>{{obj.categoryDescription}}</span>
-								</div>
-							</div>
-						</div>
 					</div>
+				  </div>
+				<div class="row">
+					<div *ngFor="let obj of guestService.category" class="col-12 col-md-4 col-lg-3 mb-5" (click)="getallProductCategory(obj.categoryId)" >
+						<span class="product-item" href="#">
+							<img src="../../assets/uploadImage/{{obj.categoryImage}}" style="width: 250px;height: 250px;border-radius: 10%;" class="img-fluid product-thumbnail">
+							<h3 class="product-title">{{obj.categoryName}}</h3>
+							<p class="product-price text-dark">
 
+								{{obj.categoryDescription.length <= 30 ? obj.categoryDescription : (obj.categoryDescription | slice:0:30)+'....' }} 
+							</p>
 				
+							<div style="display: flex; align-items: center;">
+								<p style="margin-right: 10px;" class="icon-cross"  >
+									<img src="../../assets/images/eyes.svg" class="img-fluid">
 
-					
-
+								</p>
+							</div>
+						</span>
+					</div>
 				</div>
+				
 			</div>
-		</div>
+			
+			</div>
 		<!-- End Blog Section -->	
 
 

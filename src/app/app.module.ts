@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {ToastrModule, ToastNoAnimation,ToastNoAnimationModule}from 'ngx-toastr'
-import{HttpClientModule}from '@angular/common/http'
+import{HTTP_INTERCEPTORS, HttpClientModule}from '@angular/common/http'
 import { ReactiveFormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common'; 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Add this line
@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 import * as SimplePeer from 'simple-peer';
 import { TruncatePipe } from './truncate.pipe';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { TokenInterceptors } from 'src/Interceptor/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,10 @@ import { NgxSpinnerModule } from "ngx-spinner";
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
-  providers: [DatePipe],
+  providers: [DatePipe,
+  {provide:HTTP_INTERCEPTORS,
+useClass:TokenInterceptors,
+multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

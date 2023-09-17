@@ -48,7 +48,7 @@
     <div class="row">
         <div *ngFor="let obj of userService.allProducts" class="col-12 col-md-4 col-lg-3 mb-5">
             <span class="product-item" href="#">
-                <img src="../../assets/uploadImage/{{obj.productImage1}}" class="img-fluid product-thumbnail">
+                <img src="../../assets/uploadImage/{{obj.productImage1}}" style="width: 250px;height: 250px;border-radius: 10%;" class="img-fluid product-thumbnail">
                 <h3 class="product-title">{{obj.productName}}</h3>
                 <p class="product-price text-dark">{{obj.productPrice}} JD</p>
     
@@ -126,6 +126,7 @@
                            <div style="display: flex;justify-content: center;text-align: center;" >
                            <button class="btn btn-secondary me-2" (click)="addToCart(this.userService.specifcProduct.productId)" *ngIf="this.userService.specifcProduct.productQuantity>0">Add to cart <i class="fa fa-cart-plus" aria-hidden="true"></i>
                            </button>
+                           &nbsp;&nbsp;
                            <button class="btn btn-secondary me-2" (click)="addToFavourite(this.userService.specifcProduct.productId)">Add to favourites <i class="fa fa-star" aria-hidden="true"></i>
                            </button>
                         </div>

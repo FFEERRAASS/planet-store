@@ -10,6 +10,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { FavouriteComponent } from './favourite/favourite.component';
 import { PreviouspurchasesComponent } from './previouspurchases/previouspurchases.component';
+import { ProductfromcategoryComponent } from './productfromcategory/productfromcategory.component';
 
 const routes: Routes = [{
   path:'',
@@ -43,6 +44,9 @@ const routes: Routes = [{
 },{
   path:'previouspurchases',
   component:PreviouspurchasesComponent
+},{
+  path:'specificproduct',
+  component:ProductfromcategoryComponent
 }];
 
 @NgModule({

@@ -46,11 +46,12 @@ export class DealerService {
 
   ImageProduct1: any;
   uploadImage1(file: FormData) {
+    debugger;
 
-    this.http.post('https://localhost:7100/api/Product/UploadImages', file)
+    this.http.post('https://localhost:7100/api/Product/UploadImages1', file)
       .subscribe((data: any) => {
         debugger;
-        this.ImageProduct1 = data.imagePath;
+        this.ImageProduct1 = data.productImage1;
       }, err => {
         return this.toastr.error("There was an error, try again later");
       })
@@ -58,10 +59,10 @@ export class DealerService {
   ImageProduct2: any;
   uploadImage2(file: FormData) {
 
-    this.http.post('https://localhost:7100/api/Product/UploadImages', file)
+    this.http.post('https://localhost:7100/api/Product/UploadImages2', file)
       .subscribe((data: any) => {
         debugger;
-        this.ImageProduct2 = data.imagePath;
+        this.ImageProduct2 = data.productImage2;
       }, err => {
         return this.toastr.error("There was an error, try again later")
       })
@@ -84,6 +85,9 @@ export class DealerService {
       (result) => {
         this.toastr.success('The product has been added, it will be reviewed, and if accepted, it will be shown to customers. Thank you for your waiting. An email will be sent to you if the product is approved.');
         this.dialog.closeAll();
+        setTimeout(() => {
+          window.location.reload();
+        }, 1200);
       },
       (err) => {
         if (err.status === 400) {
@@ -144,6 +148,7 @@ export class DealerService {
   numberOfOrder: any;
   totalAmount: any;
   totalQuantity: any;
+  profitChart:any=[];
   async vendorPurchase() {
     this.spinner.show()
 
@@ -152,12 +157,13 @@ export class DealerService {
       this.backUpDate = result;
       this.numberOfOrder = result.length;
 
-      this.totalAmount = 0; // Initialization
-      this.totalQuantity = 0; // Initialization
+      this.totalAmount = 0; 
+      this.totalQuantity = 0; 
 
       for (let i = 0; i < result.length; i++) {
         this.totalAmount += result[i].productCost * result[i].quantity;
-        this.totalQuantity += result[i].quantity;  // Incrementing the total quantity
+        this.totalQuantity += result[i].quantity;  
+        this.profitChart.push(Number(result[i].productCost * result[i].quantity))
       }
       this.spinner.hide()
 

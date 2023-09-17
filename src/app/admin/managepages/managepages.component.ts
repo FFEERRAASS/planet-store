@@ -62,36 +62,50 @@ export class ManagepagesComponent implements OnInit {
     paragraph7: new FormControl(),
     paragraph8: new FormControl(),
   })
-  uploadFile1(files: any) {
+  uploadFile1(files: FileList | null) {
     debugger;
-    if (files.length == 0)
-      return;
-    let fileToUpload = <File>files[0];
+    if (!files || files.length === 0) {
+      return; // No files selected or files is null, do nothing
+    }
+  
+    const fileToUpload = files[0]; // Get the first file from the FileList
     const formdata = new FormData();
     formdata.append('file', fileToUpload, fileToUpload.name);
-    debugger;
+  
+    // Assuming you have an adminService method for uploading Image 1
     this.adminService.uploadImageForAbout1(formdata);
   }
-  uploadFile3(files: any) {
+  
+  uploadFile2(files: FileList | null) {
     debugger;
 
-    if (files.length == 0)
-      return;
-    let fileToUpload = <File>files[0];
+    if (!files || files.length === 0) {
+      return; // No files selected or files is null, do nothing
+    }
+  
+    const fileToUpload = files[0]; // Get the first file from the FileList
     const formdata = new FormData();
     formdata.append('file', fileToUpload, fileToUpload.name);
-    this.adminService.uploadImageForAbout3(formdata);
-  }
-  uploadFile2(files: any) {
-    debugger;
-
-    if (files.length == 0)
-      return;
-    let fileToUpload = <File>files[0];
-    const formdata = new FormData();
-    formdata.append('file', fileToUpload, fileToUpload.name);
+  
+    // Assuming you have an adminService method for uploading Image 2
     this.adminService.uploadImageForAbout2(formdata);
   }
+  
+  uploadFile3(files: FileList | null) {
+    debugger;
+
+    if (!files || files.length === 0) {
+      return; // No files selected or files is null, do nothing
+    }
+  
+    const fileToUpload = files[0]; // Get the first file from the FileList
+    const formdata = new FormData();
+    formdata.append('file', fileToUpload, fileToUpload.name);
+  
+    // Assuming you have an adminService method for uploading Image 3
+    this.adminService.uploadImageForAbout3(formdata);
+  }
+  
   updateHomeContent(){
     debugger;
     this.adminService.updateHomeContent(this.homeContentForm.value);

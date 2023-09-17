@@ -19,12 +19,12 @@
                         <p class="text-muted mb-1">{{userService.userInformation.email}}</p>
                         <p class="text-muted mb-4">{{userService.userInformation.phoneNumber}}</p>
                         <div class="d-flex justify-content-center mb-2">
-                            <button type="button" class="btn btn-primary" style="max-height: 40px;max-width: 105px;" (click)="updateprofile()">Edit
+                            <button type="button" class="btn btn-primary"  (click)="updateprofile()">Edit
                                 Profile</button> &nbsp;
-                            <button type="button" class="btn btn-warning me-2" style="max-height: 40px;max-width: 170px;" (click)="ChangePassword()">Change password</button>
+                            <button type="button" class="btn btn-warning me-2"  (click)="ChangePassword()">Change password</button>
 
                         </div>
-                        <button type="button" class="btn btn-outline-danger me-2" style="width: 260px;max-height: 40px;" (click)="deleteAccount(userService.userInformation.userId)">Delete Account</button>
+                        <button type="button" class="btn btn-outline-danger me-2" style="width: 260px;" (click)="deleteAccount(userService.userInformation.userId)">Delete Account</button>
 
                     </div>
                 </div>

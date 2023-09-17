@@ -5,20 +5,24 @@ import { AdminModule } from './admin/admin.module';
 import { UserModule } from './user/user.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { DealerModule } from './dealer/dealer.module';
+import { checkauth } from './checkauth.guard';
 const routes: Routes = [
   {
     path: '',
     loadChildren: () => GuestModule
   }, {
     path: 'admin',
-    loadChildren: () => AdminModule
+    loadChildren: () => AdminModule,
+    canActivate:[checkauth]
   }
   , {
     path: 'dealer',
-    loadChildren: () => DealerModule
+    loadChildren: () => DealerModule,
+    canActivate:[checkauth]
   }, {
     path: 'user',
-    loadChildren: () => UserModule
+    loadChildren: () => UserModule,
+    canActivate:[checkauth]
   }, {
     path: 'planetAuth',
     loadChildren: () => AuthenticationModule

@@ -1,41 +1,64 @@
 <app-navbar></app-navbar>
 
 <div class="untree_co-section">
-  <div class="container">
-      <div class="row justify-content-center"> <!-- Center the form -->
-          <div class="col-md-8">
-              <div class="row mb-5">
-                  <div class="col-md-12">
-                      <h2 class="h3 mb-3 text-black" style="font-family: cursive;">PAY NOW</h2>
-                      <div class="p-3 p-lg-9 border bg-white" style="border: 1px solid white;border-radius: 10px;">
-                          <form style="margin: 15px;" [formGroup]="PaymentForm">
-                              <div class="input-group w-100 couponcode-wrap">
-                                  <input type="text" class="form-control" matInput formControlName="visaIban" placeholder="IBAN"  aria-describedby="button-addon2">
-                              </div>
-                              <br>
-                              <div class="input-group w-100 couponcode-wrap">
-                                  <input type="text" class="form-control" matInput formControlName="visaFullname" placeholder="Full Name"/>
-                              </div>
-                              <br>
-                              <div class="input-group w-100 couponcode-wrap">
-                                <input type="text" class="form-control" matInput formControlName="visaCvv" placeholder="CVV"/>
-                            </div>
-                            <br>
-                            <div class="input-group w-100 couponcode-wrap">
-                              <input type="date" class="form-control" placeholder="Expired Date" matInput formControlName="visaExpiredDate"/>
-                          </div>
-                          <br><br>
-                              <div class="form-group" style="text-align: center;">
-                                  <button class="btn btn-secondary btn-lg" (click)="checkout()">Place Order</button> <!-- Larger button -->
-                                 &nbsp; &nbsp; &nbsp;
-                                  <button class="btn btn-primary btn-lg"(click)="checkout()">Pay with PayPal</button> <!-- PayPal button -->
-                              </div>
-                          </form>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
+    <div class="container">
+        <div class="row justify-content-center"> <!-- Center the form -->
+            <div class="col-md-8">
+                <div class="row mb-5">
+                    <div class="col-md-12">
+                        <h2 class="h3 mb-3 text-black" style="font-family: cursive;">PAY NOW</h2>
+                        <div class="p-3 p-lg-9 border bg-white" style="border: 1px solid white;border-radius: 10px;">
+                            <form style="margin: 15px;" [formGroup]="PaymentForm">
+                                <div class="input-group w-100 couponcode-wrap">
+                                    <input type="text" class="form-control" matInput formControlName="visaIban"
+                                        placeholder="IBAN" maxlength="14" minlength="14"
+                                        aria-describedby="button-addon2">
+                                </div>
+                                <mat-error *ngIf="PaymentForm.controls['visaIban'].hasError('minlength')"
+                                    style="font-size: 12px;">IBAN should be 14 char</mat-error>
+                                <mat-error *ngIf="PaymentForm.controls['visaIban'].hasError('required')"
+                                    style="font-size: 12px;">IBAN required</mat-error>
+
+
+                                <br>
+                                <div class="input-group w-100 couponcode-wrap">
+                                    <input type="text" class="form-control" matInput formControlName="visaFullname"
+                                        placeholder="Full Name" />
+                                </div>
+                                <mat-error *ngIf="PaymentForm.controls['visaFullname'].hasError('required')"
+                                    style="font-size: 12px;">Full Name required</mat-error>
+
+                                <br>
+                                <div class="input-group w-100 couponcode-wrap">
+                                    <input type="text" class="form-control" matInput formControlName="visaCvv"
+                                        minlength="3" maxlength="3" placeholder="CVV" />
+                                </div>
+                                <mat-error *ngIf="PaymentForm.controls['visaCvv'].hasError('minlength')"
+                                    style="font-size: 12px;">CVV should be 3 char</mat-error>
+                                <mat-error *ngIf="PaymentForm.controls['visaCvv'].hasError('required')"
+                                    style="font-size: 12px;">Cvv required</mat-error>
+
+                                <br>
+                                <div class="input-group w-100 couponcode-wrap">
+                                    <input type="month" class="form-control" min="YYYY-MM" max="YYYY-MM"
+                                        placeholder="Expired Date" matInput formControlName="visaExpiredDate" />
+                                </div>
+                                <mat-error *ngIf="PaymentForm.controls['visaExpiredDate'].hasError('required')"
+                                    style="font-size: 12px;">Expired Date required</mat-error>
+
+                                <br><br>
+                                    <button class="btn btn-secondary btn-lg" style="width: 100%;font-weight: bold;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;" (click)="checkout()">Place Order</button>
+                                    <!-- Larger button -->
+                                    <br><br>
+
+                                <div #paymentRef></div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <app-footer></app-footer>

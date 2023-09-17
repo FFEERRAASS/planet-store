@@ -68,10 +68,6 @@ export class ProductCategoryComponent implements OnInit {
     this.userService.addToFavourite(productId)
          }
   }
-  search(){
-    debugger;
-    this.userService.searchItem(this.SearchForm.value);
-
-  }}
+}
 
  

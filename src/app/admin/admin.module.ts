@@ -24,6 +24,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { NgChartsModule } from 'ng2-charts';
+import { TestimonialComponent } from './testimonial/testimonial.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { NgChartsModule } from 'ng2-charts';
     ProductplanComponent,
     CategoryComponent,
     BlockedComponent,
-    ProfileComponent
+    ProfileComponent,
+    TestimonialComponent
   ],
   imports: [
     CommonModule,

@@ -507,5 +507,73 @@ debugger;
       this.toastr.error("There was an error, try again later");
     })
   }
+  testimonial: any = [];
+  getAllTestimonial() {
+    this.spinner.show()
+    this.http.get('https://localhost:7100/api/testimonial/testimonialInformation').subscribe((result) => {
+      this.testimonial = result;
+      this.testimonial=this.testimonial.filter((x:any)=>x.status ==0 || x.status ==1||x.status==2); 
+      this.spinner.hide()
+    },err=>{
+      this.toastr.error('There was an error, try again later')
+      this.spinner.hide()
+    })
+  }
+  async modifyTestimonial(testimonialId:number,action :number){
+    this.spinner.show()
+    var body={
+      status:action,
+      testimonialId:testimonialId
+    }
+    await this.http.put('https://localhost:7100/api/testimonial/UpdateTestimonialStatus',body).subscribe((result)=>{
+    this.toastr.success('The status has been modified successfully');
+    this.spinner.hide();
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
+    },err=>{
+      this.toastr.error('There was an error, try again later')
+      this.spinner.hide()
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+    })
+  }
+  specifcTestimonial:any={};
+  async getTestimonialbyId(testimonialId:number){
+    this.spinner.show();
+    await this.http.get('https://localhost:7100/api/testimonial/GetTestimonialByID/'+testimonialId).subscribe((result)=>{
+      this.specifcTestimonial=result;
+      this.spinner.hide();
+    },err=>{
+      this.toastr.error('There was an error, try again later')
+      this.spinner.hide()
+    })
+  }
+
+  totalAmount:number=0;
+  totalAmountForVendor:number=0;
+  totalProfit:number=0;
+  totalSaledQuantity:number=0;
+  sales:any=[];
+  adminStatistics() {
+    this.spinner.show()
+    this.http.get('https://localhost:7100/api/Basket/FinanceReports').subscribe((result:any) => {
+
+          for(let item of result){
+            this.totalAmount += Number(item.productPrice);
+            this.totalAmountForVendor += Number(item.productCost);
+            this.totalProfit += Number(item.productPrice - item.productCost);
+            this.totalSaledQuantity += Number(item.quantity); 
+            this.sales.push(Number((item.productPrice - item.productCost) * item.quantity));
+        }
+        
+        
+      this.spinner.hide();
+    }, err => {
+      this.spinner.hide();
+      this.toastr.error("There was an error, try again later");
+    })
+  }
 }
 
